@@ -1,120 +1,108 @@
-# UM CORTE IV · 4.0 — O preço do poder
+# UM CORTE IV · V4.2 — Sua arena, seu estilo
 
-Abra **UM-CORTE-V4.html** no Chrome ou Edge. O jogo cabe inteiro nesse arquivo. PvE, treino e duelo local funcionam sem internet; o online precisa de conexão. A V3 continua preservada em seu próprio arquivo.
+Abra **UM-CORTE-V42.html** no Chrome ou Edge. Sua edição com administração é **UM-CORTE-V42-ADMIN.html**. A versão comum não contém o menu admin. Os arquivos da V4 foram preservados.
 
-Há duas edições com as mesmas regras, personagens e animações:
+## Novidades
 
-- **UM-CORTE-V4.html:** versão comum, para compartilhar.
-- **UM-CORTE-V4-ADMIN.html:** sua edição, que também inclui o menu de administração. Guarde esse arquivo para seu uso; quem receber uma cópia também terá acesso ao menu. Não usa senha nem identificação por IP.
+- Editor de mapas: chão, paredes, plataformas, trajetos móveis, plataformas frágeis e dois pontos de nascimento.
+- Fundos com até duas imagens, profundidade de movimento, opacidade, enquadramento e escurecimento.
+- Salvar mapas em uma pasta escolhida, guardar uma cópia no navegador e importar/exportar arquivos com as imagens incluídas.
+- Testar a arena no treino e voltar ao editor mantendo a edição.
+- **Santuário Suspenso**, uma nova arena com plataformas que desabam. Os sete mapas anteriores mantêm sua geometria original.
+- **Pugilista**, sexto personagem, com socos alternados, menor alcance e o especial Contra-golpe.
+- Seis skins adaptadas ao pixel art, às proporções e à animação do jogo. Visualização animada de guarda, corrida, ataque, parry e especial.
+- Figurinos completos das skins: mangas, luvas, calças, botas, armaduras e tecidos próprios de cada referência. Máscara do Cavaleiro Vazio redesenhada; mantos, cabelo, cachecol e barras de roupa acompanham o movimento.
+- Skins e mapas personalizados sincronizados no online e na revanche.
+- Novos ajustes de partida também disponíveis sem os limites públicos no admin.
+- Histórico dentro do jogo atualizado com a V4.2.
 
-## O que mudou
+## Criar e guardar mapas
 
-- Finta aceita durante toda a preparação e nos primeiros 60 ms da fase ativa, desde que o golpe ainda não tenha tocado em nada. Pressione ataque e depois parry. A finta tem recuperação de 150 ms e intervalo de 450 ms; cancelar não concede defesa.
-- Novo ataque padrão: **1× equivale a 1,25× da V3**. Preparação, fase ativa e recuperação ficam mais rápidas na mesma proporção para cada classe. Na V4, 2× equivale a 2,5× da V3.
-- Parry padrão de **400 ms**, acionado com um toque. Acertos de parry recebem um breve quadro de impacto de alto contraste. A opção de reduzir movimento suaviza esse efeito.
-- Dash aéreo ligado por padrão, com opção de desativar. De uma a cinco cargas configuráveis para encadear dashes, inclusive para cima. Cada dash precisa terminar antes do seguinte; a última carga impõe a recuperação escolhida. As cargas recarregam uma por vez. Aterrissar reinicia o limite por salto, sem devolver cargas gastas.
-- Tela cheia ocupa o visor durante a luta, escondendo cabeçalho, rodapé e margens. Use **Tela cheia** no menu; durante a partida, **Pausar → Sair da tela cheia** permite retornar. Esc também segue o comportamento do navegador.
-- Treino começa com o painel fechado; clique em **Ajustar treino** para abri-lo.
-- Botão **+** ao lado das cores: 16 cores disponíveis, sem repetir entre adversários.
-- **Atualizações** mostra V1, V2, V3, V3.2, V3.3 e V4.
+1. No menu principal, clique em **Criar mapa**.
+2. Comece com **Novo** ou escolha um modelo e clique em **Abrir / copiar**. Copiar um mapa oficial cria um mapa separado.
+3. Escolha a ferramenta e arraste na arena para criar chão, plataforma, parede, plataforma móvel ou frágil.
+4. Use **Selecionar** para mover peças. Os campos ao lado permitem digitar posição e medidas. **Excluir peça**, **Desfazer** e **Refazer** ajudam a ajustar o desenho.
+5. Para uma plataforma móvel, arraste o contorno **B** para definir o destino. Escolha o tempo do percurso e a pausa em cada ponta. O movimento pode ser horizontal, vertical ou diagonal.
+6. Para uma plataforma frágil, escolha o tempo entre pisar e cair, e o tempo para reaparecer. Reaparecimento **0** significa voltar somente na próxima rodada. A plataforma não reaparece atravessando um personagem.
+7. Use **Início 1 / Início 2** para colocar os jogadores. O editor avisa quando um início está sem apoio, dentro de parede ou perto demais do outro.
+8. Em **Fundo personalizado**, carregue PNG, JPEG ou WebP. Ajuste as camadas e a cor do chão. Imagens ficam atrás do combate e não têm colisão.
+9. Clique em **Testar aqui**. O jogo abre um treino no mapa atual. **Voltar ao editor** restaura a tela de edição sem perder o mapa.
+10. Clique em **Escolher pasta** e autorize uma pasta sua. **Salvar mapa** grava nela um arquivo `.umcorte.json`, incluindo as imagens. Escolher a pasta também carrega os mapas desse formato que já estiverem nela.
 
-## Controles padrão
+Sem pasta selecionada, **Salvar mapa** guarda a cópia do navegador e baixa o arquivo para Downloads. **Exportar** baixa outra cópia; **Importar arquivo** abre um mapa recebido de alguém. Não é necessário enviar imagens separadamente.
 
-| Ação | Teclado e mouse | Controle |
+Os mapas salvos aparecem na seleção de arenas ao reabrir o jogo no mesmo navegador e endereço. A cópia do navegador depende de seus dados locais; o arquivo exportado é sua cópia portátil. Ao abrir uma nova sessão, escolha novamente a pasta para voltar a gravar diretamente nela. Navegadores que não oferecem o seletor de pasta continuam podendo importar e exportar arquivos.
+
+O editor aceita arenas de 640–3.840 unidades de largura, 360–2.160 de altura, até 80 plataformas e 60 paredes. Imagens de até 15 MB são reduzidas para caber no arquivo e na transferência online. Cada imagem incorporada tem um limite de tamanho; arquivos de mapa importados podem ter até 2,1 MB. O sorteio de mapas inclui as oito arenas oficiais; mapas personalizados são escolhidos diretamente.
+
+## Santuário Suspenso
+
+Os dois jogadores começam em bases fixas. O caminho central usa três plataformas frágeis; o caminho alto oferece apoios estáveis.
+
+Por padrão, uma plataforma começa a rachar no primeiro pisão, cai após **800 ms** e reaparece após **4 s**, se o espaço estiver livre. Sair dela não cancela a contagem. Rachaduras, fragmentos, mudança na borda e som avisam a queda. Todas retornam no início da próxima rodada.
+
+## Pugilista
+
+- Alcance 25% menor que o da adaga.
+- Ciclo de ataque cerca de 15% mais rápido que o do Assassino; movimento 5% mais rápido.
+- Socos esquerdo e direito alternados, com mira em todas as direções. Um soco limpo mata, como os outros ataques.
+- O rastro curto do soco mostra a área de acerto. Skins não aumentam essa área.
+- Ataque durante dash, finta, chute, salto e parries direcionais continuam disponíveis.
+
+**Contra-golpe**, com especiais habilitados:
+
+1. Carregue a barra e use **F / Y / △**.
+2. Você tem **5 s** para acertar um parry, inclusive contra a adaga arremessada.
+3. Ao conseguir, recebe **2 s de socos acelerados sem recuperação entre os golpes**. Pode segurar ataque para continuar socando, alternando os braços. Cada soco define sua mira ao começar.
+4. Alcance, colisões e vulnerabilidade permanecem. O adversário pode desviar, aparar ou provocar clash. Ser atordoado não interrompe a contagem do efeito.
+5. Se os 5 s acabarem sem um parry bem-sucedido, fica **3 s sem dash**.
+
+Os tempos são personalizáveis. A recarga padrão continua em 15 s, vazia a cada rodada, e volta a avançar quando o efeito ou a penalidade termina. Fora do especial, segurar ataque não dispara socos automaticamente.
+
+## Skins
+
+Escolha a classe e use o seletor **Visual** abaixo dos personagens. **Ver em movimento** abre a prévia animada. Cada lado escolhe sua própria skin; no PvE e treino, você escolhe também a do adversário.
+
+| Classe | Referência adaptada | Arma / detalhe |
 |---|---|---|
-| Mover | A / D ou ← / → | Analógico esquerdo / direcional |
-| Mirar | Mouse | Analógico direito |
-| Pular | Espaço / W | A / ✕ |
-| Queda rápida | S / ↓ | Analógico para baixo / ↓ |
-| Descer de plataforma | Baixo + pulo | Baixo + pulo |
-| Atacar | Clique esquerdo / J | RB / R1 |
-| Parry / finta | Clique direito / K | LB / L1 |
-| Dash | Shift | B / ○ |
-| Deslizar | Baixo + dash, no chão | Baixo + dash, no chão |
-| Chutar | E / L | X / □ |
-| Especial, quando habilitado | F | Y / △ |
-| Reiniciar treino / tentativa | R | View |
-| Pausa / controles | Esc | Menu |
+| Cavaleiro | Hollow Knight | Máscara com chifres, manto e arma inspirada no ferrão |
+| Lanceiro | Katakuri | Gola cobrindo a boca e tridente |
+| Assassino | Thorfinn jovem, época de Askeladd | Cabelo loiro, túnica terrosa e uma adaga nórdica funcional |
+| Espadachim | Guts | Armadura escura, capa e espada larga inspirada na Dragon Slayer |
+| Ceifador | Kite | Cabelo claro, chapéu e foice inspirada no Crazy Slots Nº 2 |
+| Pugilista | Yuji Itadori | Cabelo rosado, gola vermelha e energia nos punhos |
 
-No modo local, jogador 1 usa teclado e mouse; jogador 2 usa controle. As ações podem ser remapeadas em **Controles**. Preferências da V3 no mesmo navegador são reaproveitadas.
-
-Ataques durante o dash mantêm sua trajetória e seguem a mira definida no início do golpe. A área luminosa do slash é a área real de acerto; os rastros que desaparecem depois não causam dano. Chutes empurram, sem matar diretamente. Paredes interrompem os cortes e permitem wall jump. Parry baixo só existe no ar.
-
-## Personalizar partida
-
-Todas as opções numéricas têm barra e campo para digitar. As regras valem para os dois jogadores.
-
-| Opção | Faixa normal | Padrão |
-|---|---|---|
-| Velocidade de ataque | 0,1× a 3× | 1×, com a nova base |
-| Velocidade de movimento | 0,1× a 3× | 1× |
-| Tamanho da arena | 0,5× a 3× | 1× |
-| Gravidade | 0,1× a 5× | 1× |
-| Força do pulo | 0,1× a 5× | 1× |
-| Distância do dash | 0,1× a 5× | 1× |
-| Dashes consecutivos | 1 a 5 cargas inteiras | 1 |
-| Recuperação do dash | 0 a 2.000 ms | 75 ms |
-| Recarga de cada dash | 0 a 5.000 ms | 800 ms |
-| Duração do parry | 50 a 2.000 ms | 400 ms |
-| Recuperação do parry | 0 a 3.000 ms | 400 ms |
-| Atordoamento após parry | 0 a 3.000 ms | 490 ms |
-| Recarga do especial | A partir de 0,1 s | 15 s |
-
-A barra de recarga do especial vai até 120 segundos; o campo aceita durações maiores. Recuperação é o período em que o personagem ainda não pode agir após a ação. Recarga é o tempo para recuperar uma utilização.
-
-## Especiais opcionais
-
-Marque **Habilitar especiais** na personalização. Antes da partida, uma janela explica os poderes e as desvantagens dos personagens escolhidos. No online, ambos precisam confirmar. Indicadores discretos nos dois cantos inferiores mostram recarga, efeito ou penalidade; ficam escondidos quando os especiais estão desativados.
-
-A barra começa **vazia a cada rodada**. A recarga só avança durante o combate e começa novamente após terminar o efeito e sua penalidade. O poder não é ativado automaticamente: use **F / Y / △** quando estiver pronto e o personagem puder agir.
-
-| Classe | Especial | Consequência |
-|---|---|---|
-| Cavaleiro — Última guarda | Absorve um ataque recebido ou expira em 10 s. A proteção também bloqueia especiais. | Ao terminar, fica 10 s sem parry. Chutes ainda empurram; quedas continuam fatais. |
-| Lanceiro — Sem retorno | Após 300 ms de preparação visível, dispara horizontalmente. Ignora parry e clash. | Não pode frear, mudar de direção, saltar ou dar dash até atingir uma parede ou cair. Pode ser evitado saltando ou saindo da trajetória. |
-| Assassino — Última adaga | Arremessa a adaga na direção da mira, após 180 ms de preparação. Um acerto mata. | Fica sem ataque até buscar a adaga. Pode usar parry, dash e chute. Parry inimigo derruba a adaga perto do defensor. Se cair no vazio, retorna a uma superfície segura depois de 2 s. |
-| Espadachim — Corte soberano | O próximo corte ignora parry. Esquiva e clash ainda funcionam. | O golpe consome o poder mesmo se errar ou sofrer clash; depois, 10 s sem parry. Fintar na preparação conserva o poder; fintar na fase ativa o consome. |
-| Ceifador — Lua crescente | Arma e alcance real aumentam 40% por 10 s. | Em seguida, ficam 40% menores que o tamanho normal por 10 s. |
-
-Todos os efeitos e penalidades reiniciam entre rodadas. O escudo opcional do Cavaleiro é uma defesa explícita contra um ataque; não existe vida escondida. Sem essa proteção, um acerto letal continua encerrando a tentativa.
-
-## Treino e replay
-
-O treino mantém o boneco configurável: movimento, mira, ataque, finta, chute, guarda contínua ou parries em intervalos. O painel só abre quando solicitado. É possível salvar posições, reiniciar, mostrar colisões, reduzir o tempo e avançar quadro a quadro.
-
-**Último replay** guarda os últimos instantes de um ponto. **Tentar outra resposta** permite jogar novamente a partir do instante escolhido, enquanto o adversário repete os comandos gravados. Especiais, projéteis, efeitos e penalidades também são restaurados. Esse exercício não altera o placar oficial. No online, o replay fica disponível após o fim da partida.
+As skins preservam corpo, alcance, velocidade e regras da classe. A cor de identificação do jogador permanece em faixas, mantos ou detalhes. Personagem aleatório usa o visual original da classe sorteada. O Assassino continua com uma arma funcional: arremessá-la deixa o personagem sem ataque até recuperá-la, também na skin Thorfinn.
 
 ## Online
 
-1. Cada jogador abre uma edição da **V4**, no próprio computador.
-2. Um escolhe **Online → Criar sala** e envia o código ao outro.
-3. O outro digita o código e entra. Cada um escolhe classe e cor; o anfitrião define mapa e regras.
-4. Ambos confirmam que estão prontos. Com especiais habilitados, também confirmam a explicação dos poderes.
-5. Primeiro a cinco vence. **Revanche** volta à seleção de personagens na mesma sala, sem trocar o código.
+Ambos precisam abrir a **V4.2**. As edições comum e admin são compatíveis entre si. Crie a sala, envie o código e confirme as escolhas dos dois jogadores.
 
-As edições comum e admin são compatíveis entre si. Salas V4 são separadas das versões anteriores. Não é necessário pagar hospedagem para abrir o arquivo ou criar uma sala: o serviço público PeerJS faz o encontro inicial, e os comandos seguem por WebRTC. A conexão depende da disponibilidade desse serviço e da rede; redes que bloqueiam comunicação direta podem exigir um relay TURN, não incluído no protótipo. Mantenham as abas visíveis durante o duelo.
+O anfitrião pode selecionar um mapa personalizado da sua biblioteca. O mapa e suas imagens são enviados automaticamente ao adversário, que vê a arena selecionada antes de ficar pronto. A transmissão usa partes menores para suportar imagens maiores. O convidado pode guardar o mapa recebido: depois de sair da sala, abra-o no editor e use Salvar ou Exportar.
 
-## Seu menu admin
+A revanche mantém a sala e permite escolher novamente classe e skin. As salas V4.2 são separadas da V4. Não há servidor de jogo próprio nem pagamento de hospedagem necessário para abrir o arquivo, mas a conexão inicial depende do serviço público PeerJS. Redes que impedem conexões diretas podem precisar de TURN, que não está incluído.
 
-Abra **UM-CORTE-V4-ADMIN.html**, entre em uma partida e pressione **Ctrl + Shift + F10**.
+## Novas opções no admin
 
-O menu permite trocar mapa, personagens, cores e todas as regras numéricas, além de definir posições. Os limites máximos da personalização comum não se aplicam: valores como 10×, 100× e 200× são aceitos. São exigidos números finitos válidos; mapa e velocidade de ataque devem ser positivos, e cargas devem ser inteiras. Valores extremos podem deixar a partida impraticável.
+Na edição admin, durante a partida, pressione **Ctrl + Shift + F10**. Além dos ajustes anteriores, agora há:
 
-- **Aplicar na rodada:** reinicia a tentativa com os novos ajustes, preservando o placar.
-- **Pausar / retomar:** controla a simulação. Offline, abrir o painel já pausa e fechar restaura o estado anterior, salvo se você alterar a pausa manualmente.
-- **+1 quadro:** avança um quadro com a simulação pausada.
-- **Recarregar habilidades:** devolve cargas e especial, remove as penalidades dos especiais e os cooldowns de dash/parry.
-- **Restaurar padrão:** carrega os padrões no formulário; clique em Aplicar para usá-los.
-- **Reposicionar no início:** reinicia a rodada nas posições do mapa atual.
+- Pugilista e skins dos dois jogadores.
+- Seleção de mapas personalizados carregados e do Santuário Suspenso.
+- Janela para conseguir o parry do Pugilista, duração dos socos livres e penalidade sem dash, em milissegundos.
+- Multiplicadores da velocidade das plataformas, do tempo para desabar e do tempo para reaparecer.
 
-Para usar administração online, o anfitrião deve marcar **Criar sala de testes com administração** antes de criar a sala. O outro jogador vê essa condição antes de confirmar. Somente o anfitrião administra; as alterações e pausas são aplicadas nos dois jogos no mesmo quadro. A edição admin também joga em salas comuns, mas o menu não controla essas partidas. Ajustes experimentais são normalizados aos limites públicos quando se retorna à seleção para outra partida.
+Esses ajustes também aparecem na personalização normal, com limites. O admin aceita valores maiores, como antes. As medidas e os trajetos individuais de cada peça são editados no **Criar mapa**; depois, o mapa salvo pode ser selecionado no admin. Aplicar mapa, personagens ou regras reinicia a rodada preservando o placar.
 
-## Verificação desta entrega
+No online, a administração continua exclusiva do anfitrião em uma **sala de testes com administração**, anunciada antes da confirmação do adversário. Mapas, skins e regras alterados são sincronizados nos dois jogos.
 
-- 40 grupos de testes das regras, incluindo golpes fatais em oito direções, especiais, finta, dashes, parry, clash e colisão da adaga com paredes.
-- 308 simulações com as 25 combinações de classes, sete arenas, quatro dificuldades e regras alteradas; 28 cenários adicionais de navegação da IA.
-- Navegador: interface, campos numéricos, cores, tela cheia sem margens, treino fechado, efeitos visuais e menu admin com valores de 100× e 200×.
-- Teclado e controle simulado pela Gamepad API, remapeamento, desconexão/reconexão e replay interativo com projétil.
-- Online real PeerJS/WebRTC em duas sessões isoladas do Chrome no mesmo computador: especiais, administração sincronizada, rodada, partida até cinco, revanche com novas classes e desconexão. Não foi um teste em dois computadores ou duas redes diferentes, nem com controle físico.
+## Testes da entrega
 
-Fontes e scripts de teste ficam em `work/v4/`. O build gera os dois arquivos autônomos; a versão comum não contém o formulário nem o módulo do menu admin.
+- 42 grupos de testes herdados de combate e especiais, mais oito grupos novos de Pugilista, skins, mapas, plataformas e restauração de estado.
+- 448 simulações com seis classes, oito arenas, quatro dificuldades e regras variadas; 32 cenários adicionais de navegação da IA.
+- Verificação de que a geometria dos sete mapas anteriores não mudou.
+- Navegador: seis skins e prévias, editor, imagem incorporada, propriedades, desfazer/refazer, exportação/importação, persistência, teste e retorno, regras do admin, Contra-golpe com teclado e plataforma que desaba.
+- Salvamento e leitura usando um diretório real da API de arquivos do navegador, com o seletor substituído por um diretório de teste. A janela nativa de escolha de pasta não foi automatizada.
+- Controle simulado, remapeamento e replay interativo.
+- Online PeerJS/WebRTC em duas sessões isoladas do Chrome no mesmo PC: mapa de 1,5 MB com duas imagens, skins, especiais, admin, partida até cinco e revanche. Também foi testada a troca pelo admin para um mapa que o convidado ainda não tinha, com plataformas móveis e desabamento sincronizados. Não foi um teste em computadores ou redes diferentes.
+
+Fontes e scripts de teste: `work/v42/`. Build: `node work/v42/build.cjs`. O build gera as duas edições autônomas em `outputs/`.
