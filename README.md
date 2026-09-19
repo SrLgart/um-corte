@@ -1,6 +1,6 @@
 # UM CORTE IV · V4.2 — Sua arena, seu estilo
 
-Abra **UM-CORTE-V42.html** no Chrome ou Edge. Sua edição com administração é **UM-CORTE-V42-ADMIN.html**. A versão comum não contém o menu admin. Os arquivos da V4 foram preservados.
+Abra **UM-CORTE-V4,2.html** no Chrome ou Edge. Sua edição com administração é **UM-CORTE-V42-ADMIN.html**. A versão comum não contém o menu admin. Os arquivos da V4 foram preservados.
 
 ## Novidades
 
