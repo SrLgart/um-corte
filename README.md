@@ -1,8 +1,32 @@
-# UM CORTE IV · V4.2 — Sua arena, seu estilo
+# UM CORTE IV · V4.3 — Ajustes, balanceamento e QoL
 
-Abra **UM-CORTE-V4,2.html** no Chrome ou Edge. Sua edição com administração é **UM-CORTE-V42-ADMIN.html**. A versão comum não contém o menu admin. Os arquivos da V4 foram preservados.
+Abra **UM-CORTE-V43.html** no Chrome ou Edge. Sua edição com administração é **UM-CORTE-V43-ADMIN.html**. A versão comum não contém o menu admin. Os arquivos da V4.2 foram preservados.
 
-## Novidades
+## Novidades da V4.3
+
+- Especiais ligados por padrão, recarga padrão de **7 segundos**. Desative em Personalizar partida se preferir.
+- Cavaleiro e Espadachim: a penalidade após o especial passa a **4 segundos sem parry**. Os demais efeitos permanecem iguais.
+- **Pontos para vencer**: padrão 5, atalhos 3 / 5 / 7 / 10 e campo para um inteiro positivo personalizado. O HUD acompanha a escolha.
+- **Manter carga do especial entre rounds**: desligado por padrão. Ligado, preserva a carga dos dois jogadores, inclusive de quem perdeu. A pausa após o ponto não gera carga extra. Efeitos e penalidades terminam; um especial usado não é reembolsado. Toda partida nova, incluindo revanche, começa vazia.
+- A descrição dos especiais começa automaticamente em **10 segundos**. No online, ambos confirmando antes iniciam imediatamente; ao esgotar o prazo, as duas telas são fechadas automaticamente. Desconexão encerra a espera com uma mensagem.
+- ADMIN funciona como anfitrião ou convidado. Dois administradores podem usar o painel; os comandos são ordenados e aplicados no mesmo quadro. A última mudança nessa ordem prevalece.
+- Log de atualizações inclui a V4.3.
+
+## Presets de combate
+
+| Preset | Valores |
+|---|---|
+| CLÁSSICO | Regras padrão de combate da V4.3 |
+| TURBO | Movimento 1,6×; ataque 1,4×; recarga de dash de 600 ms (25% menor) |
+| BAIXA GRAVIDADE | Gravidade 0,65×; força do pulo 1,1× |
+| SEM PIEDADE | Parry de 180 ms; recuperação de parry de 500 ms; recuperação de ataque 1,2× |
+| PERSONALIZADO | Mantém todos os valores atuais para ajuste manual |
+
+Os presets alteram movimento, salto, gravidade, ataque, dash, parry e atordoamento. Preservam arena, tamanho e plataformas do mapa, personagens, cores, skins, pontos e todas as opções de especiais. Alterar um parâmetro de combate para fora dos valores de um preset identifica as regras como PERSONALIZADO.
+
+**Recuperação dos ataques** é um novo multiplicador separado: afeta somente a recuperação, preservando a preparação e a parte ativa. Os ajustes continuam proporcionais às características de cada classe.
+
+## Recursos mantidos da V4.2
 
 - Editor de mapas: chão, paredes, plataformas, trajetos móveis, plataformas frágeis e dois pontos de nascimento.
 - Fundos com até duas imagens, profundidade de movimento, opacidade, enquadramento e escurecimento.
@@ -14,7 +38,7 @@ Abra **UM-CORTE-V4,2.html** no Chrome ou Edge. Sua edição com administração 
 - Figurinos completos das skins: mangas, luvas, calças, botas, armaduras e tecidos próprios de cada referência. Máscara do Cavaleiro Vazio redesenhada; mantos, cabelo, cachecol e barras de roupa acompanham o movimento.
 - Skins e mapas personalizados sincronizados no online e na revanche.
 - Novos ajustes de partida também disponíveis sem os limites públicos no admin.
-- Histórico dentro do jogo atualizado com a V4.2.
+- Histórico completo dentro do jogo.
 
 ## Criar e guardar mapas
 
@@ -57,7 +81,7 @@ Por padrão, uma plataforma começa a rachar no primeiro pisão, cai após **800
 4. Alcance, colisões e vulnerabilidade permanecem. O adversário pode desviar, aparar ou provocar clash. Ser atordoado não interrompe a contagem do efeito.
 5. Se os 5 s acabarem sem um parry bem-sucedido, fica **3 s sem dash**.
 
-Os tempos são personalizáveis. A recarga padrão continua em 15 s, vazia a cada rodada, e volta a avançar quando o efeito ou a penalidade termina. Fora do especial, segurar ataque não dispara socos automaticamente.
+Os tempos são personalizáveis. A recarga padrão é de 7 s, vazia a cada rodada a menos que a persistência esteja ligada, e volta a avançar quando o efeito ou a penalidade termina. Fora do especial, segurar ataque não dispara socos automaticamente.
 
 ## Skins
 
@@ -76,16 +100,17 @@ As skins preservam corpo, alcance, velocidade e regras da classe. A cor de ident
 
 ## Online
 
-Ambos precisam abrir a **V4.2**. As edições comum e admin são compatíveis entre si. Crie a sala, envie o código e confirme as escolhas dos dois jogadores.
+Ambos precisam abrir a **V4.3**. As edições comum e admin são compatíveis entre si. Crie a sala, envie o código e confirme as escolhas dos dois jogadores.
 
 O anfitrião pode selecionar um mapa personalizado da sua biblioteca. O mapa e suas imagens são enviados automaticamente ao adversário, que vê a arena selecionada antes de ficar pronto. A transmissão usa partes menores para suportar imagens maiores. O convidado pode guardar o mapa recebido: depois de sair da sala, abra-o no editor e use Salvar ou Exportar.
 
-A revanche mantém a sala e permite escolher novamente classe e skin. As salas V4.2 são separadas da V4. Não há servidor de jogo próprio nem pagamento de hospedagem necessário para abrir o arquivo, mas a conexão inicial depende do serviço público PeerJS. Redes que impedem conexões diretas podem precisar de TURN, que não está incluído.
+A revanche mantém a sala e permite escolher novamente classe e skin. As salas V4.3 são separadas das versões anteriores. Não há servidor de jogo próprio nem pagamento de hospedagem necessário para abrir o arquivo, mas a conexão inicial depende do serviço público PeerJS. Redes que impedem conexões diretas podem precisar de TURN, que não está incluído.
 
-## Novas opções no admin
+## ADMIN
 
-Na edição admin, durante a partida, pressione **Ctrl + Shift + F10**. Além dos ajustes anteriores, agora há:
+Na edição admin, durante a partida, pressione **Ctrl + Shift + F10**. Funciona na edição ADMIN independentemente de criar ou entrar na sala. A edição comum recebe as mudanças sincronizadas, mas não tem o painel. Também estão disponíveis:
 
+- Pontos para vencer, persistência da carga e multiplicador separado de recuperação dos ataques.
 - Pugilista e skins dos dois jogadores.
 - Seleção de mapas personalizados carregados e do Santuário Suspenso.
 - Janela para conseguir o parry do Pugilista, duração dos socos livres e penalidade sem dash, em milissegundos.
@@ -93,16 +118,17 @@ Na edição admin, durante a partida, pressione **Ctrl + Shift + F10**. Além do
 
 Esses ajustes também aparecem na personalização normal, com limites. O admin aceita valores maiores, como antes. As medidas e os trajetos individuais de cada peça são editados no **Criar mapa**; depois, o mapa salvo pode ser selecionado no admin. Aplicar mapa, personagens ou regras reinicia a rodada preservando o placar.
 
-No online, a administração continua exclusiva do anfitrião em uma **sala de testes com administração**, anunciada antes da confirmação do adversário. Mapas, skins e regras alterados são sincronizados nos dois jogos.
+O lobby identifica quem usa a edição ADMIN. Não é mais necessário marcar sala de testes. As ações de ambos os administradores passam por uma sequência compartilhada: mapa, skins, regras, pausa, avanço de quadro e recarga permanecem sincronizados. Um aviso discreto indica qual jogador aplicou o comando. O privilégio pertence ao arquivo ADMIN; guarde essa edição para quem deve utilizá-la.
 
-## Testes da entrega
+## Verificação da V4.3
 
-- 42 grupos de testes herdados de combate e especiais, mais oito grupos novos de Pugilista, skins, mapas, plataformas e restauração de estado.
-- 448 simulações com seis classes, oito arenas, quatro dificuldades e regras variadas; 32 cenários adicionais de navegação da IA.
-- Verificação de que a geometria dos sete mapas anteriores não mudou.
-- Navegador: seis skins e prévias, editor, imagem incorporada, propriedades, desfazer/refazer, exportação/importação, persistência, teste e retorno, regras do admin, Contra-golpe com teclado e plataforma que desaba.
-- Salvamento e leitura usando um diretório real da API de arquivos do navegador, com o seletor substituído por um diretório de teste. A janela nativa de escolha de pasta não foi automatizada.
-- Controle simulado, remapeamento e replay interativo.
-- Online PeerJS/WebRTC em duas sessões isoladas do Chrome no mesmo PC: mapa de 1,5 MB com duas imagens, skins, especiais, admin, partida até cinco e revanche. Também foi testada a troca pelo admin para um mapa que o convidado ainda não tinha, com plataformas móveis e desabamento sincronizados. Não foi um teste em computadores ou redes diferentes.
+- 42 verificações de combate e especiais, atualizadas para os novos padrões.
+- Nove grupos específicos: presets preservando regras fora do combate, recuperação separada, pontuação personalizada, empate, persistência exata, consumo dos especiais e restauração determinística de estado.
+- Navegador: presets, ajustes manuais, HUD, início automático após 10 segundos, confirmação antecipada, histórico e novas opções ADMIN.
+- 72 simulações dos quatro presets, com seis classes e três tipos de arena.
+- Online real PeerJS/WebRTC em sessões isoladas do Chrome no mesmo PC: anfitrião ADMIN, convidado ADMIN e ambos ADMIN; confirmações antecipadas, só um pronto e ninguém pronto; alterações simultâneas, pausa, passo a passo, skins, pontuação, carga entre rodadas e revanche.
+- Desconexão durante a apresentação fecha a tela corretamente. Especiais desligados continuam funcionando no online.
+- ADMIN convidado transferiu um mapa personalizado de 1,5 MB com duas imagens para o anfitrião comum. Plataformas móveis e desabamentos mantiveram estados iguais.
+- Não foi um teste em dois computadores ou redes diferentes. Os resultados ficam em work/v43/.
 
-Fontes e scripts de teste: `work/v42/`. Build: `node work/v42/build.cjs`. O build gera as duas edições autônomas em `outputs/`.
+Fontes e scripts: work/v43/. Build: node work/v43/build.cjs. O build gera as duas edições autônomas em outputs/.
