@@ -50,7 +50,7 @@
 <dialog id="settings" class="settings-dialog"><div class="menu-heading"><div><span class="eyebrow">SEU JEITO DE JOGAR</span><h2>Controles.</h2></div><button id="close-settings" class="secondary">FECHAR</button></div><p class="fine-print">Clique numa ação e pressione a nova tecla, botão do mouse ou botão do controle. Configurações salvas neste navegador.</p><div class="binding-head"><span>AÇÃO</span><span>TECLADO / MOUSE</span><span>CONTROLE</span></div><div id="bindings"></div><p id="binding-status" role="status">Conecte um controle e pressione um botão para reconhecê-lo.</p><div class="pad-options"><label>Zona morta <input id="deadzone" type="range" min=".1" max=".4" step=".05"><output id="deadzone-value"></output></label><label>Resposta da mira <input id="sensitivity" type="range" min=".5" max="2" step=".1"><output id="sensitivity-value"></output></label><label>Analógicos <select id="stick-layout"><option value="0">Esquerdo move · direito mira</option><option value="2">Direito move · esquerdo mira</option></select></label></div><div class="settings-bottom"><button id="cancel-binding" class="text-button">CANCELAR MAPEAMENTO</button><button id="reset-controls" class="secondary">RESTAURAR CONTROLES</button></div></dialog>
 <dialog id="special-intro" class="special-dialog"><span class="eyebrow">UM PODER. UM PREÇO.</span><h2>Conheça seu especial.</h2><div id="special-cards"></div><p id="special-intro-note"></p><button id="special-understood" class="primary">ENTENDI · EM GUARDA ↗</button></dialog>
 <dialog id="history" class="history-dialog"><button id="history-close" class="text-button">FECHAR</button><span class="eyebrow">A EVOLUÇÃO DO DUELO</span><h2>Atualizações.</h2>
-<details open><summary>V4.2 · Sua arena, seu estilo — atual</summary><p>Editor de mapas com paredes, chão, plataformas móveis e frágeis, imagens em duas camadas, pasta local, importação e exportação. Santuário Suspenso, Pugilista com Contra-golpe e seis skins cosméticas com armas adaptadas. Prévia animada, mapas compartilhados no online e novas opções na edição admin.</p></details><details><summary>V4 · O preço do poder</summary><p>Cinco especiais opcionais, consequências visíveis e indicadores discretos. Finta com mais margem, dashes em sequência, parry padrão de 400 ms e ataques 25% mais rápidos. Tela cheia sem bordas, mais cores e todos os ajustes com entrada numérica.</p></details>
+<details open><summary>V4.2 · Sua arena, seu estilo — atual</summary><p>Editor de mapas com paredes, chão, plataformas móveis e frágeis, imagens em duas camadas, pasta local, importação e exportação. Santuário Suspenso, Pugilista com Contra-golpe e seis skins cosméticas com armas adaptadas. Prévia animada, mapas compartilhados no online e novas opções na edição admin.</p><p><strong>Revisão dos figurinos:</strong> as seis skins agora têm roupas completas, incluindo mangas, calças, luvas, botas e armaduras próprias. Mantos, cabelo, cachecol e barras de roupa acompanham o corpo. Máscara do Cavaleiro Vazio refeita e túnica do Thorfinn com gola de pele, cintos e faixas de tecido. Alcance, colisões e atributos continuam os mesmos.</p></details><details><summary>V4 · O preço do poder</summary><p>Cinco especiais opcionais, consequências visíveis e indicadores discretos. Finta com mais margem, dashes em sequência, parry padrão de 400 ms e ataques 25% mais rápidos. Tela cheia sem bordas, mais cores e todos os ajustes com entrada numérica.</p></details>
 <details><summary>V3.3 · Segunda leitura</summary><p>Treino configurável, replay jogável, chute, deslize, finta, wall jump, Torre do Sino, sorteios e seleção de personagens na revanche online.</p></details>
 <details><summary>V3.2 · Corpo em movimento</summary><p>Cinco personagens em pixel art, roupas em movimento, ataques durante o dash e slash como área real de acerto. Escala dos personagens e arenas configuráveis.</p></details>
 <details><summary>V3 · O chão já não é o limite</summary><p>Mira em todas as direções, salto, ataques aéreos, três guardas, Espadachim, Ceifador, cores, personalização e novos cenários. A atualização de arenas ampliou os temas e o parry prolongado.</p></details>
@@ -489,8 +489,53 @@ window.DuelWeapons=DuelWeapons;
 (function(){
 'use strict';
 const ink='#19232c',bone='#eeeadd';
+const between=(a,b,t)=>({x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t});
+// Clothing follows the existing joints. These shapes never participate in combat collision.
+function band(r,a,b,t,width,color,length=.12){r.line(between(a,b,t),between(a,b,Math.min(1,t+length)),color,width);}
+function plate(r,a,b,width,base,light){const dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||1,n={x:-dy/d,y:dx/d},p=(v,k)=>[v.x+n.x*k,v.y+n.y*k];r.path([p(a,-width*.5),p(a,width*.5),p(b,width*.34),p(b,-width*.34)],base,ink,2);r.line({x:a.x-n.x*width*.25,y:a.y-n.y*width*.25},{x:b.x-n.x*width*.2,y:b.y-n.y*width*.2},light,2);}
 class DuelSkins{
- static head(r,f){const c=r.ctx,s=f.skin;if(s==='hollow'){r.path([[-13,-4],[-18,-22],[-13,-34],[-9,-18],[9,-18],[13,-34],[18,-22],[13,-4],[7,11],[-7,11]],bone,ink,2);r.ellipse(-6,-3,3,6,ink);r.ellipse(6,-3,3,6,ink);return true;}
+ static active(f){return f.skin!=='default'&&DuelCore.SKINS[f.kind]?.id===f.skin;}
+ static cloth(r,f,p){if(!this.active(f))return false;const{hip:h,shoulder:b,head,st,t,portrait,side}=p,s=f.skin;
+  const ribbon=(idx,a,len,width,col,back=-side)=>DuelActors.ribbon(r,f,st,idx,a,len,width,col,t+idx*.2,portrait,back,null);
+  if(s==='hollow'){ribbon(0,{x:b.x-side*11,y:b.y+1},61,32,'#3d4659');ribbon(1,{x:b.x+side*10,y:b.y+4},52,21,'#4b576b',-side*.5);ribbon(2,{x:b.x-side*16,y:b.y+11},48,14,'#30394d');}
+  if(s==='thorfinn'){ribbon(0,{x:h.x-side*9,y:h.y-9},27,19,'#796445');ribbon(1,{x:h.x+side*8,y:h.y-8},23,15,'#918060',side*.25);}
+  if(s==='katakuri'){ribbon(0,{x:b.x-side*13,y:b.y-6},43,17,'#c6b5b3');ribbon(1,{x:h.x-side*9,y:h.y-11},26,13,'#4d303e');}
+  if(s==='guts'){ribbon(0,{x:b.x-side*12,y:b.y-4},77,31,'#222733');ribbon(1,{x:b.x-side*17,y:b.y+5},61,19,'#2e3440');}
+  if(s==='kite'){ribbon(0,{x:head.x-side*10,y:head.y-7},66,19,'#c9c9c6');ribbon(1,{x:head.x-side*5,y:head.y+4},55,9,'#e2dfd5');ribbon(2,{x:h.x-side*9,y:h.y-8},18,15,'#cfc9b4');}
+  if(s==='yuji'){ribbon(0,{x:b.x-side*9,y:b.y-6},18,14,'#923c48');ribbon(1,{x:h.x-side*9,y:h.y-10},12,12,'#26324b');}
+  return true;
+ }
+ static leg(r,f,p){if(!this.active(f))return false;const{root,knee,foot,side,i}=p,s=f.skin;
+  const colors={hollow:['#202832','#121b25','#3a4653'],thorfinn:['#625540','#443d33','#8d7b58'],katakuri:['#473142','#2f2633','#6b485c'],guts:['#333a43','#202831','#66717a'],kite:['#7e9aab','#526e83','#b3c5c7'],yuji:['#2c374e','#20293d','#4b5b74']}[s];
+  DuelActors.limb(r,root,knee,foot,s==='hollow'?8:s==='kite'?13:11,colors[0],colors[1],colors[2]);
+  let boot='#313239',sole='#7c7370';
+  if(s==='hollow'){boot='#17202b';sole='#424958';}
+  if(s==='thorfinn'){boot='#493a2e';sole='#a08a65';r.line(between(knee,foot,.35),foot,'#9b8a68',9);for(const t of[.4,.6,.8])band(r,knee,foot,t,10,'#c3b28e',.065);r.line(between(knee,foot,.78),foot,boot,10);}
+  if(s==='katakuri'){boot='#28252f';sole='#96888c';plate(r,between(knee,foot,.3),foot,12,boot,'#655560');band(r,root,knee,.75,12,'#ae8c93',.055);for(const t of[.36,.58,.8])band(r,knee,foot,t,13,'#a79592',.055);band(r,root,knee,.36,12,ink,.09);}
+  if(s==='guts'){boot='#303945';sole='#90999d';plate(r,between(root,knee,.18),between(root,knee,.85),13,'#424b55','#77828b');plate(r,between(knee,foot,.15),foot,12,'#3c4652','#899397');r.path([[knee.x-7,knee.y-5],[knee.x+5,knee.y-6],[knee.x+8,knee.y+1],[knee.x,knee.y+6],[knee.x-7,knee.y+2]],'#636d75',ink,2);}
+  if(s==='kite'){boot='#59483e';sole='#a18a6d';r.line(between(knee,foot,.63),foot,boot,12);band(r,knee,foot,.59,13,'#b3a084',.12);band(r,root,knee,.6,13,colors[1],.06);}
+  if(s==='yuji'){boot='#a74950';sole='#d0ad9b';r.line(between(knee,foot,.7),foot,boot,11);band(r,knee,foot,.7,12,'#de746e',.1);band(r,root,knee,.25,10,'#3b4a64',.06);}
+  r.path([[foot.x-side*6,foot.y-7],[foot.x+side*5,foot.y-7],[foot.x+side*13,foot.y-1],[foot.x+side*13,foot.y+4],[foot.x-side*7,foot.y+4]],boot,ink,2);r.line({x:foot.x-side*5,y:foot.y+2},{x:foot.x+side*11,y:foot.y+2},sole,2);
+  if(s==='yuji'||s==='thorfinn')r.line({x:foot.x,y:foot.y-4},{x:foot.x+side*5,y:foot.y-2},s==='yuji'?'#eed0b9':'#b6a083',2);
+  return true;
+ }
+ static fist(r,f,a,t=0){r.ellipse(a.x,a.y,4,4,ink);r.ellipse(a.x,a.y-1,3,3,'#e5b381');if(f.skin!=='yuji')return;const c=r.ctx;for(let i=0;i<4;i++){const ang=i*Math.PI/2+t*7,radius=7+Math.sin(t*11+i)*1.5;c.fillStyle=i%2?'#479dbc':'#79d6de';c.fillRect(Math.round(a.x+Math.cos(ang)*radius)-1,Math.round(a.y+Math.sin(ang)*radius)-1,3,4);}r.line({x:a.x-3,y:a.y+2},{x:a.x+3,y:a.y+2},'#64bfcf',2);}
+ static arm(r,f,p){if(!this.active(f))return false;const{root,j,target,front,t}=p,s=f.skin,col=DuelCore.COLORS[f.color].hex;
+  const colors={hollow:['#252e3b','#1b2531','#495364'],thorfinn:['#9c8a67','#756547','#c2ad81'],katakuri:['#ce957b','#a96c62','#edb599'],guts:['#414b55','#313c49','#7e8993'],kite:['#d9d5c4','#b9b6a4','#f0ecd9'],yuji:['#2b374f','#202b40','#53617b']}[s];
+  DuelActors.limb(r,root,j,target,s==='kite'?12:s==='hollow'?8:10,...colors);
+  if(s==='thorfinn'){band(r,j,target,.56,12,'#c9b994',.21);band(r,j,target,.8,10,'#634e39',.13);r.line(between(root,j,.23),between(root,j,.57),'#b4a07a',2);}
+  if(s==='katakuri'){band(r,root,j,.26,11,'#8d3e59',.22);band(r,root,j,.7,11,'#83394f',.12);band(r,j,target,.15,11,'#8d3e59',.12);band(r,j,target,.7,12,ink,.22);band(r,j,target,.74,13,'#9d8b92',.065);}
+  if(s==='guts'){plate(r,root,between(root,j,.72),13,'#4d5762','#94a0a5');plate(r,between(j,target,.12),between(j,target,.91),front?12:14,front?'#4f5a67':'#697881','#a4acaa');band(r,j,target,.65,13,ink,.07);band(r,j,target,.83,13,'#87908e',.065);}
+  if(s==='kite'){band(r,j,target,.78,13,'#efebd6',.16);band(r,root,j,.22,12,'#b5b3a2',.05);}
+  if(s==='yuji'){band(r,j,target,.72,11,'#a04b51',.2);band(r,root,j,.22,10,col,.1);}
+  r.ellipse(target.x,target.y,4,4,ink);r.ellipse(target.x,target.y-1,3,3,s==='hollow'?'#303b48':s==='guts'?'#73808a':'#e5b381');if(s==='yuji')this.fist(r,f,target,t);return true;
+ }
+ static neck(f){return f.skin==='hollow'?'#1d2632':f.skin==='yuji'?'#9a454c':f.skin==='katakuri'?'#d5c6bc':'#ab7555';}
+ static head(r,f){const c=r.ctx,s=f.skin;if(s==='hollow'){
+  // Broad ivory mask, curved horns and deep eye sockets; no human chin or helmet.
+  r.path([[-12,-10],[-19,-17],[-22,-27],[-20,-38],[-16,-45],[-16,-32],[-13,-25],[-8,-21],[8,-21],[13,-25],[16,-32],[16,-45],[20,-38],[22,-27],[19,-17],[12,-10]],'#e5e3d4',ink,2);
+  r.path([[-12,-21],[-19,-13],[-19,0],[-15,11],[-8,16],[8,16],[15,11],[19,0],[19,-13],[12,-21]],bone,ink,2);r.path([[-17,-12],[-17,0],[-12,11],[-5,14],[-10,7],[-12,-8]],'#c6cbbb');r.path([[-12,-16],[11,-16],[15,-10],[11,-12],[-10,-12]],'#fffae9');
+  r.ellipse(-8,-1,4.5,7,'#111a24');r.ellipse(8,-1,4.5,7,'#111a24');return true;}
   if(f.kind!=='boxer'&&(!s||s==='default'))return false;
   // Small block clusters use the same two-pixel grid as the animated body rig.
   r.path([[-11,-10],[10,-10],[12,6],[6,12],[-6,11],[-12,3]],'#e5b381',ink,2);r.path([[-11,-9],[-5,-6],[-6,7],[3,11],[-7,11],[-12,2]],'#ab7555');c.fillStyle=ink;c.fillRect(4,-1,5,2);c.fillStyle='#f2c998';c.fillRect(1,3,9,4);
@@ -503,15 +548,41 @@ class DuelSkins{
   if(s==='kite'){r.path([[-17,-11],[-12,-21],[11,-21],[15,-10],[19,-6],[-20,-6]],'#e1c99e',ink,2);c.fillStyle='#8e674d';c.fillRect(-13,-12,29,4);}
   return true;
  }
- static dress(r,f,p){const s=f.skin,{hip:h,shoulder:b,head,side,st,t,portrait}=p,col=DuelCore.COLORS[f.color].hex;
-  const vest=(base,trim)=>{r.path([[b.x-15,b.y+1],[b.x+15,b.y+1],[h.x+12,h.y-7],[h.x-11,h.y-7]],base,ink,2);r.line({x:b.x-side*10,y:b.y+3},{x:h.x+side*5,y:h.y-8},trim,4);};
-  if(f.kind==='boxer'){vest(s==='yuji'?'#26324a':'#30343b',s==='yuji'?'#40516b':'#535861');r.line({x:h.x-13,y:h.y-5},{x:h.x+12,y:h.y-5},col,6);if(s==='yuji'){r.path([[b.x-16,b.y-5],[b.x,b.y+6],[b.x+16,b.y-5],[b.x+12,b.y+10],[b.x,b.y+14],[b.x-13,b.y+7]],'#a54448',ink,2);}return;}
-  if(!s||s==='default')return;
-  if(s==='hollow'){vest('#303941','#525666');r.line({x:b.x-16,y:b.y+2},{x:b.x+16,y:b.y+2},col,5);}
-  if(s==='thorfinn'){vest('#807452','#b4a781');r.line({x:b.x-15,y:b.y-1},{x:b.x+14,y:b.y+1},'#c5bc9b',8);r.path([[h.x-13,h.y-7],[h.x+11,h.y-7],[h.x+13,h.y+12],[h.x-15,h.y+12]],'#716549',ink,2);r.line({x:h.x-14,y:h.y-5},{x:h.x+12,y:h.y-5},col,4);}
-  if(s==='katakuri'){vest('#473a46','#ab6779');r.path([[b.x-8,b.y+2],[b.x+8,b.y+2],[h.x+5,h.y-15],[h.x-6,h.y-15]],'#d29875');r.line({x:b.x-7,y:b.y+8},{x:h.x+5,y:h.y-18},'#964f5b',4);for(let i=0;i<3;i++)r.ellipse(b.x-13+i*12,b.y+1,2,2,bone);r.line({x:h.x-13,y:h.y-6},{x:h.x+13,y:h.y-6},col,5);}
-  if(s==='guts'){vest('#363b44','#717b83');r.path([[b.x+side*8,b.y],[b.x+side*22,b.y+4],[b.x+side*20,b.y+15],[b.x+side*8,b.y+12]],'#5b646c',ink,2);for(let i=0;i<3;i++)r.line({x:b.x-9,y:b.y+15+i*7},{x:b.x+9,y:b.y+13+i*7},'#7c8486',2);r.line({x:h.x-13,y:h.y-5},{x:h.x+12,y:h.y-5},col,4);}
-  if(s==='kite'){vest('#ded7c5','#aea28c');r.line({x:b.x,y:b.y+8},{x:h.x,y:h.y-6},'#735b4b',2);r.line({x:h.x-12,y:h.y-5},{x:h.x+12,y:h.y-5},col,5);}
+ static dress(r,f,p){const s=f.skin,{hip:h,shoulder:b,side,t}=p,col=DuelCore.COLORS[f.color].hex;
+  const torso=(base,shadow,highlight,width=16)=>{r.path([[b.x-width,b.y],[b.x+width,b.y],[h.x+13,h.y+1],[h.x-13,h.y+1]],base,ink,2);r.path([[b.x-width+1,b.y+2],[b.x-4,b.y+6],[h.x-2,h.y-4],[h.x-12,h.y-1]],shadow);r.line({x:b.x+width-5,y:b.y+7},{x:h.x+8,y:h.y-8},highlight,2);};
+  const belt=(base,width=6)=>{r.line({x:h.x-14,y:h.y-7},{x:h.x+14,y:h.y-7},base,width);r.ctx.fillStyle='#bfad89';r.ctx.fillRect(h.x-3,h.y-10,6,6);r.ctx.fillStyle=base;r.ctx.fillRect(h.x-1,h.y-8,2,2);};
+  if(!this.active(f)){if(f.kind==='boxer'){r.path([[b.x-15,b.y+1],[b.x+15,b.y+1],[h.x+12,h.y-7],[h.x-11,h.y-7]],'#30343b',ink,2);r.line({x:b.x-side*10,y:b.y+3},{x:h.x+side*5,y:h.y-8},'#535861',4);r.line({x:h.x-13,y:h.y-5},{x:h.x+12,y:h.y-5},col,6);}return;}
+  if(s==='hollow'){
+   torso('#303b4e','#263245','#58657a');const wave=Math.sin(t*4)*2;
+   r.path([[b.x-20,b.y-3],[b.x+19,b.y-3],[b.x+22,b.y+15],[h.x+22,h.y+12],[h.x+12,h.y+7],[h.x+4,h.y+17+wave],[h.x-4,h.y+10],[h.x-14,h.y+16-wave],[h.x-23,h.y+8],[b.x-23,b.y+17]],'#455268',ink,2);
+   r.path([[b.x-18,b.y+2],[b.x-5,b.y+7],[h.x-6,h.y+8],[h.x-14,h.y+16-wave],[h.x-23,h.y+8]],'#313d53');r.path([[b.x+4,b.y+7],[b.x+14,b.y+3],[h.x+14,h.y+5],[h.x+4,h.y+17+wave]],'#526077');
+   r.path([[b.x-20,b.y-4],[b.x-8,b.y-8],[b.x,b.y-2],[b.x+9,b.y-8],[b.x+19,b.y-3],[b.x+9,b.y+9],[b.x,b.y+6],[b.x-11,b.y+10]],'#69768a',ink,2);r.line({x:b.x-10,y:b.y+5},{x:b.x+8,y:b.y+4},col,3);
+  }
+  if(s==='thorfinn'){
+   torso('#918064','#6b5c44','#c1ad84',17);r.path([[h.x-14,h.y-9],[h.x+14,h.y-9],[h.x+17,h.y+13],[h.x+6,h.y+16],[h.x+1,h.y+8],[h.x-4,h.y+15],[h.x-18,h.y+13]],'#8c7858',ink,2);r.line({x:h.x+5,y:h.y-1},{x:h.x+9,y:h.y+12},'#bca57a',2);
+   r.path([[b.x-19,b.y-3],[b.x-10,b.y-8],[b.x,b.y+1],[b.x+11,b.y-8],[b.x+19,b.y-1],[b.x+19,b.y+9],[b.x+13,b.y+5],[b.x+9,b.y+12],[b.x+5,b.y+8],[b.x,b.y+16],[b.x-5,b.y+9],[b.x-11,b.y+12],[b.x-14,b.y+5],[b.x-20,b.y+8]],'#d1c3a2',ink,2);r.line({x:b.x-13,y:b.y-1},{x:b.x-3,y:b.y+6},'#eee0bc',3);
+   r.line({x:b.x-side*11,y:b.y+9},{x:h.x+side*10,y:h.y-6},'#4a3b2e',5);belt('#524130');r.line({x:h.x-side*10,y:h.y-8},{x:h.x-side*10,y:h.y+5},col,4);r.line({x:b.x,y:b.y+14},{x:b.x,y:b.y+22},'#493e31',2);
+  }
+  if(s==='katakuri'){
+   torso('#c78e77','#965f56','#e7b493',18);r.path([[b.x-19,b.y],[b.x-10,b.y+3],[h.x-6,h.y-2],[h.x-16,h.y+7]],'#402b3c',ink,2);r.path([[b.x+10,b.y+3],[b.x+19,b.y],[h.x+16,h.y+7],[h.x+6,h.y-2]],'#513142',ink,2);
+   r.line({x:b.x-2,y:b.y+12},{x:h.x+5,y:h.y-16},'#943e5a',4);r.line({x:b.x+3,y:b.y+16},{x:h.x-4,y:h.y-20},'#a64b63',3);
+   for(const side of[-1,1])for(let i=0;i<3;i++)r.ellipse(b.x+side*(15-i),b.y+10+i*9,2,2,'#c5b2b0');belt('#252630',8);r.line({x:h.x-12,y:h.y-6},{x:h.x-5,y:h.y-6},col,3);
+   r.path([[b.x-23,b.y-7],[b.x-11,b.y-13],[b.x+13,b.y-11],[b.x+23,b.y-5],[b.x+18,b.y+6],[b.x+9,b.y+10],[b.x-16,b.y+7],[b.x-24,b.y+1]],'#dbcec5',ink,2);r.line({x:b.x-17,y:b.y-3},{x:b.x+16,y:b.y-2},'#a99094',3);r.line({x:b.x-12,y:b.y+3},{x:b.x+10,y:b.y+5},'#b8a5a2',2);
+  }
+  if(s==='guts'){
+   torso('#3b444e','#242d39','#697680',18);r.path([[b.x-15,b.y+6],[b.x,b.y+11],[b.x+15,b.y+6],[h.x+11,h.y-20],[h.x,h.y-13],[h.x-12,h.y-20]],'#535f68',ink,2);r.line({x:b.x-11,y:b.y+9},{x:b.x-3,y:b.y+14},'#8f9b9f',2);
+   for(let i=0;i<3;i++)r.path([[h.x-12,h.y-21+i*6],[h.x,h.y-18+i*6],[h.x+12,h.y-21+i*6]],null,'#8a9599',2);
+   for(const a of[-1,1])r.path([[b.x+a*10,b.y-3],[b.x+a*23,b.y],[b.x+a*25,b.y+11],[b.x+a*17,b.y+15],[b.x+a*9,b.y+10]],a===side?'#69747d':'#46525e',ink,2);
+   r.line({x:b.x-side*10,y:b.y+6},{x:h.x+side*9,y:h.y-6},'#3b3030',5);belt('#554b42');r.line({x:h.x-13,y:h.y-8},{x:h.x-5,y:h.y-8},col,3);r.path([[h.x-13,h.y-2],[h.x-1,h.y+1],[h.x-4,h.y+14],[h.x-16,h.y+10]],'#454f5a',ink,2);r.path([[h.x+1,h.y+1],[h.x+13,h.y-2],[h.x+16,h.y+10],[h.x+5,h.y+14]],'#5c6771',ink,2);
+  }
+  if(s==='kite'){
+   torso('#e2ddc9','#b5b29f','#f6eed7',18);r.path([[h.x-14,h.y-10],[h.x+14,h.y-10],[h.x+18,h.y+9],[h.x+3,h.y+11],[h.x,h.y+5],[h.x-3,h.y+11],[h.x-18,h.y+8]],'#d7d0bb',ink,2);
+   r.path([[b.x-9,b.y-3],[b.x,b.y+12],[b.x+10,b.y-3],[b.x+5,b.y+16],[b.x-3,b.y+18]],'#6c6251');r.path([[b.x-9,b.y-3],[b.x-1,b.y+8],[b.x-5,b.y+12],[b.x-14,b.y+3]],'#f5edd6');r.line({x:b.x,y:b.y+16},{x:h.x,y:h.y-8},'#a09b87',2);belt('#78624b',5);r.line({x:h.x-13,y:h.y-7},{x:h.x-5,y:h.y-7},col,3);
+  }
+  if(s==='yuji'){
+   torso('#303d58','#202c42','#566783',18);r.path([[h.x-14,h.y-16],[h.x+13,h.y-16],[h.x+16,h.y+2],[h.x+3,h.y+5],[h.x,h.y],[h.x-14,h.y+3]],'#29354d',ink,2);r.line({x:b.x+5,y:b.y+12},{x:h.x+5,y:h.y-2},'#192337',2);r.ellipse(b.x+5,b.y+15,2,2,'#c6ab79');
+   r.path([[b.x-19,b.y-5],[b.x-11,b.y-11],[b.x,b.y-3],[b.x+12,b.y-11],[b.x+19,b.y-4],[b.x+15,b.y+6],[b.x+6,b.y+12],[b.x-2,b.y+7],[b.x-13,b.y+10],[b.x-20,b.y+3]],'#ad4c54',ink,2);r.line({x:b.x-13,y:b.y-4},{x:b.x-2,y:b.y+3},'#e17872',3);r.line({x:b.x+12,y:b.y-4},{x:b.x+7,y:b.y+5},'#d46361',3);r.line({x:h.x-side*12,y:h.y-4},{x:h.x-side*5,y:h.y-3},col,3);
+  }
  }
  static weapon(r,f,w){const s=f.skin,c=r.ctx,u={x:Math.cos(w.angle),y:Math.sin(w.angle)},n={x:-u.y,y:u.x},at=(d,v=0)=>({x:w.hand.x+u.x*d+n.x*v,y:w.hand.y+u.y*d+n.y*v});
   if(f.kind==='boxer'){const a=w.hand;if(s==='yuji'){for(let i=0;i<5;i++){const angle=i*Math.PI*2/5+(f.anim||0)*.1;r.path([[a.x+Math.cos(angle)*6,a.y+Math.sin(angle)*6],[a.x+Math.cos(angle+.4)*11,a.y+Math.sin(angle+.4)*11],[a.x+Math.cos(angle+.7)*6,a.y+Math.sin(angle+.7)*6]],'#55cbe0');}r.ellipse(a.x,a.y,5,5,'#e5b381');}else{r.path([[a.x-6,a.y-6],[a.x+5,a.y-6],[a.x+7,a.y+4],[a.x-5,a.y+5]],'#7c8790',ink,2);r.line({x:a.x-4,y:a.y-4},{x:a.x+3,y:a.y-4},bone,2);}return true;}
@@ -549,18 +620,18 @@ function sprite(c,rows,x,y,palette,scale=2){for(let j=0;j<rows.length;j++)for(le
 function ik(a,b,l1,l2,bend){let dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||.001;const reach=Math.min(d,l1+l2-.1),ux=dx/d,uy=dy/d,along=(l1*l1-l2*l2+reach*reach)/(2*reach),h=Math.sqrt(Math.max(0,l1*l1-along*along));return{x:a.x+ux*along-uy*h*bend,y:a.y+uy*along+ux*h*bend};}
 function smooth(a,b,dt,speed=18){return lerp(a,b,1-Math.exp(-dt*speed));}
 class DuelActors{
- static state(r,f,t,portrait){if(portrait)return{time:t,run:clamp(Math.abs(f.vx)/stats(f).speed,0,1),dash:0,air:0,lean:f.vx?7:0,cloth:[]};r.actorHistory??=[];let st=r.actorHistory[f.id];if(!st||st.kind!==f.kind||Math.hypot(f.x-st.x,f.y-st.y)>330||t<st.time){st={kind:f.kind,time:t,x:f.x,y:f.y,run:0,dash:0,air:0,lean:0,cloth:[]};r.actorHistory[f.id]=st;}const dt=clamp(t-st.time,0,.035);st.run=smooth(st.run,clamp(Math.abs(f.vx)/stats(f).speed,0,1),dt);st.dash=smooth(st.dash,f.dashRemaining>0||f.state==='ultCharge'?1:0,dt,35);st.air=smooth(st.air,f.grounded?0:1,dt,25);st.lean=smooth(st.lean,clamp(f.vx/18,-22,22)+(f.kind==='assassin'?Math.sign(f.vx)*7:0)+(f.dashRemaining>0?f.dashX*15:0),dt,16);st.dt=dt;st.time=t;st.x=f.x;st.y=f.y;return st;}
- static ribbon(r,f,st,idx,anchor,length,width,color,t,portrait,back=-f.facing){const c=r.ctx,n=6,S=C.scale,world={x:f.x+anchor.x*S,y:f.y+anchor.y*S};let nodes=st.cloth[idx];
+ static state(r,f,t,portrait){if(portrait)return{time:t,run:clamp(Math.abs(f.vx)/stats(f).speed,0,1),dash:0,air:0,lean:f.vx?7:0,cloth:[]};r.actorHistory??=[];let st=r.actorHistory[f.id];if(!st||st.kind!==f.kind||st.skin!==f.skin||Math.hypot(f.x-st.x,f.y-st.y)>330||t<st.time){st={kind:f.kind,skin:f.skin,time:t,x:f.x,y:f.y,run:0,dash:0,air:0,lean:0,cloth:[]};r.actorHistory[f.id]=st;}const dt=clamp(t-st.time,0,.035);st.run=smooth(st.run,clamp(Math.abs(f.vx)/stats(f).speed,0,1),dt);st.dash=smooth(st.dash,f.dashRemaining>0||f.state==='ultCharge'?1:0,dt,35);st.air=smooth(st.air,f.grounded?0:1,dt,25);st.lean=smooth(st.lean,clamp(f.vx/18,-22,22)+(f.kind==='assassin'?Math.sign(f.vx)*7:0)+(f.dashRemaining>0?f.dashX*15:0),dt,16);st.dt=dt;st.time=t;st.x=f.x;st.y=f.y;return st;}
+ static ribbon(r,f,st,idx,anchor,length,width,color,t,portrait,back=-f.facing,trim=gold){const c=r.ctx,n=6,S=C.scale,world={x:f.x+anchor.x*S,y:f.y+anchor.y*S};let nodes=st.cloth[idx];
   if(!nodes){nodes=Array.from({length:n},(_,i)=>({x:world.x+back*i*length/n*.6*S,y:world.y+i*length/n*.7*S,px:world.x+back*i*length/n*.6*S,py:world.y+i*length/n*.7*S}));st.cloth[idx]=nodes;}
   if(portrait){for(let i=0;i<n;i++){nodes[i].x=world.x+back*i*length/n*.65*S;nodes[i].y=world.y+i*length/n*.65*S+Math.sin(t*4-i*.6)*2;}}
   else if(st.dt>0){const dt=st.dt;for(let i=1;i<n;i++){const p=nodes[i],vx=(p.x-p.px)*Math.exp(-dt*5),vy=(p.y-p.py)*Math.exp(-dt*5);p.px=p.x;p.py=p.y;p.x+=vx+(back*55-f.vx*.38+Math.sin(t*7-i)*45)*dt*dt;p.y+=vy+245*dt*dt;}}
   nodes[0].x=world.x;nodes[0].y=world.y;const spacing=length*S/(n-1);for(let pass=0;pass<5;pass++)for(let i=1;i<n;i++){const a=nodes[i-1],b=nodes[i],dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||1,k=(d-spacing)/d;if(i>1){a.x+=dx*k*.4;a.y+=dy*k*.4;}b.x-=dx*k*(i===1?1:.6);b.y-=dy*k*(i===1?1:.6);}
   const points=nodes.map(p=>({x:(p.x-f.x)/S,y:(p.y-f.y)/S})),left=[],right=[];for(let i=0;i<n;i++){const a=points[Math.max(0,i-1)],b=points[Math.min(n-1,i+1)],dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||1,w=width*(1-i/n*.55);left.push([points[i].x-dy/d*w*.5,points[i].y+dx/d*w*.5]);right.push([points[i].x+dy/d*w*.5,points[i].y-dx/d*w*.5]);}
-  r.path([...left,...right.slice().reverse()],color,ink,2);r.path([...left,...points.slice().reverse().map(p=>[p.x,p.y])],tint(color,1.2));r.path(right,null,tint(color,.62),2);if(f.kind==='reaper'||f.kind==='lancer'){const a=left[n-1],b=right[n-1];r.line({x:a[0],y:a[1]},{x:b[0],y:b[1]},gold,3);}
+  r.path([...left,...right.slice().reverse()],color,ink,2);r.path([...left,...points.slice().reverse().map(p=>[p.x,p.y])],tint(color,1.2));r.path(right,null,tint(color,.62),2);if(trim&&(f.kind==='reaper'||f.kind==='lancer')){const a=left[n-1],b=right[n-1];r.line({x:a[0],y:a[1]},{x:b[0],y:b[1]},trim,3);}
  }
  static limb(r,a,j,b,width,base,shade,detail){r.line(a,j,ink,width+3);r.line(j,b,ink,width+2);r.line(a,j,base,width);r.line(j,b,shade,width-1);r.line({x:a.x-2,y:a.y},{x:j.x-2,y:j.y-1},detail,Math.max(2,width*.27));r.line({x:j.x-2,y:j.y+1},{x:b.x-2,y:b.y-2},base,2);}
  static draw(r,f,t,w,portrait=false){
-  const old=r.ctx,c=r.actorCanvas||(r.actorCanvas=document.createElement('canvas'));if(!c.width||c.width!==280){c.width=280;c.height=280;}const ctx=c.getContext('2d',{willReadFrequently:true}),st=this.state(r,f,t,portrait),color=COLORS[f.color]?.hex||'#367f75',bright=tint(color,1.43),shade=tint(color,.58),side=f.facing||1;
+  const old=r.ctx,c=r.actorCanvas||(r.actorCanvas=document.createElement('canvas'));if(!c.width||c.width!==280){c.width=280;c.height=280;}const ctx=c.getContext('2d',{willReadFrequently:true}),st=this.state(r,f,t,portrait),color=COLORS[f.color]?.hex||'#367f75',bright=tint(color,1.43),shade=tint(color,.58),side=f.facing||1,custom=DuelSkins.active(f);
   ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,280,280);ctx.setTransform(.5,0,0,.5,140,180);ctx.lineCap='butt';ctx.lineJoin='bevel';r.ctx=ctx;
   const phase=clamp(f.stateTime/(f.duration||1),0,1),wind=['startup','ultWindup','throwWindup'].includes(f.state)?Math.sin(phase*Math.PI/2):0,stroke=f.state==='active'||f.state==='ultCharge'?1:f.state==='recovery'?Math.pow(1-phase,2):0,aim=f.attackAim||0;
   const run=st.run*(1-st.air*.7)*(1-st.dash*.7),cycle=f.anim*1.55,backwalk=f.move*side<0,land=(f.landing||0)>0?Math.sin(f.landing/.15*Math.PI)*9:0;
@@ -570,18 +641,18 @@ class DuelActors{
   const death=clamp((f.deathTime||0)/.48,0,1);if(f.dead){ctx.translate(side*death*10,0);ctx.rotate(side*(1-Math.pow(1-death,3))*1.49);ctx.globalAlpha=1-death*.25;}
   const stride=backwalk?26:36,feet=[0,1].map(i=>{const a=cycle+i*Math.PI,ground={x:Math.sin(a)*stride*run+(i?1:-1)*lerp(23,4,run),y:-Math.max(0,Math.cos(a))*14*run},lift=clamp(-f.vy/800,0,1),fall=clamp(f.vy/700,0,1),air={x:(i?side*17:-side*18)+st.lean*.25,y:i?-9-lift*17:-3-fall*8};return{x:lerp(ground.x,air.x,st.air)-(f.dashX||0)*st.dash*(i?25:42),y:lerp(ground.y,air.y,st.air)-(i?4:10)*st.dash};});
   if(low){feet[0]={x:-side*24,y:-3};feet[1]={x:side*43,y:0};}if(f.wallJumpTime>0){feet[0]={x:-Math.sign(f.vx)*21,y:-23};feet[1]={x:Math.sign(f.vx)*25,y:-6};}if(['kickStartup','kickActive','kickRecovery'].includes(f.state)){const k=f.state==='kickStartup'?phase*.3:f.state==='kickActive'?1:Math.pow(1-phase,2);feet[1]={x:lerp(side*20,f.kickSide*62,k),y:lerp(-4,-65,k)};}
-  if(f.skin==='kite'){this.ribbon(r,f,st,0,{x:head.x-side*8,y:head.y-4},53,14,'#d1d0ca',t,portrait);}else if(f.skin==='thorfinn'){this.ribbon(r,f,st,0,{x:hip.x-side*9,y:hip.y-5},28,12,color,t,portrait);}else if(f.skin==='guts'){this.ribbon(r,f,st,0,{x:shoulder.x-side*10,y:shoulder.y},69,26,'#303540',t,portrait);}else if(f.kind==='boxer'){this.ribbon(r,f,st,0,{x:hip.x-side*8,y:hip.y-4},35,9,color,t,portrait);}else if(f.kind==='assassin'){this.ribbon(r,f,st,0,{x:shoulder.x-side*6,y:shoulder.y-7},72,10,color,t,portrait);this.ribbon(r,f,st,1,{x:shoulder.x-side*6,y:shoulder.y-4},55,7,bright,t+.4,portrait);}
+  if(DuelSkins.cloth(r,f,{hip,shoulder,head,side,st,t,portrait})){}else if(f.kind==='boxer'){this.ribbon(r,f,st,0,{x:hip.x-side*8,y:hip.y-4},35,9,color,t,portrait);}else if(f.kind==='assassin'){this.ribbon(r,f,st,0,{x:shoulder.x-side*6,y:shoulder.y-7},72,10,color,t,portrait);this.ribbon(r,f,st,1,{x:shoulder.x-side*6,y:shoulder.y-4},55,7,bright,t+.4,portrait);}
   else if(f.kind==='knight'){this.ribbon(r,f,st,0,{x:shoulder.x-side*13,y:shoulder.y-2},65,27,color,t,portrait);}
   else if(f.kind==='reaper'){this.ribbon(r,f,st,0,{x:shoulder.x-side*12,y:shoulder.y-9},77,24,color,t,portrait);this.ribbon(r,f,st,1,{x:hip.x+side*12,y:hip.y-18},44,16,color,t+.5,portrait,-side*.5);}
   else if(f.kind==='swordsman'){this.ribbon(r,f,st,0,{x:hip.x-side*12,y:hip.y-7},48,20,color,t,portrait);this.ribbon(r,f,st,1,{x:hip.x+side*10,y:hip.y-4},42,15,shade,t+.4,portrait,side);}
   else{this.ribbon(r,f,st,0,{x:hip.x-side*8,y:hip.y-2},33,10,color,t,portrait);this.ribbon(r,f,st,1,{x:head.x-side*10,y:head.y-17},38,13,dark,t,portrait);}
   // Asymmetric leg targets and two-bone joints keep planted feet and bent knees.
-  for(const i of[0,1]){const root={x:hip.x+(i?6:-6),y:hip.y},knee=ik(root,feet[i],26,28,-side);this.limb(r,root,knee,feet[i],i?11:10,i?mid:dark,i?dark:ink,light);const foot=feet[i];r.path([[foot.x-6,foot.y-5],[foot.x+5,foot.y-6],[foot.x+side*13,foot.y+1],[foot.x+side*13,foot.y+4],[foot.x-6,foot.y+4]],ink);r.line({x:foot.x-4,y:foot.y+2},{x:foot.x+side*11,y:foot.y+2},f.kind==='knight'?metalDark:color,3);if(f.kind==='knight'){r.line(knee,{x:lerp(knee.x,foot.x,.8),y:lerp(knee.y,foot.y,.8)},metalDark,9);r.line({x:knee.x-2,y:knee.y},{x:lerp(knee.x,foot.x,.8)-2,y:lerp(knee.y,foot.y,.8)},metal,4);r.path([[knee.x-6,knee.y-4],[knee.x+5,knee.y-5],[knee.x+7,knee.y+2],[knee.x-3,knee.y+5]],metal);r.line({x:knee.x-4,y:knee.y-3},{x:knee.x+4,y:knee.y-4},metalLight,2);}else{r.line({x:lerp(knee.x,foot.x,.8),y:lerp(knee.y,foot.y,.8)},{x:lerp(knee.x,foot.x,.93),y:lerp(knee.y,foot.y,.93)},f.kind==='lancer'?gold:color,5);}}
+  for(const i of[0,1]){const root={x:hip.x+(i?6:-6),y:hip.y},knee=ik(root,feet[i],26,28,-side);if(DuelSkins.leg(r,f,{root,knee,foot:feet[i],side,i}))continue;this.limb(r,root,knee,feet[i],i?11:10,i?mid:dark,i?dark:ink,light);const foot=feet[i];r.path([[foot.x-6,foot.y-5],[foot.x+5,foot.y-6],[foot.x+side*13,foot.y+1],[foot.x+side*13,foot.y+4],[foot.x-6,foot.y+4]],ink);r.line({x:foot.x-4,y:foot.y+2},{x:foot.x+side*11,y:foot.y+2},f.kind==='knight'?metalDark:color,3);if(f.kind==='knight'){r.line(knee,{x:lerp(knee.x,foot.x,.8),y:lerp(knee.y,foot.y,.8)},metalDark,9);r.line({x:knee.x-2,y:knee.y},{x:lerp(knee.x,foot.x,.8)-2,y:lerp(knee.y,foot.y,.8)},metal,4);r.path([[knee.x-6,knee.y-4],[knee.x+5,knee.y-5],[knee.x+7,knee.y+2],[knee.x-3,knee.y+5]],metal);r.line({x:knee.x-4,y:knee.y-3},{x:knee.x+4,y:knee.y-4},metalLight,2);}else{r.line({x:lerp(knee.x,foot.x,.8),y:lerp(knee.y,foot.y,.8)},{x:lerp(knee.x,foot.x,.93),y:lerp(knee.y,foot.y,.93)},f.kind==='lancer'?gold:color,5);}}
   const hand={x:(w.hand.x-f.x)/C.scale,y:(w.hand.y-f.y)/C.scale},two=['lancer','swordsman','reaper'].includes(f.kind),free={x:shoulder.x-side*19-Math.sin(cycle)*run*11,y:shoulder.y+32+Math.cos(cycle)*run*7},second=two?{x:hand.x-Math.cos(w.angle)*16,y:hand.y-Math.sin(w.angle)*16}:free;
-  const arm=(target,front)=>{const root={x:shoulder.x+(front?side*15:-side*15),y:shoulder.y+8},j=ik(root,target,25,25,(front?1:-1)*side);this.limb(r,root,j,target,front?9:8,(f.kind==='lancer'||f.kind==='boxer'&&f.skin!=='yuji')?skin:dark,(f.kind==='lancer'||f.kind==='boxer'&&f.skin!=='yuji')?skinDark:shade,(f.kind==='lancer'||f.kind==='boxer'&&f.skin!=='yuji')?skinLight:mid);if(f.kind==='knight'){r.line(root,j,metalDark,9);r.line(root,{x:lerp(root.x,j.x,.65),y:lerp(root.y,j.y,.65)},metal,6);r.line({x:lerp(j.x,target.x,.25),y:lerp(j.y,target.y,.25)},target,metal,7);}else if(f.kind!=='lancer'){r.line(j,{x:lerp(j.x,target.x,.7),y:lerp(j.y,target.y,.7)},mid,7);r.line({x:lerp(j.x,target.x,.62),y:lerp(j.y,target.y,.62)},{x:lerp(j.x,target.x,.74),y:lerp(j.y,target.y,.74)},f.kind==='assassin'?color:gold,6);}r.ellipse(target.x,target.y,4,4,ink);r.ellipse(target.x,target.y-1,3,3,skin);};
+  const arm=(target,front)=>{const root={x:shoulder.x+(front?side*15:-side*15),y:shoulder.y+8},j=ik(root,target,25,25,(front?1:-1)*side);if(DuelSkins.arm(r,f,{root,j,target,front,side,t}))return;this.limb(r,root,j,target,front?9:8,(f.kind==='lancer'||f.kind==='boxer'&&f.skin!=='yuji')?skin:dark,(f.kind==='lancer'||f.kind==='boxer'&&f.skin!=='yuji')?skinDark:shade,(f.kind==='lancer'||f.kind==='boxer'&&f.skin!=='yuji')?skinLight:mid);if(f.kind==='knight'){r.line(root,j,metalDark,9);r.line(root,{x:lerp(root.x,j.x,.65),y:lerp(root.y,j.y,.65)},metal,6);r.line({x:lerp(j.x,target.x,.25),y:lerp(j.y,target.y,.25)},target,metal,7);}else if(f.kind!=='lancer'){r.line(j,{x:lerp(j.x,target.x,.7),y:lerp(j.y,target.y,.7)},mid,7);r.line({x:lerp(j.x,target.x,.62),y:lerp(j.y,target.y,.62)},{x:lerp(j.x,target.x,.74),y:lerp(j.y,target.y,.74)},f.kind==='assassin'?color:gold,6);}r.ellipse(target.x,target.y,4,4,ink);r.ellipse(target.x,target.y-1,3,3,skin);};
   if(f.kind==='boxer'){second.x=shoulder.x+side*17+Math.sin(t*6)*2;second.y=shoulder.y+8+Math.cos(t*5)*2;if(f.punch){const saved={...hand};hand.x=second.x;hand.y=second.y;second.x=saved.x;second.y=saved.y;}}
-  arm(second,false);if(f.kind==='boxer'&&f.punch){r.ellipse(second.x,second.y,5,5,f.skin==='yuji'?'#6acfe0':'#89929b');}
-  r.path([[shoulder.x-18,shoulder.y],[shoulder.x+18,shoulder.y],[hip.x+14,hip.y],[hip.x-13,hip.y]],ink,ink,3);
+  arm(second,false);if(f.kind==='boxer'&&f.punch&&!custom){r.ellipse(second.x,second.y,5,5,f.skin==='yuji'?'#6acfe0':'#89929b');}
+  if(!custom){r.path([[shoulder.x-18,shoulder.y],[shoulder.x+18,shoulder.y],[hip.x+14,hip.y],[hip.x-13,hip.y]],ink,ink,3);
   const torso=f.kind==='assassin'?dark:color;r.path([[shoulder.x-15,shoulder.y+3],[shoulder.x+15,shoulder.y+3],[hip.x+10,hip.y-7],[hip.x-10,hip.y-7]],torso);r.path([[shoulder.x-15,shoulder.y+4],[shoulder.x-2,shoulder.y+9],[hip.x-2,hip.y-7],[hip.x-10,hip.y-7]],f.kind==='assassin'?mid:shade);
   if(f.kind==='knight'){r.path([[shoulder.x-12,shoulder.y+5],[shoulder.x+12,shoulder.y+5],[hip.x+10,hip.y-20],[hip.x,hip.y-12],[hip.x-10,hip.y-20]],metalDark,ink,2);r.path([[shoulder.x-10,shoulder.y+6],[shoulder.x+8,shoulder.y+6],[hip.x+7,hip.y-23],[hip.x-9,hip.y-20]],metal);r.line({x:shoulder.x-7,y:shoulder.y+8},{x:shoulder.x+8,y:shoulder.y+8},metalLight,3);r.path([[shoulder.x+side*10,shoulder.y],[shoulder.x+side*22,shoulder.y+5],[shoulder.x+side*21,shoulder.y+15],[shoulder.x+side*8,shoulder.y+13]],metal,ink,2);r.path([[hip.x-9,hip.y-3],[hip.x+7,hip.y-3],[hip.x+6,hip.y+19],[hip.x-10,hip.y+14]],color,ink,2);}
   else if(f.kind==='lancer'){r.path([[shoulder.x-8,shoulder.y],[shoulder.x+1,shoulder.y+13],[shoulder.x+10,shoulder.y],[shoulder.x+10,shoulder.y+6],[shoulder.x+1,shoulder.y+20],[shoulder.x-10,shoulder.y+7]],goldLight);r.line({x:shoulder.x-side*10,y:shoulder.y+10},{x:hip.x+side*8,y:hip.y-8},'#6e4e37',5);r.path([[hip.x-8,hip.y],[hip.x+6,hip.y],[hip.x+10,hip.y+21],[hip.x+1,hip.y+28],[hip.x-6,hip.y+19]],color,ink,2);r.line({x:hip.x-5,y:hip.y+2},{x:hip.x-2,y:hip.y+17},bright,3);}
@@ -590,12 +661,13 @@ class DuelActors{
   else{r.line({x:shoulder.x-side*10,y:shoulder.y+4},{x:hip.x+side*10,y:hip.y-6},'#51525a',4);r.line({x:shoulder.x-12,y:shoulder.y-1},{x:shoulder.x+12,y:shoulder.y+2},color,9);}
   r.line({x:hip.x-14,y:hip.y-4},{x:hip.x+14,y:hip.y-4},ink,7);r.line({x:hip.x-12,y:hip.y-6},{x:hip.x+12,y:hip.y-6},f.kind==='assassin'?color:'#655141',4);ctx.fillStyle=f.kind==='assassin'?bright:gold;ctx.fillRect(hip.x-3,hip.y-9,6,6);
   if(f.kind==='assassin')this.ribbon(r,f,st,2,{x:hip.x+side*5,y:hip.y-4},35,9,color,t,portrait,side);
+  }else r.line({x:shoulder.x,y:shoulder.y+3},{x:head.x,y:head.y+8},DuelSkins.neck(f),9);
   DuelSkins.dress(r,f,{hip,shoulder,head,side,st,t,portrait});
   arm(hand,true);
-  r.line({x:shoulder.x,y:shoulder.y+3},{x:head.x,y:head.y+8},f.kind==='reaper'?ink:skinDark,9);
+  if(!custom)r.line({x:shoulder.x,y:shoulder.y+3},{x:head.x,y:head.y+8},f.kind==='reaper'?ink:skinDark,9);
   ctx.save();ctx.translate(head.x,head.y);ctx.rotate(clamp(Math.sin(f.aim)*side*.22,-.22,.22));ctx.scale(side,1);const rows=HEADS[f.kind]||HEADS.knight,pal={h:dark,i:ink,m:metalDark,w:metalLight,d:metal,k:skinDark,l:skinLight,c:color,C:bright,t:goldLight,b:'#343d65'};
   if(f.kind!=='knight'){pal.h=f.kind==='assassin'?'#292932':ink;pal.m=f.kind==='lancer'?'#655347':'#62616b';}if(!DuelSkins.head(r,f))sprite(ctx,rows,-rows[0].length, -rows.length,pal);ctx.restore();
-  if(f.kind==='lancer'){r.line({x:head.x-side*9,y:head.y-13},{x:head.x-side*13,y:head.y-16},goldLight,4);}
+  if(f.kind==='lancer'&&!custom){r.line({x:head.x-side*9,y:head.y-13},{x:head.x-side*13,y:head.y-16},goldLight,4);}
   // Weapon poses snap on the active beat. Damage is exclusively the separate slash.
   const local=p=>({x:(p.x-f.x)/C.scale,y:(p.y-f.y)/C.scale}),lw={...w,hand:local(w.hand),a:local(w.a),b:local(w.b),segments:w.segments.map(s=>({a:local(s.a),b:local(s.b)})),shaft:w.shaft?{a:local(w.shaft.a),b:local(w.shaft.b)}:null};
   DuelWeapons.draw(r,{...f,x:0,y:0,dead:false,state:f.state==='parry'?'idle':f.state},lw,t,true);
