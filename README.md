@@ -32,14 +32,6 @@ O impact frame do **Perfect Parry** passou de 75 para **110 ms**. Essa mudança 
 
 **Salvar, carregar, exportar e importar presets** agora ficam no final de **PERSONALIZAR PARTIDA**. Digite o nome que quiser em “Nome do preset”. A exportação usa um arquivo pequeno `.umcorte-preset.json`; para carregar, importe e confirme em APLICAR REGRAS.
 
-## ADMIN
-
-Durante a partida na edição ADMIN, pressione **\***. Funciona também no asterisco do teclado numérico. O atalho não é acionado enquanto você está digitando em um campo.
-
-O painel mantém edição de regras, mapas, posições e prévias de animação. No torneio, a troca de classe fica bloqueada para preservar a regra de personagem fixo. Baixar a meta de pontos em um placar empatado espera o próximo ponto para decidir o vencedor.
-
-As prévias visuais devem ser usadas com a simulação pausada. No offline, abrir o painel pausa automaticamente; no online, use PAUSAR / RETOMAR. ADMIN continua funcionando como anfitrião, convidado ou nos dois lados, com comandos sincronizados.
-
 ## Controles e modos
 
 - A / D ou setas: mover. Mouse: mirar.
