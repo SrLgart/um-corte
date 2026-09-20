@@ -1,7 +1,5 @@
 # UM CORTE V6.2 — Um caminho até o título
 
-Abra **UM-CORTE-V6.2.html** no Chrome ou Edge. O jogo inteiro está nesse arquivo; não precisa instalar. A edição **UM-CORTE-V6.2-ADMIN.html** inclui o painel administrativo.
-
 ## Torneio eliminatório contra IA
 
 1. Escolha **TORNEIO**, seu personagem, skin e cor.
