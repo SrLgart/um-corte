@@ -1,37 +1,48 @@
-# UM CORTE VI — Cada corte tem uma história
+# UM CORTE V6.2 — Um caminho até o título
 
-Abra **UM-CORTE-V6.html** no Chrome ou Edge. O jogo está completo nesse arquivo: não precisa instalar nem contratar hospedagem. Para jogar online, ambos precisam de internet e da V6.
+Abra **UM-CORTE-V6.2.html** no Chrome ou Edge. O jogo inteiro está nesse arquivo; não precisa instalar. A edição **UM-CORTE-V6.2-ADMIN.html** inclui o painel administrativo.
 
-## Experimente primeiro
+## Torneio eliminatório contra IA
 
-1. Na tela inicial, segure o mouse esquerdo e faça um movimento rápido sobre as letras ou partículas. Elas se cortam; as letras se recompõem. Um clique normal em **JOGAR** abre a seleção.
-2. Em **OPÇÕES → QUALIDADE GRÁFICA**, escolha **Ultra**. O Alto continua como padrão. Ultra acrescenta bloom por shader, fachos de luz, reflexos e sombras suaves. Sombras e redução de flashes/movimento são opções independentes, salvas no navegador.
-3. Entre no treino no **Pátio dos Sinos** e acerte o sino. Experimente também **Telhados da Chuva**, com lanternas, bandeiras, bambu e um vão fatal.
-4. Faça um parry no instante do impacto: os primeiros **80 ms** de uma guarda válida ativam o **Perfect Parry**. Uma janela personalizada menor também limita esse tempo. O stun e a vantagem são os mesmos do parry normal; o impacto visual e o som são diferentes.
+1. Escolha **TORNEIO**, seu personagem, skin e cor.
+2. Defina de **1 a 5 duelos até o título**: isso forma uma chave com 2, 4, 8, 16 ou 32 participantes.
+3. Escolha a dificuldade: Fácil, Normal, Adaptativo ou Impossível. Cada duelo usa a quantidade de pontos e as regras configuradas antes do torneio.
+4. Escolha como as arenas funcionam: selecionar antes de cada duelo, manter uma arena fixa ou sortear arenas sem repetição até esgotar a lista. Seus mapas personalizados também participam.
+5. Entre no torneio. O personagem fica fixo até o fim. Se escolher Aleatório, a classe é sorteada uma única vez.
 
-## Personalidade e apresentação
+Uma derrota elimina você. Ao conquistar o título ou ser eliminado, aparece a classificação completa, do primeiro ao último. A chave também pode ser consultada antes de cada duelo. Os outros confrontos entre bots têm resultados simulados; os seus duelos são jogados normalmente.
 
-A tela inicial sorteia um dos quatro ambientes ao abrir/recarregar: dojo com pétalas, bosque noturno, chuva nos telhados ou forja com brasas. O cenário permanece ao voltar pelo botão INÍCIO. O cursor especial só aparece nos menus; durante o duelo, a mira continua igual.
+A classificação considera a fase alcançada. Entre eliminados na mesma fase, usa saldo de rounds, rounds vencidos e o sorteio inicial como último desempate. Cada duelo é uma partida nova: a carga especial começa vazia e pode ser preservada entre os rounds dessa partida.
 
-As seis classes receberam entrada e retorno de guarda, gestos de espera, postura mais tensa no ponto decisivo e retorno estilizado após Perfect Parry. Os gestos secundários aparecem de tempos em tempos enquanto o personagem está parado; ações e mudanças de mira interrompem a espera. São animações cosméticas, sem alterar hitboxes ou atributos.
+O torneio desta versão é local, contra IA. Sair para o menu encerra a tentativa; não há salvamento de torneio em andamento.
 
-Somente o golpe que encerra a partida ganha uma assinatura por classe: corte pesado, estocada, corte curto, risco de espada longa, meia-lua ou onda de impacto. A apresentação acrescenta **0,65 segundo**. Quedas têm um tratamento próprio. Os rounds intermediários mantêm seu ritmo.
+## O que mudou no visual
 
-## Editor de mapas V2
+- **Ponte Quebrada:** cânion ensolarado, penhascos terracota, rio ao fundo, madeira, cordas e bandeiras.
+- **Ruínas:** arenito, arcos antigos, dunas e detalhes turquesa.
+- **Santuário Suspenso:** céu azul, nuvens brancas e jardins verdes nas alturas.
+- As três arenas mantêm suas plataformas, paredes e colisões anteriores.
+- Finalizações ganharam movimentos do vencedor, cortes em deslocamento, arcos e ondas que se expandem e se dissipam. Continuam exclusivas do ponto que encerra a partida, com o mesmo acréscimo de 0,65 segundo.
+- O cursor do sistema fica invisível na tela inicial. O rastro agora tem pontas afiladas; clique normal e gesto de corte continuam separados. A mira do combate permanece igual.
+- Mapa Aleatório ganhou miniatura neutra e continua por último, inclusive depois de criar ou importar mapas.
 
-Em **CRIAR MAPA**, escolha **Sino / Lanterna / Bambu / Bandeira / Vaso** e clique na arena para colocar. Use SELECIONAR para mover ou alterar coordenadas; EXCLUIR PEÇA remove. DESFAZER e REFAZER continuam disponíveis.
+## Personalização e Perfect Parry
 
-Escolha também o clima: folhas, pétalas, chuva, neve ou brasas. Os objetos são decorativos: não bloqueiam ataques, não geram clash e não consomem o golpe. O sino balança e toca; lanternas, bambu e vasos se quebram; bandeiras se rasgam. Eles voltam ao estado inicial em cada round.
+**Manter carga do especial entre rounds** agora começa ligado. Pode ser desativado normalmente; presets importados mantêm a escolha que foi salva neles. Efeitos temporários e penalidades não atravessam o round.
 
-Salvar no navegador/pasta, exportar, importar e testar continuam disponíveis. Mapas anteriores sem esses campos são aceitos. Os arquivos incluem objetos e clima e são compartilhados com o adversário online. Arena aleatória continua sendo a última opção.
+O impact frame do **Perfect Parry** passou de 75 para **110 ms**. Essa mudança é visual: a janela de precisão de 80 ms, a defesa, o hitstop real e o atordoamento continuam iguais. A opção de reduzir flashes e movimento continua funcionando.
 
-## Presets pessoais
+**Salvar, carregar, exportar e importar presets** agora ficam no final de **PERSONALIZAR PARTIDA**. Digite o nome que quiser em “Nome do preset”. A exportação usa um arquivo pequeno `.umcorte-preset.json`; para carregar, importe e confirme em APLICAR REGRAS.
 
-Ajuste as regras, digite um nome como **TURBO DO LUIZ** e clique em **SALVAR PRESET**. CARREGAR mostra uma revisão antes de aplicar. EXPORTAR cria um pequeno arquivo `.umcorte-preset.json` com o nome digitado e as regras atuais. Seu amigo usa IMPORTAR e confirma em APLICAR REGRAS.
+## ADMIN
 
-Os presets pessoais incluem todas as regras da partida: pontos, especiais, Caos, movimento, ataque etc. Não incluem personagens, skins, arena escolhida, controles ou qualidade gráfica. Os quatro presets de combate anteriores continuam alterando somente o combate. Os presets pessoais ficam salvos neste navegador; exporte para levar a outro PC.
+Durante a partida na edição ADMIN, pressione **\***. Funciona também no asterisco do teclado numérico. O atalho não é acionado enquanto você está digitando em um campo.
 
-## Controles e modos preservados
+O painel mantém edição de regras, mapas, posições e prévias de animação. No torneio, a troca de classe fica bloqueada para preservar a regra de personagem fixo. Baixar a meta de pontos em um placar empatado espera o próximo ponto para decidir o vencedor.
+
+As prévias visuais devem ser usadas com a simulação pausada. No offline, abrir o painel pausa automaticamente; no online, use PAUSAR / RETOMAR. ADMIN continua funcionando como anfitrião, convidado ou nos dois lados, com comandos sincronizados.
+
+## Controles e modos
 
 - A / D ou setas: mover. Mouse: mirar.
 - Espaço / W: pular; segurar aumenta a altura.
@@ -41,26 +52,18 @@ Os presets pessoais incluem todas as regras da partida: pontos, especiais, Caos,
 - Parry durante o início do ataque: finta.
 - R no treino: restaurar a posição salva.
 
-O mapeamento fica em OPÇÕES. PvE com dificuldades, treino, local com teclado/mouse + controle, online, skins, Caos, estatísticas e replays continuam disponíveis. Um golpe limpo sempre mata.
+Mapeamento em OPÇÕES. PvE, treino, local com teclado/mouse + controle, online, editor, skins, Caos, estatísticas, replay e as quatro qualidades gráficas continuam disponíveis. Um golpe limpo sempre mata.
 
 ## Online
 
-Um jogador usa **ONLINE → CRIAR SALA** e compartilha o código. O outro usa ENTRAR. Escolham personagens e cores diferentes; ambos confirmam. Os objetos, as regras e os resultados se sincronizam. A qualidade visual é individual: Baixo e Ultra podem jogar juntos.
+Os dois jogadores precisam abrir **a V6.2**, comum ou ADMIN. Um cria a sala e compartilha o código; o outro entra, escolhe personagem e cor e confirma. A revanche mantém a escolha de personagem.
 
-As salas da V6 são separadas das versões anteriores. A conexão usa PeerJS/WebRTC e precisa de internet; redes que bloqueiam conexão direta podem impedir uma sala. Na revanche, a seleção de personagens continua disponível.
+Precisa de internet para a conexão PeerJS/WebRTC. As salas V6.2 são separadas das anteriores. Não precisa contratar hospedagem para abrir esses arquivos. Redes restritivas podem bloquear a conexão direta.
 
-## Edição ADMIN
+## Verificação desta entrega
 
-Abra **UM-CORTE-V6-ADMIN.html** e use **Ctrl + Shift + F10** durante a partida.
+Passaram 83 grupos de testes do combate e regras, além de 22 chaves de torneio cobrindo todos os tamanhos, vitória e eliminação em cada fase. No Chrome, foram verificados o torneio completo e a eliminação precoce, menu, presets, editor, ADMIN, arenas e finalizações sem alteração do estado do combate ao desenhar.
 
-O ADMIN mantém todas as opções anteriores, inclusive nos dois lados de uma sala. Agora também oferece prévias de **IDLE / TENSÃO / PARRY / PERFECT / FINALIZAÇÃO** e seleção do personagem que será exibido. Pause a simulação para usar essas prévias; no offline, abrir o painel já pausa automaticamente. No online, use PAUSAR / RETOMAR e aguarde a sincronização.
+Online verificado com PeerJS/WebRTC real em dois contextos isolados do Chrome no mesmo PC: ADMIN em qualquer lado, dois administradores, revanche, mapa personalizado, Caos Ultra e qualidades gráficas diferentes. Não equivale a um teste entre dois computadores em redes externas distintas.
 
-Ao escolher uma prévia, o painel se recolhe para deixar a arena visível. **PARAR / PAINEL** cancela a prévia e devolve o formulário. Elas não causam mortes, pontos, recarga ou mudanças nas estatísticas. No online, a prévia aparece nos dois clientes. FECHAR volta ao jogo; se você pausou manualmente, retome antes de fechar.
-
-## Validação
-
-Passaram 82 grupos de testes do motor, verificações no Chrome das quatro qualidades e dez arenas, importação/exportação, presets, gestos do menu e prévias ADMIN. Os testes conferem que desenhar as animações não altera o estado da simulação.
-
-Online testado com PeerJS/WebRTC real entre dois contextos isolados do Chrome no mesmo computador: ADMIN anfitrião/convidado/ambos, comandos simultâneos, limite de confirmação, revanches, mapa personalizado com sino, Baixo versus Ultra, Caos, estatísticas e replay. Ainda não é uma validação entre dois computadores em redes externas diferentes.
-
-A V5 foi preservada. O histórico do jogo contém a entrada V6.
+As versões anteriores continuam preservadas.
