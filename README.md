@@ -1,68 +1,66 @@
-# UM CORTE V — O instante que decide
+# UM CORTE VI — Cada corte tem uma história
 
-Abra **UM-CORTE-V5.html** no Chrome ou Edge. É um arquivo completo: não precisa instalar nem contratar hospedagem. Para jogar online, os dois precisam estar conectados à internet e usar a V5.
+Abra **UM-CORTE-V6.html** no Chrome ou Edge. O jogo está completo nesse arquivo: não precisa instalar nem contratar hospedagem. Para jogar online, ambos precisam de internet e da V6.
 
-## O que mudou
+## Experimente primeiro
 
-- Golpes fatais: pausa de impacto, queda em micro câmera lenta, pequeno zoom, flash, abalo curto, corte residual e som seco. O ambiente silencia por cerca de meio segundo.
-- A causa aparece junto do impacto: abertura na recuperação, direção errada da guarda, parry tarde demais, punição após parry, guarda rompida por especial, queda ou troca.
-- Slash mais fluido, com faixas de movimento e uma borda luminosa. O contorno preenchido continua sendo a área real de dano. Rastros apagados não acertam.
-- Iluminação com cores próprias por cenário, lanternas, cristais e braseiros, sombras estilizadas, brilho leve e reação aos golpes. Especiais têm sinais visuais e sonoros por classe.
-- Som de passou raspando somente quando um ataque realmente erra por pouco.
-- Novo ferrão para a skin Cavaleiro Vazio; atributos e alcance preservados.
-- Arena aleatória sempre no fim da seleção, inclusive depois de criar ou importar um mapa.
+1. Na tela inicial, segure o mouse esquerdo e faça um movimento rápido sobre as letras ou partículas. Elas se cortam; as letras se recompõem. Um clique normal em **JOGAR** abre a seleção.
+2. Em **OPÇÕES → QUALIDADE GRÁFICA**, escolha **Ultra**. O Alto continua como padrão. Ultra acrescenta bloom por shader, fachos de luz, reflexos e sombras suaves. Sombras e redução de flashes/movimento são opções independentes, salvas no navegador.
+3. Entre no treino no **Pátio dos Sinos** e acerte o sino. Experimente também **Telhados da Chuva**, com lanternas, bandeiras, bambu e um vão fatal.
+4. Faça um parry no instante do impacto: os primeiros **80 ms** de uma guarda válida ativam o **Perfect Parry**. Uma janela personalizada menor também limita esse tempo. O stun e a vantagem são os mesmos do parry normal; o impacto visual e o som são diferentes.
 
-## Caos e Caos Ultra
+## Personalidade e apresentação
 
-Abra **PERSONALIZAR PARTIDA → MODO CAOS**. O padrão continua desligado.
+A tela inicial sorteia um dos quatro ambientes ao abrir/recarregar: dojo com pétalas, bosque noturno, chuva nos telhados ou forja com brasas. O cenário permanece ao voltar pelo botão INÍCIO. O cursor especial só aparece nos menus; durante o duelo, a mira continua igual.
 
-**Caos** sorteia um modificador por round, sem repetir o anterior. Ele desaparece no round seguinte. **Caos Ultra** acrescenta um modificador compatível por round e mantém os anteriores; empates também avançam o sorteio. Quando as combinações acabam, o conjunto permanece, sem duplicações. Uma revanche começa um conjunto novo.
+As seis classes receberam entrada e retorno de guarda, gestos de espera, postura mais tensa no ponto decisivo e retorno estilizado após Perfect Parry. Os gestos secundários aparecem de tempos em tempos enquanto o personagem está parado; ações e mudanças de mira interrompem a espera. São animações cosméticas, sem alterar hitboxes ou atributos.
 
-Há mudanças de gravidade, pulo, cargas de dash, ataque, movimento, tamanho da arena, parry, recuperação do dash, plataformas frágeis e especiais. Suportes seguros de início são preservados. A apresentação do modificador vem antes de 3, 2, 1. A lista ativa aparece discretamente acima da arena.
+Somente o golpe que encerra a partida ganha uma assinatura por classe: corte pesado, estocada, corte curto, risco de espada longa, meia-lua ou onda de impacto. A apresentação acrescenta **0,65 segundo**. Quedas têm um tratamento próprio. Os rounds intermediários mantêm seu ritmo.
 
-Os modificadores se aplicam sobre as regras escolhidas. Com persistência do especial ligada, sua porcentagem de carga é preservada mesmo quando a recarga muda; efeitos temporários terminam entre rounds. No online, ambos recebem exatamente o mesmo sorteio.
+## Editor de mapas V2
 
-## Momentos e sessão
+Em **CRIAR MAPA**, escolha **Sino / Lanterna / Bambu / Bandeira / Vaso** e clique na arena para colocar. Use SELECIONAR para mover ou alterar coordenadas; EXCLUIR PEÇA remove. DESFAZER e REFAZER continuam disponíveis.
 
-**★ MOMENTO DECISIVO** guarda o melhor destaque da sessão, sem reprodução automática. O botão **ÚLTIMO REPLAY** continua disponível para o ponto mais recente. O replay permite assistir à queda, avançar quadros, ver colisões e tentar outra resposta.
+Escolha também o clima: folhas, pétalas, chuva, neve ou brasas. Os objetos são decorativos: não bloqueiam ataques, não geram clash e não consomem o golpe. O sino balança e toca; lanternas, bambu e vasos se quebram; bandeiras se rasgam. Eles voltam ao estado inicial em cada round.
 
-No online, assistir fica disponível entre partidas e mantém a sala conectada. Na revanche, os dois continuam confirmando personagem e regras antes do próximo duelo.
+Salvar no navegador/pasta, exportar, importar e testar continuam disponíveis. Mapas anteriores sem esses campos são aceitos. Os arquivos incluem objetos e clima e são compartilhados com o adversário online. Arena aleatória continua sendo a última opção.
 
-**SESSÃO** mostra vitórias, rounds, classes usadas, sequências, parries, ataques, erros, quedas, clashes, especiais e outras medidas. Os registros atravessam revanches; uma nova sala ou troca de modo inicia outra sessão. O botão de zerar limpa estatísticas e destaque. Treino e tentativas de replay não contam. Os prêmios aparecem quando há dados suficientes.
+## Presets pessoais
 
-## Visual
+Ajuste as regras, digite um nome como **TURBO DO LUIZ** e clique em **SALVAR PRESET**. CARREGAR mostra uma revisão antes de aplicar. EXPORTAR cria um pequeno arquivo `.umcorte-preset.json` com o nome digitado e as regras atuais. Seu amigo usa IMPORTAR e confirma em APLICAR REGRAS.
 
-Em **OPÇÕES**, escolha **Baixo / Médio / Alto** e ligue ou desligue **Sombras** separadamente. Alto e sombras ligadas são o padrão. As preferências ficam neste navegador, inclusive ao reabrir o arquivo. Ajustes visuais são individuais e não mudam física, alcance, timing ou sincronização.
+Os presets pessoais incluem todas as regras da partida: pontos, especiais, Caos, movimento, ataque etc. Não incluem personagens, skins, arena escolhida, controles ou qualidade gráfica. Os quatro presets de combate anteriores continuam alterando somente o combate. Os presets pessoais ficam salvos neste navegador; exporte para levar a outro PC.
 
-## Controles padrão
+## Controles e modos preservados
 
-| Ação | Teclado e mouse |
-| --- | --- |
-| Mover | A / D ou setas |
-| Mirar | Mouse |
-| Pular | Espaço / W; segurar aumenta a altura |
-| Atacar | Mouse esquerdo / J |
-| Parry | Mouse direito / K |
-| Dash | Shift |
-| Chutar | E / L |
-| Especial | F |
-| Deslizar | Baixo + dash |
-| Fintar | Parry durante o início do ataque |
+- A / D ou setas: mover. Mouse: mirar.
+- Espaço / W: pular; segurar aumenta a altura.
+- Mouse esquerdo / J: atacar. Mouse direito / K: parry.
+- Shift: dash. Baixo + dash: deslizar.
+- E / L: chute. F: especial.
+- Parry durante o início do ataque: finta.
+- R no treino: restaurar a posição salva.
 
-O mapeamento fica em **OPÇÕES**. No modo local, um jogador usa teclado e mouse e o outro usa controle. A tela de treino continua fechada até você abrir seus ajustes. Um golpe limpo continua fatal; não há vida escondida.
+O mapeamento fica em OPÇÕES. PvE com dificuldades, treino, local com teclado/mouse + controle, online, skins, Caos, estatísticas e replays continuam disponíveis. Um golpe limpo sempre mata.
 
 ## Online
 
-Um jogador escolhe **ONLINE → CRIAR SALA** e envia o código ao outro. O segundo usa **ENTRAR**. Escolham cores diferentes, personagens e confirmem. As regras e mapas personalizados são compartilhados. Redes que bloqueiam conexão direta podem impedir o PeerJS/WebRTC; a conexão depende de internet, mesmo com o jogo salvo no PC.
+Um jogador usa **ONLINE → CRIAR SALA** e compartilha o código. O outro usa ENTRAR. Escolham personagens e cores diferentes; ambos confirmam. Os objetos, as regras e os resultados se sincronizam. A qualidade visual é individual: Baixo e Ultra podem jogar juntos.
+
+As salas da V6 são separadas das versões anteriores. A conexão usa PeerJS/WebRTC e precisa de internet; redes que bloqueiam conexão direta podem impedir uma sala. Na revanche, a seleção de personagens continua disponível.
 
 ## Edição ADMIN
 
-Abra **UM-CORTE-V5-ADMIN.html**. Durante a partida, use **Ctrl + Shift + F10**. O menu permite mudar mapa, personagens, skins, regras, Caos, posições, pausar, avançar quadros e recarregar recursos. Os campos editam as regras base; o painel também informa os valores efetivos com os modificadores.
+Abra **UM-CORTE-V6-ADMIN.html** e use **Ctrl + Shift + F10** durante a partida.
 
-A edição ADMIN funciona como anfitrião ou convidado. Se os dois usarem essa edição, ambos têm acesso. As alterações são ordenadas e sincronizadas entre os clientes. Compartilhe a edição comum com quem deve jogar sem esse painel.
+O ADMIN mantém todas as opções anteriores, inclusive nos dois lados de uma sala. Agora também oferece prévias de **IDLE / TENSÃO / PARRY / PERFECT / FINALIZAÇÃO** e seleção do personagem que será exibido. Pause a simulação para usar essas prévias; no offline, abrir o painel já pausa automaticamente. No online, use PAUSAR / RETOMAR e aguarde a sincronização.
 
-As versões anteriores foram preservadas. O histórico dentro do jogo contém a entrada **V5**.
+Ao escolher uma prévia, o painel se recolhe para deixar a arena visível. **PARAR / PAINEL** cancela a prévia e devolve o formulário. Elas não causam mortes, pontos, recarga ou mudanças nas estatísticas. No online, a prévia aparece nos dois clientes. FECHAR volta ao jogo; se você pausou manualmente, retome antes de fechar.
 
-## Validação desta entrega
+## Validação
 
-Testes do motor cobrem combate, classes, especiais, plataformas, regras, Caos, estatísticas e replays. Verificação visual nas oito arenas e em mapa personalizado; qualidades gráficas sem alteração do estado da simulação. Online validado por PeerJS/WebRTC real entre dois contextos isolados do Chrome no mesmo computador, incluindo ADMIN nos dois lados, revanche e Caos Ultra. Esse teste não representa todas as combinações de redes de dois PCs remotos.
+Passaram 82 grupos de testes do motor, verificações no Chrome das quatro qualidades e dez arenas, importação/exportação, presets, gestos do menu e prévias ADMIN. Os testes conferem que desenhar as animações não altera o estado da simulação.
+
+Online testado com PeerJS/WebRTC real entre dois contextos isolados do Chrome no mesmo computador: ADMIN anfitrião/convidado/ambos, comandos simultâneos, limite de confirmação, revanches, mapa personalizado com sino, Baixo versus Ultra, Caos, estatísticas e replay. Ainda não é uma validação entre dois computadores em redes externas diferentes.
+
+A V5 foi preservada. O histórico do jogo contém a entrada V6.
