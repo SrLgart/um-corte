@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "errors": [],
+  "score": [
+    5,
+    0
+  ],
+  "environment": "two isolated Chrome contexts on one PC, real PeerJS/WebRTC",
+  "checks": [
+    "special intro confirmation",
+    "special sync",
+    "test-room consent",
+    "admin barrier",
+    "pause",
+    "extreme values",
+    "refill",
+    "frame step",
+    "projectile kill",
+    "round reset",
+    "match",
+    "rematch",
+    "disconnect"
+  ]
+}

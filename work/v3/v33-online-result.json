@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "score": [
+    5,
+    0
+  ],
+  "classes": [
+    "lancer",
+    "lancer"
+  ],
+  "rematchClasses": [
+    "assassin",
+    "swordsman"
+  ],
+  "rematchMap": "ruins",
+  "errors": [],
+  "environment": "Two isolated Chrome contexts on the same computer, real PeerJS signaling and WebRTC"
+}

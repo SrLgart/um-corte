@@ -1,0 +1,14 @@
+PASS catalogue has all six exact counts and 115 unique stable identities
+PASS inventory does not duplicate; first nine actives assigned, remap conflicts explicit
+PASS seeded draft excludes owned items, guarantees tiers and preserves clover reroll
+PASS PvP rarity template respected for eligible equal inventories
+PASS weapons retain class mobility and original class special
+PASS extra aerial jump, dash 320ms and W/Space input semantics preserved
+PASS crystal prevents one fatal blow per match and does not recharge between duels
+PASS fireball can be reflected and kills with one clean hit
+PASS time stop is telegraphed, under 1s active, once per duel, serializable
+PASS all level boundaries have exact group counts, bosses do not repeat, final fixed
+PASS path multi-enemy core uses shared physics and only scores after every enemy dies
+PASS save restores RNG, encounter, build, draft and rejects duplicate items
+PASS all 115 items can coexist in snapshots without unserializable state
+13 V8 foundation groups passed

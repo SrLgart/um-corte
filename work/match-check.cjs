@@ -1,0 +1,23 @@
+const {chromium}=require('C:/Users/Luiz/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const assert=require('node:assert/strict'),path=require('node:path');
+(async()=>{
+const browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});
+const page=await browser.newPage({viewport:{width:1280,height:900}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
+await page.goto('http://127.0.0.1:4173');await page.locator('#start').click();
+await page.mouse.click(240,430,{button:'right'});
+await page.waitForFunction(()=>duelSnapshot().fighters[0].state==='parry',{},{timeout:1000});
+await page.waitForTimeout(700);
+await page.keyboard.down('KeyJ');await page.waitForTimeout(850);
+assert.equal((await page.evaluate(()=>duelSnapshot())).fighters[0].state,'idle','holding attack must not repeat');
+await page.keyboard.up('KeyJ');
+await page.waitForFunction(()=>duelSnapshot().phase==='roundEnd',{},{timeout:15000});
+await page.waitForTimeout(250);await page.screenshot({path:path.join(__dirname,'defeat.png')});
+await page.waitForFunction(()=>duelSnapshot().phase==='matchEnd',{},{timeout:45000});
+assert.deepEqual((await page.evaluate(()=>duelSnapshot())).score,[0,5]);
+await page.screenshot({path:path.join(__dirname,'match-end.png')});
+await page.locator('#restart').click();assert.deepEqual((await page.evaluate(()=>duelSnapshot())).score,[0,0]);
+await page.keyboard.press('Escape');await page.locator('#resume').click();assert.equal((await page.evaluate(()=>duelSnapshot())).paused,false);
+await page.setViewportSize({width:390,height:844});await page.reload();await page.screenshot({path:path.join(__dirname,'mobile-title.png')});
+const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth);assert.equal(overflow,false);
+assert.deepEqual(errors,[]);console.log('Full match, restart, held attack, mouse parry, pause and narrow layout passed.');await browser.close();
+})().catch(e=>{console.error(e);process.exit(1)});

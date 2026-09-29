@@ -1,0 +1,722 @@
+[
+  {
+    "preset": "classic",
+    "kind": "boxer",
+    "mapId": "dojo",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 7
+  },
+  {
+    "preset": "classic",
+    "kind": "boxer",
+    "mapId": "bridge",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "classic",
+    "kind": "boxer",
+    "mapId": "sanctuary",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "classic",
+    "kind": "knight",
+    "mapId": "dojo",
+    "score": [
+      3,
+      2
+    ],
+    "attacks": 14
+  },
+  {
+    "preset": "classic",
+    "kind": "knight",
+    "mapId": "bridge",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 3
+  },
+  {
+    "preset": "classic",
+    "kind": "knight",
+    "mapId": "sanctuary",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "classic",
+    "kind": "lancer",
+    "mapId": "dojo",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 11
+  },
+  {
+    "preset": "classic",
+    "kind": "lancer",
+    "mapId": "bridge",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 2
+  },
+  {
+    "preset": "classic",
+    "kind": "lancer",
+    "mapId": "sanctuary",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "classic",
+    "kind": "assassin",
+    "mapId": "dojo",
+    "score": [
+      2,
+      3
+    ],
+    "attacks": 10
+  },
+  {
+    "preset": "classic",
+    "kind": "assassin",
+    "mapId": "bridge",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "classic",
+    "kind": "assassin",
+    "mapId": "sanctuary",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "classic",
+    "kind": "swordsman",
+    "mapId": "dojo",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 6
+  },
+  {
+    "preset": "classic",
+    "kind": "swordsman",
+    "mapId": "bridge",
+    "score": [
+      1,
+      3
+    ],
+    "attacks": 3
+  },
+  {
+    "preset": "classic",
+    "kind": "swordsman",
+    "mapId": "sanctuary",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "classic",
+    "kind": "reaper",
+    "mapId": "dojo",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 6
+  },
+  {
+    "preset": "classic",
+    "kind": "reaper",
+    "mapId": "bridge",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 3
+  },
+  {
+    "preset": "classic",
+    "kind": "reaper",
+    "mapId": "sanctuary",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "turbo",
+    "kind": "boxer",
+    "mapId": "dojo",
+    "score": [
+      1,
+      3
+    ],
+    "attacks": 6
+  },
+  {
+    "preset": "turbo",
+    "kind": "boxer",
+    "mapId": "bridge",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "turbo",
+    "kind": "boxer",
+    "mapId": "sanctuary",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "turbo",
+    "kind": "knight",
+    "mapId": "dojo",
+    "score": [
+      3,
+      2
+    ],
+    "attacks": 11
+  },
+  {
+    "preset": "turbo",
+    "kind": "knight",
+    "mapId": "bridge",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "turbo",
+    "kind": "knight",
+    "mapId": "sanctuary",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "turbo",
+    "kind": "lancer",
+    "mapId": "dojo",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 3
+  },
+  {
+    "preset": "turbo",
+    "kind": "lancer",
+    "mapId": "bridge",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "turbo",
+    "kind": "lancer",
+    "mapId": "sanctuary",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "turbo",
+    "kind": "assassin",
+    "mapId": "dojo",
+    "score": [
+      3,
+      1
+    ],
+    "attacks": 5
+  },
+  {
+    "preset": "turbo",
+    "kind": "assassin",
+    "mapId": "bridge",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "turbo",
+    "kind": "assassin",
+    "mapId": "sanctuary",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "turbo",
+    "kind": "swordsman",
+    "mapId": "dojo",
+    "score": [
+      1,
+      3
+    ],
+    "attacks": 6
+  },
+  {
+    "preset": "turbo",
+    "kind": "swordsman",
+    "mapId": "bridge",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "turbo",
+    "kind": "swordsman",
+    "mapId": "sanctuary",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "turbo",
+    "kind": "reaper",
+    "mapId": "dojo",
+    "score": [
+      2,
+      2
+    ],
+    "attacks": 37
+  },
+  {
+    "preset": "turbo",
+    "kind": "reaper",
+    "mapId": "bridge",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "turbo",
+    "kind": "reaper",
+    "mapId": "sanctuary",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "lowGravity",
+    "kind": "boxer",
+    "mapId": "dojo",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 5
+  },
+  {
+    "preset": "lowGravity",
+    "kind": "boxer",
+    "mapId": "bridge",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 4
+  },
+  {
+    "preset": "lowGravity",
+    "kind": "boxer",
+    "mapId": "sanctuary",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 4
+  },
+  {
+    "preset": "lowGravity",
+    "kind": "knight",
+    "mapId": "dojo",
+    "score": [
+      2,
+      3
+    ],
+    "attacks": 13
+  },
+  {
+    "preset": "lowGravity",
+    "kind": "knight",
+    "mapId": "bridge",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 3
+  },
+  {
+    "preset": "lowGravity",
+    "kind": "knight",
+    "mapId": "sanctuary",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 3
+  },
+  {
+    "preset": "lowGravity",
+    "kind": "lancer",
+    "mapId": "dojo",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 14
+  },
+  {
+    "preset": "lowGravity",
+    "kind": "lancer",
+    "mapId": "bridge",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 5
+  },
+  {
+    "preset": "lowGravity",
+    "kind": "lancer",
+    "mapId": "sanctuary",
+    "score": [
+      1,
+      3
+    ],
+    "attacks": 3
+  },
+  {
+    "preset": "lowGravity",
+    "kind": "assassin",
+    "mapId": "dojo",
+    "score": [
+      1,
+      3
+    ],
+    "attacks": 5
+  },
+  {
+    "preset": "lowGravity",
+    "kind": "assassin",
+    "mapId": "bridge",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 2
+  },
+  {
+    "preset": "lowGravity",
+    "kind": "assassin",
+    "mapId": "sanctuary",
+    "score": [
+      1,
+      3
+    ],
+    "attacks": 4
+  },
+  {
+    "preset": "lowGravity",
+    "kind": "swordsman",
+    "mapId": "dojo",
+    "score": [
+      2,
+      3
+    ],
+    "attacks": 19
+  },
+  {
+    "preset": "lowGravity",
+    "kind": "swordsman",
+    "mapId": "bridge",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 4
+  },
+  {
+    "preset": "lowGravity",
+    "kind": "swordsman",
+    "mapId": "sanctuary",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 4
+  },
+  {
+    "preset": "lowGravity",
+    "kind": "reaper",
+    "mapId": "dojo",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 20
+  },
+  {
+    "preset": "lowGravity",
+    "kind": "reaper",
+    "mapId": "bridge",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 8
+  },
+  {
+    "preset": "lowGravity",
+    "kind": "reaper",
+    "mapId": "sanctuary",
+    "score": [
+      1,
+      3
+    ],
+    "attacks": 4
+  },
+  {
+    "preset": "merciless",
+    "kind": "boxer",
+    "mapId": "dojo",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 6
+  },
+  {
+    "preset": "merciless",
+    "kind": "boxer",
+    "mapId": "bridge",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "merciless",
+    "kind": "boxer",
+    "mapId": "sanctuary",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "merciless",
+    "kind": "knight",
+    "mapId": "dojo",
+    "score": [
+      1,
+      3
+    ],
+    "attacks": 11
+  },
+  {
+    "preset": "merciless",
+    "kind": "knight",
+    "mapId": "bridge",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 4
+  },
+  {
+    "preset": "merciless",
+    "kind": "knight",
+    "mapId": "sanctuary",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "merciless",
+    "kind": "lancer",
+    "mapId": "dojo",
+    "score": [
+      1,
+      3
+    ],
+    "attacks": 8
+  },
+  {
+    "preset": "merciless",
+    "kind": "lancer",
+    "mapId": "bridge",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 2
+  },
+  {
+    "preset": "merciless",
+    "kind": "lancer",
+    "mapId": "sanctuary",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "merciless",
+    "kind": "assassin",
+    "mapId": "dojo",
+    "score": [
+      2,
+      3
+    ],
+    "attacks": 11
+  },
+  {
+    "preset": "merciless",
+    "kind": "assassin",
+    "mapId": "bridge",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "merciless",
+    "kind": "assassin",
+    "mapId": "sanctuary",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "merciless",
+    "kind": "swordsman",
+    "mapId": "dojo",
+    "score": [
+      1,
+      3
+    ],
+    "attacks": 11
+  },
+  {
+    "preset": "merciless",
+    "kind": "swordsman",
+    "mapId": "bridge",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 4
+  },
+  {
+    "preset": "merciless",
+    "kind": "swordsman",
+    "mapId": "sanctuary",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  },
+  {
+    "preset": "merciless",
+    "kind": "reaper",
+    "mapId": "dojo",
+    "score": [
+      3,
+      1
+    ],
+    "attacks": 13
+  },
+  {
+    "preset": "merciless",
+    "kind": "reaper",
+    "mapId": "bridge",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 2
+  },
+  {
+    "preset": "merciless",
+    "kind": "reaper",
+    "mapId": "sanctuary",
+    "score": [
+      0,
+      3
+    ],
+    "attacks": 0
+  }
+]

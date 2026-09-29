@@ -1,0 +1,13 @@
+PASS Kraken stays colossal outside the arena and cycles three announced commands
+PASS Smash only hits the actual contour after warning; a nearby miss stays safe
+PASS Grab briefly holds instead of killing and cannot reapply to the same target
+PASS A frontal parry can sever a grabbing tentacle
+PASS Block remains a dangerous area longer than Smash and expires without changing the map
+PASS Targeted arms emerge from walls and edges when appropriate
+PASS Moving support moves the telegraph and hit area; disappearing support cancels it
+PASS Existing walls clip the full tentacle and source death/removal cancels it
+PASS Failed unsupported command consumes neither cooldown nor cycle step
+PASS Tentacles and cycle resume deterministically, including frozen owner time
+PASS Command cycle survives rounds but resets for a new match
+PASS Legion and commanded Kraken continue through real engine steps after restore
+12 V8 Kraken groups passed

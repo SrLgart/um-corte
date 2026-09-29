@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "errors": [],
+  "luminance": {
+    "dojo": 60.231712499991616,
+    "bridge": 184.92409270845155,
+    "ruins": 182.61011770832994,
+    "bamboo": 48.90656562499474,
+    "frost": 64.65753229167282,
+    "forge": 47.11186666666668,
+    "tower": 61.75424583333413,
+    "sanctuary": 171.5577770832676,
+    "bells": 58.461402083333695,
+    "rooftops": 51.710085416666765
+  },
+  "checks": [
+    "full victory",
+    "early elimination",
+    "class lock",
+    "map choice",
+    "new defaults",
+    "menu relocation",
+    "all maps/qualities",
+    "animated finishers keep simulation intact"
+  ]
+}

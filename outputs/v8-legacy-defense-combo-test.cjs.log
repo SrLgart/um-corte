@@ -1,0 +1,9 @@
+PASS Pugilist and gauntlets use lunge without becoming disarmable physical blades
+PASS bare hands can perform the post-dash technique but a lost weapon cannot
+PASS Mikiri counters the actual fencing special but never the unstoppable lancer charge
+PASS normal Perfect Parry disarms the exact attacker and preserves weapon identity
+PASS parrying the fencing special does not discard an unrelated equipped legacy
+PASS Perfect Parry against a servant never remotely disarms its summoner
+PASS Eye reaction to a projectile cannot turn its parry into a remote disarm
+PASS parry without a known attacker cannot disarm the nearest bystander
+8 V8 defense/source combination groups passed

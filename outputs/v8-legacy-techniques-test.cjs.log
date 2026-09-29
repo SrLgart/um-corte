@@ -1,0 +1,11 @@
+PASS stun and kick cooldown forbid technique side effects
+PASS throw moves an adjacent opponent to the other side, never through a wall
+PASS roundhouse hits both sides once, respects walls and is not overwritten by normal kick
+PASS throw cannot cross a wall behind the thrower even when the landing position is clear
+PASS interrupted roundhouse preparation cannot become a delayed kick during stun
+PASS stomp needs a real open downward path and bounces only once
+PASS failed dash cancel leaves recovery intact; success spends an actual charge
+PASS backstep has a startup window, consumes charge and retreats horizontally
+PASS Sem Saque consumes the stance and increases recovery only if that attack misses
+PASS directional techniques set charged weapon aim before preparation and cannot move a stunned actor
+10 V8 technique commitment groups passed

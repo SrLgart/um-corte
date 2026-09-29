@@ -1,0 +1,47 @@
+ROOM Y4DC3J
+PRIVATE DRAFT COMPLETE
+RUNNING [
+  {
+    room: {
+      code: 'Y4DC3J',
+      id: 'umcorte-v8-Y4DC3J',
+      members: [Array],
+      host: true,
+      playing: true,
+      frame: 223,
+      paused: false,
+      watching: false
+    },
+    phase: 'playing'
+  },
+  {
+    room: {
+      code: 'Y4DC3J',
+      id: 'test-1fe31895-66b2-48d3-a9b3-64b651d026f2',
+      members: [Array],
+      host: false,
+      playing: true,
+      frame: 223,
+      paused: false,
+      watching: false
+    },
+    phase: 'playing'
+  },
+  {
+    room: {
+      code: 'Y4DC3J',
+      id: 'test-587703f4-c7de-42dd-97de-54326e3549a9',
+      members: [Array],
+      host: false,
+      playing: true,
+      frame: 222,
+      paused: false,
+      watching: true
+    },
+    phase: 'playing'
+  }
+]
+VISITING ADMIN LEGACY EDITS SYNC
+DISCONNECT kept room 2
+CLOSED O anfitrião saiu. A sala foi encerrada.
+ERRORS []

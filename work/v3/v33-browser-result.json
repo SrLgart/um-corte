@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "errors": [],
+  "checks": [
+    "numeric rules",
+    "training dummy",
+    "slow motion",
+    "pause/frame",
+    "feint",
+    "slide",
+    "kick",
+    "recording",
+    "playable replay",
+    "official state preserved",
+    "checkpoint",
+    "fullscreen",
+    "tower",
+    "random picks"
+  ]
+}

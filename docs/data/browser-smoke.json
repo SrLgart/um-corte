@@ -1,0 +1,51 @@
+{
+  "date": "2026-09-29T01:14:39.969Z",
+  "results": [
+    {
+      "edition": "normal",
+      "url": "file://build",
+      "errors": [],
+      "checks": [
+        "startup",
+        "training",
+        "arena baseline",
+        "Space jump",
+        "W double jump",
+        "ADMIN separation"
+      ]
+    },
+    {
+      "edition": "admin",
+      "url": "file://build",
+      "errors": [],
+      "checks": [
+        "startup",
+        "training",
+        "arena baseline",
+        "Space jump",
+        "W double jump",
+        "ADMIN separation"
+      ]
+    },
+    {
+      "edition": "normal",
+      "mode": "pve",
+      "errors": [],
+      "checks": [
+        "startup",
+        "attack input",
+        "AI enabled"
+      ]
+    },
+    {
+      "edition": "normal",
+      "mode": "local",
+      "errors": [],
+      "checks": [
+        "startup",
+        "attack input",
+        "simulated gamepad"
+      ]
+    }
+  ]
+}

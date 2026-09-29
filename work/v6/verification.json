@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "reports": [
+    {
+      "test": "test-core.cjs",
+      "summary": "42 V4.3 core checks passed",
+      "passed": true
+    },
+    {
+      "test": "features-test.cjs",
+      "summary": "8 V4.2 feature groups passed",
+      "passed": true
+    },
+    {
+      "test": "release-test.cjs",
+      "summary": "9 V4.3 release groups passed",
+      "passed": true
+    },
+    {
+      "test": "v5-test.cjs",
+      "summary": "15 V5 groups passed",
+      "passed": true
+    },
+    {
+      "test": "v6-test.cjs",
+      "summary": "8 V6 groups passed",
+      "passed": true
+    }
+  ],
+  "bundles": "Normal and ADMIN parsed successfully"
+}

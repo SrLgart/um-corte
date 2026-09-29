@@ -1,0 +1,9 @@
+PASS AI chooses sustained ranged preparation for all three charge weapons
+PASS AI uses a tap for nearby charge-weapon attacks and cancels a hold to defend
+PASS AI Kamehameha activation has no competing dash or attack and holds until release
+PASS AI cannot start a distant charge through a wall
+PASS AI recalls Leviathan and does not try ordinary fatal attacks while its weapon is away
+PASS charge intention and AI decisions restore deterministically mid-preparation
+PASS AI holds the yo-yo after deployment and uses the gunblade trigger once
+PASS gravity cloak AI refuses an empty ceiling and can choose contextual ice
+8 V8 AI held-intention groups passed

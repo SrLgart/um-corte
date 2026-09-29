@@ -1,0 +1,47 @@
+PASS V4.3 defaults: air dash, 400ms guard, 25% faster class timings
+PASS duelist still kills in one visible cut in all directions
+PASS staff still kills in one visible cut in all directions
+PASS boxer still kills in one visible cut in all directions
+PASS knight still kills in one visible cut in all directions
+PASS lancer still kills in one visible cut in all directions
+PASS assassin still kills in one visible cut in all directions
+PASS swordsman still kills in one visible cut in all directions
+PASS reaper still kills in one visible cut in all directions
+PASS feint accepts whole startup and first 60ms, with no contact
+PASS late feint, completed contact, recovery and cooldown refuse cancellation
+PASS one ground launch consumes the default aerial use
+PASS five consecutive upward dashes consume five charges without recovery between
+PASS landing resets flight limit but does not replenish dash charges
+PASS charges refill one by one; disabling air dash works
+PASS physical milliseconds apply exactly to recovery, cooldown and stun
+PASS public limits, arbitrary special recharge and experimental values
+PASS special starts empty, recharges in 7s, and resets every round
+PASS specials disabled cannot activate even if charged
+PASS knight absorbs one lethal strike, then is vulnerable and loses parry
+PASS shield expiry starts 4s penalty; recharge waits for it
+PASS shield does not prevent fatal falls
+PASS lance special kills through guard
+PASS lance special ignores clash; enemy shield absorbs it once
+PASS lance charge cannot steer, dash, jump or parry; wall stops it
+PASS lance missed charge can run off a map without a wall
+PASS assassin projectile kills at range and removes the held dagger
+PASS projectile parry drops dagger near defender and leaves both alive
+PASS unarmed assassin can parry, dash and kick but cannot attack
+PASS dagger pickup restores attack; lost dagger returns after two seconds
+PASS swordsman charged attack kills through parry
+PASS swordsman whiff and clash consume power and block parry for 4s
+PASS startup feint preserves armed sword; active feint spends its strike
+PASS reaper size and real reach grow, shrink, then normalize
+PASS duelist special snapshots resume deterministically
+PASS staff special snapshots resume deterministically
+PASS boxer special snapshots resume deterministically
+PASS knight special snapshots resume deterministically
+PASS lancer special snapshots resume deterministically
+PASS assassin special snapshots resume deterministically
+PASS swordsman special snapshots resume deterministically
+PASS reaper special snapshots resume deterministically
+PASS admin changing map/classes/rules preserves score and resets hazards
+PASS regular direction guard, clash and input buffer still work
+PASS dagger thrown next to walls stays outside and can be recovered
+PASS a downward throw over a pit returns to a real platform
+46 V4.3 core checks passed

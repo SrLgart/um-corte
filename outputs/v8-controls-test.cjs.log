@@ -1,0 +1,4 @@
+PASS V7 default movement / jump and taunt bindings
+PASS old default keeps W for jump and up; custom combat bindings are preserved
+PASS saved V7 remapping and controller directions remain independent of aim
+3 controls groups passed

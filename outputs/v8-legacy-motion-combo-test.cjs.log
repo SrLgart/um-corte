@@ -1,0 +1,5 @@
+PASS tap released in the final dash recovery is buffered with its original aim
+PASS portal rotates a committed cut, and the next movement step preserves the new direction
+PASS time stop freezes held weapon and beam charge; slow time scales both identically
+PASS portal cut snapshots and remaining commitment survive save/replay restoration
+4 V8 motion/time combination groups passed

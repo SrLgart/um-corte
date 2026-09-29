@@ -1,0 +1,8 @@
+PASS three group eliminations count separately while the duel counts once
+PASS snapshot continuation retains completed duels and does not duplicate deaths
+PASS second-chance rewind restores the statistics of the safe round
+PASS encountered bosses are run-specific and survive save and retry
+PASS local records count terminal saves once and keep the best winning time
+PASS late rewards exclude relics with no future miniboss and preserve the legendary floor
+PASS Crown does not ask for a duplicate when the normal choice grants the last stealable item
+7 V8 Path outcome audit groups passed

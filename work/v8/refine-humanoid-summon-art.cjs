@@ -1,0 +1,12 @@
+const fs=require('node:fs'),p='work/v8/v8-actors.js';let s=fs.readFileSync(p,'utf8');const helper=`
+function summonDress(r,f,p){const type=f.summonType;if(!['skeleton','spectral','legion','servant'].includes(type))return;const {shoulder:b,hip:h,side}=p,col=f.summonTint||'#a5d8ce';
+ if(type==='skeleton'){r.path([[b.x-side*9,b.y-1],[b.x-side*22,b.y+2],[b.x-side*21,b.y+14],[b.x-side*12,b.y+10]],'#697f82',ink,1.5);r.line({x:b.x-side*18,y:b.y+2},{x:b.x-side*15,y:b.y+9},'#acbcb2',2);r.line({x:b.x+side*5,y:b.y+9},{x:h.x-side*6,y:h.y-4},'#6f6452',3);r.ellipse(h.x-side*5,h.y-6,3,3,col);}
+ if(type==='spectral'){r.path([[b.x-9,b.y+11],[b.x,b.y+5],[b.x+9,b.y+11],[b.x,b.y+24]],'#304653',col,1.5);r.line({x:b.x,y:b.y+9},{x:b.x,y:b.y+20},'#e0f3d5',2);r.line({x:b.x-4,y:b.y+15},{x:b.x+4,y:b.y+15},'#e0f3d5',1.5);}
+ if(type==='legion'){const slot=f.summonSlot||0;r.line({x:b.x-side*11,y:b.y+3},{x:h.x+side*8,y:h.y-9},'#354b58',7);r.line({x:b.x-side*11,y:b.y+3},{x:h.x+side*8,y:h.y-9},col,2);const x=b.x+side*5,y=b.y+17;r.path([[x-7,y-7],[x+7,y-7],[x+7,y+6],[x,y+11],[x-7,y+6]],'#394c5b','#c7c7a0',1.5);
+  if(slot===0){r.line({x:x-3,y:y+5},{x:x+3,y:y-4},col,2);r.line({x:x-4,y:y+1},{x:x+1,y:y+5},col,1.5);}else if(slot===1){r.path([[x-3,y-4],[x+4,y],[x-3,y+5]],null,col,1.5);r.line({x:x-3,y:y-4},{x:x-3,y:y+5},col,1);}else r.path([[x-4,y-4],[x+4,y-4],[x+3,y+3],[x,y+6],[x-3,y+3]],null,col,1.5);
+  r.path([[h.x-8,h.y-2],[h.x+8,h.y-2],[h.x+7,h.y+16],[h.x,h.y+12],[h.x-7,h.y+16]],'#4b656b',ink,1.5);r.line({x:h.x,y:h.y},{x:h.x,y:h.y+10},col,2);
+ }if(type==='servant'){r.line({x:b.x-6,y:b.y+4},{x:b.x+5,y:b.y+15},'#aa9bc6',1.5);r.path([[b.x+5,b.y+11],[b.x+9,b.y+16],[b.x+5,b.y+21],[b.x+1,b.y+16]],'#796b91',col,1);}
+}
+`;
+s=s.replace('function front(r,f,p){if(!f.legacy)return;',helper+'\nfunction front(r,f,p){summonDress(r,f,p);if(!f.legacy)return;');const skull="c.fillRect(4,-13,6,6);r.path([[0,-7]";if(!s.includes(skull))throw Error('skull marker');s=s.replace(skull,"c.fillRect(4,-13,6,6);c.fillStyle=f.summonTint||'#a5d8ce';c.fillRect(6,-11,2,2);r.path([[-3,-21],[-5,-17],[-1,-15]],null,'#8b978c',1.5);r.path([[0,-7]");fs.writeFileSync(p,s);
+const v='work/v8/v8-visuals.js';s=fs.readFileSync(v,'utf8');const q="if(e.type==='legion'){f.summonType='legion';";if(!s.includes(q))throw Error('clone marker');s=s.replace(q,"f.summonTint=color;f.summonSlot=e.slot;if(e.type==='legion'){f.summonType='legion';");fs.writeFileSync(v,s);

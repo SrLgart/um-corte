@@ -1,0 +1,9 @@
+PASS Perfect uses the first 80 ms and preserves regular stun, cooldown and hitstop
+PASS Perfect works in high, low airborne and normal guard, including a shorter custom window
+PASS Decoration reacts once per attack and never consumes the lethal slash
+PASS New arenas and prop state replay identically, reset each round and after ADMIN map edits
+PASS Only the winning point adds the 650 ms signature; no bonus in training or ties
+PASS ADMIN presentation requests do not alter physics, stats, score or clocks
+PASS Editor format keeps old maps and roundtrips new props/weather without executable content
+PASS Named presets preserve every rule and reject unsupported values on import
+8 V6 groups passed

@@ -1,0 +1,11 @@
+(function(){
+const info={
+ knight:{name:'Última guarda',benefit:'Uma proteção absorve o próximo ataque, inclusive um especial. Expira após 10 segundos.',cost:'Quando a proteção termina, você fica 10 segundos sem parry. Quedas continuam fatais; chutes ainda empurram.'},
+ lancer:{name:'Sem retorno',benefit:'Após uma preparação visível, avança numa estocada horizontal que ignora parry e clash.',cost:'Não pode frear, saltar ou mudar de direção até atingir uma parede ou cair. O rival pode saltar por cima ou desviar.'},
+ assassin:{name:'Última adaga',benefit:'Arremessa a adaga na direção da mira. Um acerto mata; o rival pode aparar.',cost:'Sem a adaga, você não pode atacar. Recupere-a no cenário. Parry faz a adaga cair perto do rival. Se perdida no vazio, retorna à última superfície segura após 2 segundos.'},
+ swordsman:{name:'Corte soberano',benefit:'Seu próximo corte ignora parry. O rival ainda pode desviar ou provocar clash.',cost:'Após executar esse corte — acertando, errando, fintando na fase ativa ou sofrendo clash — você fica 10 segundos sem parry.'},
+ reaper:{name:'Lua crescente',benefit:'Arma e alcance real aumentam 40% durante 10 segundos.',cost:'Em seguida, arma e alcance ficam 40% menores que o normal por 10 segundos.'}
+};
+function meter(f,r){if(f.parryLock>0)return{label:'SEM PARRY · '+f.parryLock.toFixed(1)+' s',ratio:f.parryLock/10,penalty:true};if(f.ultMode==='shield')return{label:'PROTEÇÃO · '+f.ultTime.toFixed(1)+' s',ratio:f.ultTime/10};if(f.ultMode==='reaperBoost'||f.ultMode==='reaperWeak')return{label:(f.ultMode==='reaperBoost'?'ALCANCE +40% · ':'ALCANCE −40% · ')+f.ultTime.toFixed(1)+' s',ratio:f.ultTime/10,penalty:f.ultMode==='reaperWeak'};if(f.ultMode==='edge'||f.ultMode==='edgeStrike')return{label:'PRÓXIMO CORTE QUEBRA PARRY',ratio:1};if(f.ultMode==='charge')return{label:f.state==='ultWindup'?'PREPARANDO ESTOCADA':'SEM RETORNO',ratio:1};if(f.ultMode==='throw'||f.ultMode==='unarmed')return{label:f.dagger?.mode==='lost'?'ADAGA RETORNA EM '+Math.max(0,2-f.dagger.time).toFixed(1)+' s':'RECUPERAR ADAGA',ratio:0,penalty:true};const ready=f.specialCharge>=r.specialCooldown;return{label:ready?'ESPECIAL PRONTO':Math.max(0,r.specialCooldown-f.specialCharge).toFixed(1)+' s · CARREGANDO',ratio:ready?1:f.specialCharge/(r.specialCooldown||1),ready};}
+window.DuelSpecialUI={info,meter};
+})();

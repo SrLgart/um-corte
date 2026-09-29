@@ -1,0 +1,4 @@
+const fs=require('fs'),path=require('path');function edit(n,f){const p=path.join(__dirname,n);fs.writeFileSync(p,f(fs.readFileSync(p,'utf8')));}
+edit('test-core.cjs',s=>s.replace('f.dashCharges=1;f.airDashes=5','f.dashCharges=1;f.dashCooldown=5;f.airDashes=5'));
+edit('app.js',s=>s.replace("function returnMenu(message=''){", "function returnMenu(message=''){selected.rules=cleanRules(selected.rules);").replace("$('connection-status').textContent=stalled?", "$('connection-status').textContent=onlineSession?.adminPaused?'SALA DE TESTE · PAUSADA PELO ANFITRIÃO':stalled?").replace("version:4,release:'4.0',", "version:4,release:'4.0',hitstop:game.hitstop,impact:effects.impact,"));
+edit('renderer.js',s=>s.includes('this.impact(game,effects);')?s:s.replace("c.fillRect(0,0,1280,720);c.globalAlpha=1;}}", "c.fillRect(0,0,1280,720);c.globalAlpha=1;}this.impact(game,effects);}"));

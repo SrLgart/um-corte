@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "maps": [
+    "dojo",
+    "bridge",
+    "ruins",
+    "bamboo",
+    "frost",
+    "forge"
+  ],
+  "errors": [],
+  "parry": {
+    "presets": [
+      150,
+      300,
+      600,
+      1200
+    ],
+    "onePress": true
+  }
+}

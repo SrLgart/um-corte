@@ -1,0 +1,10 @@
+const fs=require('fs'),path=require('path'),p=n=>path.join(__dirname,n);let s=fs.readFileSync(p('editor.js'),'utf8');
+s=s.replace("hit(pos){for(let i=0;i<2;i++)", "hit(pos){for(let i=this.draft.platforms.length-1;i>=0;i--){const q=this.draft.platforms[i];if(q.motion){const x=q.x+q.motion.x,y=q.y+q.motion.y;if(pos.x>=x-8&&pos.x<=x+q.w+8&&Math.abs(pos.y-y)<22)return{list:'platforms',index:i,endpoint:true};}}for(let i=0;i<2;i++)");
+s=s.replace("const p=this.piece(),o=this.drag.original;p.x=", "const p=this.piece(),o=this.drag.original;if(this.picked.endpoint){p.motion.x=D.clamp(o.motion.x+pos.x-this.drag.start.x,-p.x,this.draft.width-p.x-p.w);p.motion.y=D.clamp(o.motion.y+pos.y-this.drag.start.y,-p.y,this.draft.height-p.y);this.draw();return;}p.x=");
+// Browser storage is a cache; exporting still works if quota/storage is unavailable.
+s=s.replace("if(this.db)await this.request('maps','put',map);if(this.directory)", "if(this.db)try{await this.request('maps','put',map);}catch{}if(this.directory)");
+s=s.replace("if(this.library.db)await this.library.request('maps','put',map);this.hooks.changed();", "if(this.library.db)try{await this.library.request('maps','put',map);}catch{}this.hooks.changed();");
+fs.writeFileSync(p('editor.js'),s);
+s=fs.readFileSync(p('editor.html'),'utf8').replace('A mira da plataforma móvel marca o ponto B. Selecione a peça e ajuste o trajeto ao lado.', 'Arraste o contorno B da plataforma móvel para desenhar o trajeto. As medidas também podem ser ajustadas ao lado.');fs.writeFileSync(p('editor.html'),s);
+s=fs.readFileSync(p('shell.html'),'utf8').replace('A mira da plataforma móvel marca o ponto B. Selecione a peça e ajuste o trajeto ao lado.', 'Arraste o contorno B da plataforma móvel para desenhar o trajeto. As medidas também podem ser ajustadas ao lado.');fs.writeFileSync(p('shell.html'),s);
+s=fs.readFileSync(p('renderer.js'),'utf8').replace('(canvas.width-10)/(maxX-minX),(canvas.height-10)/(maxY-minY)', '(canvas.width-34)/(maxX-minX),(canvas.height-34)/(maxY-minY)').replace('canvas.height-5-maxY*scale','canvas.height-17-maxY*scale');fs.writeFileSync(p('renderer.js'),s);

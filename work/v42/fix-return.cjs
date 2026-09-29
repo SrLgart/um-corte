@@ -1,0 +1,1 @@
+const fs=require('fs'),p=require('path').join(__dirname,'app.js');let s=fs.readFileSync(p,'utf8');s=s.replace('editor-return.hidden=true;',"document.getElementById('editor-return').hidden=true;");fs.writeFileSync(p,s);

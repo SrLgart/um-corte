@@ -1,0 +1,74 @@
+{
+  "format": "um-corte-map",
+  "version": 1,
+  "id": "custom_8c8fc6b9-8738-4a6c-96a9-78915c47bc54",
+  "custom": true,
+  "name": "Arena de teste V4.2",
+  "description": "Arena criada no editor.",
+  "width": 1280,
+  "height": 720,
+  "deathY": 890,
+  "theme": "dojo",
+  "platforms": [
+    {
+      "x": 60,
+      "y": 610,
+      "w": 1160,
+      "solid": true
+    },
+    {
+      "x": 340,
+      "y": 400,
+      "w": 200,
+      "solid": false,
+      "motion": {
+        "x": 260,
+        "y": -160,
+        "period": 2,
+        "pause": 0.4,
+        "route": true
+      }
+    },
+    {
+      "x": 760,
+      "y": 400,
+      "w": 200,
+      "solid": false,
+      "fragile": {
+        "delay": 1.2,
+        "respawn": 0
+      }
+    }
+  ],
+  "walls": [
+    {
+      "x": 80,
+      "y": 380,
+      "w": 40,
+      "h": 240
+    }
+  ],
+  "spawns": [
+    {
+      "x": 320,
+      "y": 610
+    },
+    {
+      "x": 960,
+      "y": 610
+    }
+  ],
+  "ground": "#687767",
+  "background": {
+    "layers": [
+      {
+        "image": "data:image/webp;base64,UklGRqwDAABXRUJQVlA4WAoAAAAgAAAAjwEAxwAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggvgEAABAeAJ0BKpAByAA+VSqTRqOioaEjqABwColnbuF10f3v+owEANdT4BRAP6r5gOYA2iv9mff/6P/0QP4BvTPsbeTMAgjKaqfFBzYdpql1U+KDmw7TVLqp8UHNh2mqXVT4oObDtNUuqmIFrm8ecRkdWMt1QKMUywmqsSNW4Gw7TVJkuQHaapb9im/mU1U9J+R65Ayl+xTfzKaqek/I9cgZS/Ypv5lNVPSfkeuQMpfsU38ymqnpPyPXIGUv2Kb+ZTVT0Ex9huqBRimWE335GKZYTS+ua24AbDtNUur4TegGZsBsO01S6qfFBzYdpql1U+KDmw7TVLqp8UHLQAD+/udP/jWTIm4fuhiraJwAAAABSepj/OqH0G0v+tC/BuFGBd5Q8yROrcz0m/Xrv2V/6qEvmYj89RINO7vf9JE9s0MIArWCsAVrBWAK1grAFawVQ5ny2VxapoS3h1tFh88GgLvy7wXktCaDasHVsUEDW5QsAUvKUAg8og2YgOyf6E8PT3b8qxyJwne/7IL3ky279igJJ9ldmIxPR9Qy8q9xUiTjUiTjUiTjUiTjI1Hy097s2ARHMHpNTWP5yAAAAAAAAAAA",
+        "parallax": 0.06,
+        "opacity": 1,
+        "fit": "cover"
+      }
+    ],
+    "tint": "#172838",
+    "shade": 0.2
+  }
+}

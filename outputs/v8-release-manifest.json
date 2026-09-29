@@ -1,0 +1,17 @@
+{
+  "version": "8",
+  "generatedAt": "2026-09-28T20:21:53.198Z",
+  "automatedSuites": 53,
+  "files": [
+    {
+      "name": "um-corte-v8.html",
+      "bytes": 1013320,
+      "sha256": "6f29be4ddec7236d83f0f11b04a45a075ddf53ca6345f9cc8e9268c87644b782"
+    },
+    {
+      "name": "um-corte-v8-admin.html",
+      "bytes": 1030573,
+      "sha256": "7a1040258935b10ff24ccdf19b89d1ac98ccc268572a2b03c6831826dd71a836"
+    }
+  ]
+}

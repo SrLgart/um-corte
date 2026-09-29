@@ -1,0 +1,9 @@
+PASS reloading a boss reward preserves scene, cards, seed, progress and entry build
+PASS older V8 reward saves reconstruct their original arena and keep draft immutable
+PASS inventory checkpoint returns to safe round position, keeps edited build and spent match protections
+PASS continuation keeps round, score, local keybindings and enemy inventory edits
+PASS boss intro history persists across runs without granting items or permanent stats
+PASS Crown second choice survives reload without duplicate reward or level advance
+PASS ending a run invalidates continuation even if writing history hits storage quota
+PASS cooldown status follows actual weapon, consumption and transformations
+8 V8 save/continuation groups passed

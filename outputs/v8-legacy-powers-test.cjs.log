@@ -1,0 +1,15 @@
+PASS web respects aim and nearest wall, cannot grab an arbitrary nearby enemy
+PASS web pulls a hit enemy after telegraph and can be parried
+PASS moving grapple follows its platform and releases on collapse
+PASS web and telekinesis retrieve a physical weapon without changing ownership
+PASS telekinesis does not pull players or reach through walls
+PASS ice empty-air casts fail; floor creates slick ground without an extra platform
+PASS wall ice appears after warning, supports feet, expires and survives snapshots
+PASS ice directly hitting a body briefly roots without killing or spawning geometry
+PASS lightning chains through distinct nearby group enemies with separate warnings
+PASS parry prevents lightning propagation and scene walls stop initial targeting
+PASS ROOM exchanges with a thrown weapon in its sphere, with telegraph and retained ownership
+PASS ROOM refuses hazards, void destinations and targets leaving the sphere during warning
+PASS portal and surface fire retain their entity identity after shared targeting changes
+PASS active power timelines resume identically from snapshots through the real motor
+14 V8 contextual powers groups passed

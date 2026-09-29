@@ -1,0 +1,7 @@
+PASS classic modes retain the V7.2 AI when Legados are disabled
+PASS projectile response waits for observation delay and rolls only once per threat
+PASS allies in a group are never interpreted as hostile projectile threats
+PASS adaptive legacy AI still responds to the player habits policy
+PASS a falling bot steers toward a safe landing instead of blindly pursuing
+PASS each fixed boss build and three-enemy encounter can simulate and resume deterministically
+6 V8 AI groups passed

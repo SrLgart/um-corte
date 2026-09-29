@@ -1,0 +1,21 @@
+PASS W and Space use the same jump edge, hold, release and no auto-repeat
+PASS simultaneous W + Shift suppresses jump, preserves extra jump and leaves no buffer
+PASS holding W then dash retains its earlier jump but never spends the extra jump
+PASS single extra jump is immediate, third input is rejected, landing restores
+PASS W variable jump, coyote time and landing buffer remain responsive
+PASS falling from a ledge has one air jump; stun/dash do not consume it
+PASS wall jump neither consumes nor restores the aerial jump
+PASS default cooldown 320ms, Turbo 240ms, charge refill and reset are coherent
+PASS new normal arena is exactly old 1.5 geometry; physical character size stays fixed
+PASS custom geometry, moving platform motion and props share the same 1.5 scale
+PASS Reaper commitment grows, lance grows only at tip, Monge is identical
+PASS new race routes are 2–3 times the useful length, with more real platforms/checkpoints
+PASS duel replay snapshots include extra jump and dash charge timing deterministically
+PASS eight race runners reproduce airborne inputs after snapshot; respawn knows its floor
+PASS race bots use real double jumps on every expanded course
+PASS landing on moving and fragile platforms restores exactly one extra jump
+PASS all nine runner classes can finish all three tracks with real physics
+PASS duel AI uses a double jump to reach a higher opponent
+PASS control migration keeps custom combat keys and modern W binding after reload
+PASS actual replay frames record the second jump and seeking restores its charge
+20 V7.2 groups passed

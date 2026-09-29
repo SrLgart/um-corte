@@ -1,0 +1,52 @@
+{
+  "format": "um-corte-map",
+  "version": 1,
+  "id": "custom_6a7e0e36-3f5f-42f9-b902-8613f453d6fb",
+  "custom": true,
+  "name": "Minha arena",
+  "description": "Arena criada no editor.",
+  "width": 1280,
+  "height": 720,
+  "deathY": 890,
+  "decor": [
+    {
+      "type": "bell",
+      "x": 640,
+      "y": 360,
+      "id": "prop0"
+    },
+    {
+      "type": "bamboo",
+      "x": 900,
+      "y": 440,
+      "id": "prop1"
+    }
+  ],
+  "weather": "petals",
+  "theme": "dojo",
+  "platforms": [
+    {
+      "x": 60,
+      "y": 610,
+      "w": 1160,
+      "solid": true
+    }
+  ],
+  "walls": [],
+  "spawns": [
+    {
+      "x": 320,
+      "y": 610
+    },
+    {
+      "x": 960,
+      "y": 610
+    }
+  ],
+  "ground": "#687767",
+  "background": {
+    "layers": [],
+    "tint": "#172838",
+    "shade": 0.2
+  }
+}

@@ -1,0 +1,22 @@
+PASS climbing gloves hold against a wall without drift and release immediately
+PASS climbing cannot cancel wall jump, dash or stun and respects inverted gravity
+PASS magnetic boots run only for a bounded wall contact budget and restore on landing
+PASS magnetic and climbing compose: run, then hold; wing boot charge is preserved
+PASS magnetic wall run cannot bypass a solid ceiling
+PASS light cape clamps falling velocity before movement and never breaks a dash
+PASS Impulse integrates displacement exactly once and keeps normal collision
+PASS downward Impulse lands on platforms instead of performing an extra post-collision step
+PASS Impulse direction, inversion, double jump and interruption remain controllable
+PASS Faixa reduces missed recovery proportionally to custom settings without changing active parry
+PASS Faixa and Incense retain the longer active window and scale only recovery
+PASS counter is manual, expires, consumes one successful attack and keeps the current weapon
+PASS failed attack input does not spend counter opportunity
+PASS upstrike directs blade and ranged attack upward while recovery remains committed
+PASS Bacamarte emits five short pellets, no invisible melee blade and a real reload
+PASS one shotgun pellet kills at close range, misses outside range and respects walls
+PASS Glass Eye telegraphs enemy startup without changing combat timing
+PASS Stopped Clock only follows Perfect Parry, has cooldown and does not slow its owner
+PASS Cracked Hourglass restores mobility only after a real kill, not a blocked fatal hit
+PASS Perfect Step requires a live hitbox and successful dash, never just a startup or spent cut
+PASS wall budget and impulse resume identically from snapshots with real movement
+21 V8 equipment audit groups passed

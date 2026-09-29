@@ -1,0 +1,1 @@
+const fs=require('fs'),p='work/v6/browser-v6.cjs';let s=fs.readFileSync(p,'utf8');s=s.replace("await p.setInputFiles('#preset-file',root+'/test-preset.json');A.equal", "await p.setInputFiles('#preset-file',root+'/test-preset.json');await p.locator('#preset-review').waitFor({state:'visible'});A.equal");fs.writeFileSync(p,s);

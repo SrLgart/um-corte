@@ -1,0 +1,6 @@
+PASS gravity cloak lands on the underside of a platform without altering other fighters
+PASS Space and W jump away from the ceiling instead of dropping through it
+PASS inverted dash keeps its world-space direction and cloak can be disabled
+PASS leaving the arena upward under inverted gravity is a fatal fall, not an endless escape
+PASS ghost dash crosses platforms and safely returns if it ends inside a wall
+5 V8 mobility groups passed

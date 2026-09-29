@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#e8dfcd">
+<title>UM CORTE — um duelo de precisão</title>
+<style>/* STYLES */</style>
+</head>
+<body>
+<div class="app">
+  <header class="masthead">
+    <div class="identity"><span class="seal" aria-hidden="true">一</span><div class="wordmark">UM CORTE<span>UM DUELO DE PRECISÃO</span></div></div>
+    <div class="header-actions"><span class="edition">DOJO DO POENTE &nbsp; / &nbsp; 01</span><button id="sound" class="quiet" aria-label="Desativar som" aria-pressed="true">SOM <span id="sound-state">ON</span></button><button id="help" class="quiet" aria-label="Ver controles">?</button></div>
+  </header>
+  <main id="arena" class="arena">
+    <canvas id="game" width="1280" height="720" tabindex="0" aria-label="Arena de duelo. Você é o espadachim azul à esquerda. A e D movem, J ataca, K faz parry, Shift executa dash.">Seu navegador precisa suportar Canvas para jogar.</canvas>
+    <div class="hud" id="hud" aria-label="Placar">
+      <div class="score-side player"><span>VOCÊ</span><strong id="player-score">0</strong></div><span class="score-separator">—</span><div class="score-side enemy"><strong id="enemy-score">0</strong><span>RIVAL</span></div>
+      <div class="first-to">PRIMEIRO A 5</div>
+    </div>
+    <div id="intro" class="intro overlay">
+      <div class="eyebrow">DISTÂNCIA. TEMPO. DECISÃO.</div>
+      <h1>Uma abertura.<br><em>Um fim.</em></h1>
+      <p>Um golpe decide tudo.</p>
+      <button id="start" class="primary">ENTRAR NO DUELO <span>↗</span></button>
+      <div class="enter-hint">ou pressione ENTER</div>
+    </div>
+    <div id="round-feedback" class="round-feedback" aria-live="polite"><span id="round-eyebrow"></span><h2 id="round-title"></h2><p id="round-reason"></p></div>
+    <div id="match" class="match overlay" hidden><div class="eyebrow">DUELO ENCERRADO</div><h2 id="match-title">A vitória é sua.</h2><p id="match-score"></p><button id="restart" class="primary">NOVO DUELO <span>↗</span></button><div class="enter-hint">ENTER para recomeçar</div></div>
+    <div id="pause" class="pause overlay" hidden><div class="eyebrow" id="pause-label">DUELO PAUSADO</div><h2>Respire. Leia. Reaja.</h2><div class="control-grid"><span><kbd>A</kbd> <kbd>D</kbd> ou <kbd>←</kbd> <kbd>→</kbd></span><span>Posicionamento</span><span><kbd>SHIFT</kbd></span><span>Dash na direção do movimento</span><span><kbd>J</kbd> ou clique esquerdo</span><span>Atacar</span><span><kbd>K</kbd> ou clique direito</span><span>Parry</span></div><p class="tip">Provoque um golpe, recue e puna a recuperação.<br>Dash não dá invencibilidade. Segurar ataque não repete golpes.</p><button id="resume" class="primary">RETOMAR <span>↗</span></button><div class="enter-hint">ESC para voltar</div></div>
+    <div class="cooldowns" id="cooldowns"><div class="ability"><div><kbd>SHIFT</kbd><span>DASH</span></div><i><b id="dash-fill"></b></i></div><div class="ability"><div><kbd>K</kbd><span>PARRY</span></div><i><b id="parry-fill"></b></i></div></div>
+    <div id="combat-event" class="combat-event" aria-live="polite"></div>
+    <div class="arena-caption">一撃<span>UM ÚNICO GOLPE</span></div>
+  </main>
+  <footer><span class="footer-note">A distância é sua primeira defesa.</span><div class="quick-controls"><span><kbd>A</kbd><kbd>D</kbd> MOVER</span><span><kbd>J</kbd> ATAQUE</span><span><kbd>K</kbd> PARRY</span><span><kbd>SHIFT</kbd> DASH</span><span><kbd>ESC</kbd> PAUSA</span></div></footer>
+  <div id="accessible-status" class="sr-only" aria-live="polite"></div>
+</div>
+<script>/* ENGINE */</script>
+<script>/* RENDERER */</script>
+<script>/* APP */</script>
+</body>
+</html>

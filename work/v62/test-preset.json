@@ -1,0 +1,32 @@
+{
+  "format": "um-corte-preset",
+  "version": 1,
+  "name": "Meu torneio",
+  "rules": {
+    "attackSpeed": 1.4,
+    "mapSize": 1,
+    "gravity": 1,
+    "jump": 1,
+    "speed": 1.6,
+    "dashDistance": 1,
+    "dashCount": 1,
+    "dashRecovery": 75,
+    "dashCooldown": 600,
+    "parryWindow": 400,
+    "parryRecovery": 400,
+    "stun": 490,
+    "specialCooldown": 7,
+    "boxerWindow": 5000,
+    "boxerRush": 2000,
+    "boxerPenalty": 3000,
+    "platformSpeed": 1,
+    "collapseSpeed": 1,
+    "respawnSpeed": 1,
+    "winningScore": 7,
+    "attackRecovery": 1,
+    "airDash": true,
+    "specials": true,
+    "persistSpecial": true,
+    "chaos": "normal"
+  }
+}

@@ -1,0 +1,7 @@
+PASS group Perfect Parry activates boxer rush, recoil, sector and correct attacker callbacks
+PASS group intercept works at the guard before reaching the body
+PASS wrong-facing parry and sovereign strike remain fatal in groups
+PASS group kick respects frozen kick direction, walls and range
+PASS group attack credit and recovery statistics occur once per victim
+PASS eliminating one group member does not end the duel or award a point
+6 V8 group combat parity groups passed

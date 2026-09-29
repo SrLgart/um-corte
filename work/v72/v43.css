@@ -1,0 +1,9 @@
+.combat-presets{margin:22px 0 12px;padding:16px 0 6px;border-top:1px solid #718d7440}
+#combat-presets{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}
+.combat-preset,.score-presets button{border:1px solid #718d7460;background:#f1efdf;padding:10px 12px;color:#38564e;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.05em;cursor:pointer}
+.combat-preset:hover,.score-presets button:hover{background:#dde3d3}.combat-preset.selected,.score-presets button.selected{background:#365b51;color:#f5f1d9;border-color:#365b51}
+.combat-preset:disabled,.score-presets button:disabled{opacity:.55;cursor:default}
+.score-presets{display:flex;gap:6px;margin-top:8px}.score-presets button{padding:6px 12px}
+.persist-special{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:14px 0;font-size:12px}.persist-special small{flex-basis:100%;margin-left:24px;font:11px/1.5 Arial,sans-serif;color:#526b60}
+.special-countdown{margin:12px 0 18px;font:700 16px monospace;letter-spacing:.14em;color:#435c50;font-variant-numeric:tabular-nums}.special-dialog button:disabled{opacity:.7;cursor:default}
+@media(max-width:600px){.combat-preset{flex:1 1 40%;padding:11px 7px}}

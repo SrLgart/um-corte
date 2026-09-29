@@ -1,0 +1,7 @@
+PASS Echo replays the actual changing contour at its recorded world coordinates
+PASS Echo keeps captured wall clipping and stat modifiers after buffs expire
+PASS Echo is harmless before its delay and kills only where the recorded cut was
+PASS Echo survives save/replay restoration in the middle of recording and playback
+PASS disarmed legendary weapons do not create spectral attacks from bare fists
+PASS long active frames keep only the replay queue, not unbounded past contours
+6 V8 exact Echo groups passed

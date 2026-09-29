@@ -1,0 +1,12 @@
+PASS Pulse is nonlethal, short ranged, occluded by walls and scales knockback only
+PASS Pulse pushes loose objects without altering companions, held weapons or zones
+PASS Blink crosses a thin wall without tracing a damaging path, preserving momentum
+PASS Blink cannot embed the body in a wall or slice through a platform at its destination
+PASS Blink with no valid displacement does not spend the cooldown
+PASS Well warns first and pulls bodies without dealing damage
+PASS Well cannot pull fighters through narrow walls or their supporting floor
+PASS Well respects an inverted supporting surface too
+PASS Well curves loose projectiles but does not accelerate attached objects or summons
+PASS a hostile well cannot bypass time stop or multiply overlapping slowdowns
+PASS force effects, target orientation and cooldowns resume from snapshots
+11 V8 force/spatial audit groups passed

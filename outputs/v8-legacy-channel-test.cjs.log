@@ -1,0 +1,7 @@
+PASS channel cannot start in stun, during a dash or while preparing another attack
+PASS interruption and death cancel immediately, cannot emit a delayed beam
+PASS movement stays available but slower; another deliberate action abandons the charge
+PASS two-second signal happens once, guide stops at a wall, release locks its angle
+PASS maximum charge fires once even when input remains held
+PASS channel is vulnerable to an ordinary clean hit and never grants protection
+6 V8 channel interruption/telegraph groups passed

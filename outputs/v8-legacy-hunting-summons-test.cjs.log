@@ -1,0 +1,15 @@
+PASS Rei Slime compresses visibly before a committed ballistic leap
+PASS Rei Slime cannot kill during windup or ascent; it crushes on descent
+PASS Crush contact can be parried; it has no invisible landing blast
+PASS A jumped-away opponent is safe; landing has recovery before another leap
+PASS Rei Slime resolves walls, platform landing and fatal gaps
+PASS Rei Slime split resets attacks, then two become four and the final generation vanishes
+PASS Hunter observes outside the arena and marks before entering for a bounded hunt
+PASS Hunter keeps one prey in a group and ignores bystanders crossing its path
+PASS Hunter reaches its selected target with a lethal hit, and parry forces retreat
+PASS Hunter cannot tunnel through a wall during the chase
+PASS Dead prey clears a mark even when there are no other opponents
+PASS Hunt and leap actor time freeze and snapshot continuation remain deterministic
+PASS Hunter cannot reach through a wall merely with its body radius
+PASS AI observations distinguish active pursuit/descent from harmless summon phases
+14 V8 hunting summon groups passed

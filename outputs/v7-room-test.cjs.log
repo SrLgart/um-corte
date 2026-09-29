@@ -1,0 +1,6 @@
+PASS ninth participant and old protocol get clear rejection without changing room
+PASS late arrival becomes watcher, never delays an active match
+PASS seats are restricted to host/admin between matches; ADMIN spectator can pause
+PASS invalid inputs are rejected and finite input is normalized
+PASS only fighters must be ready and colors are unique
+5 room protocol groups passed

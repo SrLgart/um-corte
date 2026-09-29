@@ -1,0 +1,27 @@
+PASS All eight class specials are observed on successful nearby activation only
+PASS Mirror status identifies the remembered class, and empty memory is not ready
+PASS All eight copies preserve fighter identity, own charge and inventory; consume once
+PASS Invalid, disabled, locked, busy or airborne staff copy leaves memory/use untouched
+PASS Copied Knight shield blocks one hit and keeps the original four-second parry penalty
+PASS Copied Reaper applies boost and weakness to a temporary scythe, preserves mobility
+PASS Copied Boxer has its own parry-to-rush transition without transforming the caster
+PASS Failed copied Boxer guard incurs the configured dash lock
+PASS Copied Duelist commits to rapier dash and long whiff recovery
+PASS Copied staff sweep uses low wide contour, ground restriction and locks movement
+PASS Copied Swordsman commits one parry-break attack then loses parry for four seconds
+PASS Copied Lancer gets an actual charge trajectory and collision, not original weapon geometry
+PASS Copied Assassin throws one native dagger, remains unarmed until recovered, without duplicate items
+PASS Copied class attacks do not trigger equipped charged weapons or projectile cooldowns
+PASS Mirror cannot recursively record another mirror copy of a class or power
+PASS Unspent memory survives rounds, spent use survives rounds, active copy does not
+PASS ADMIN refill cancels copy state consistently with normal special reset
+PASS Snapshots carry copy kind, weapon effects and costs through real game steps
+PASS Errante can execute a remembered class special without gaining a permanent class special
+PASS No prototype/unknown class can consume the mirror without executing a special
+PASS Copied physical class strikes actually kill in one clean hit using their own contour
+PASS Copied edge breaks a parry, while a real clash still consumes it without a kill
+PASS Copy windup interruption preserves one-use cost and cancels the pending charge safely
+PASS Read-only inventory/status queries never manufacture state on a remote fighter
+PASS Applying ADMIN rules preserves both builds and match usage but clears temporary copies
+PASS AI can spend remembered class copy through its normal ability input
+26 V8 mirrored class special groups passed

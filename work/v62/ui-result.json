@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "errors": [],
+  "checks": [
+    "menu cut vs click",
+    "preferences persistence",
+    "preset export/import",
+    "editor roundtrip",
+    "random map last",
+    "asterisk shortcut and typing exclusion",
+    "ADMIN previews"
+  ]
+}

@@ -1,0 +1,9 @@
+PASS full run 1 { kills: 285, duels: 150, legacies: 27, offers: 26 }
+PASS full run 19 { kills: 282, duels: 150, legacies: 26, offers: 26 }
+PASS full run 58 { kills: 282, duels: 150, legacies: 26, offers: 26 }
+PASS full run 113 { kills: 282, duels: 150, legacies: 26, offers: 26 }
+PASS full run 272 { kills: 285, duels: 150, legacies: 26, offers: 26 }
+PASS full run 441 { kills: 282, duels: 150, legacies: 26, offers: 26 }
+PASS full run 701 { kills: 285, duels: 150, legacies: 26, offers: 26 }
+PASS full run 2026 { kills: 285, duels: 150, legacies: 26, offers: 26 }
+8 complete 50-level runs with match scoring, all rewards, checkpoint reloads and terminal records passed

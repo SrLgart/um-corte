@@ -1,0 +1,29 @@
+PASS Toad announces for 300 ms, locks its aim, then pulls only on physical tongue contact
+PASS Toad can miss when the target jumps off the locked tongue line
+PASS Toad never starts through a wall or a platform
+PASS A wall appearing during tongue startup clips both drawing and collision
+PASS Toad tongue is parryable, stuns the summon rather than its owner
+PASS Toad fetches a dropped weapon without changing ownership or moving its owner
+PASS Toad can bring back an object (shadow bomb) without activating or stealing it
+PASS Toad catches only the first object/body in the tongue path and respects cooldown
+PASS Mimic opens with warning then grabs only its short front mouth region
+PASS Mimic grab is avoidable by jumping or crossing behind the fixed facing
+PASS Mimic grab obeys walls and can be parried
+PASS Open Mimic intercepts fast swept projectiles, once per opening, not at the final position
+PASS Closed or still-winding Mimic can be destroyed by a projectile
+PASS Mimic cannot swallow from behind or through walls, nor beams/yoyo/companions
+PASS Mimic swallows a shadow bomb without detonating it
+PASS Mimic holds a thrown weapon briefly, drops it, and original owner can recover it
+PASS Destroy/removal/death/fall of carrier releases weapon instead of deleting it
+PASS No target left does not strand a swallowed weapon
+PASS Thrown weapon hitting a closed summon remains recoverable after impact
+PASS Parry/projectile-cut interception never deletes the recoverable weapon
+PASS Summon timers stop with time stop, including carried weapon release
+PASS Snapshot resumes tongue, mouth and held weapon deterministically with real game steps
+PASS Native Assassin dagger is captured before body damage, released and picked up normally
+PASS Native dagger cannot be stranded by removal/destruction of its carrier
+PASS Toad retrieves the native Assassin dagger for its owner without adding a legacy weapon
+PASS Fetching another player native dagger preserves ownership and does not arm the toad owner
+PASS Native dagger carried state survives snapshots and real updates
+PASS Native dagger hitting closed Mimic destroys it without losing the original dagger
+28 V8 grab/object summon groups passed

@@ -1,0 +1,13 @@
+PASS repulsor only hits the aimed lane, respects walls and gives opposite recoil
+PASS repulsor downward shot launches its owner upward even without a target
+PASS portal aligns to wall/floor normals and transfers momentum and active dash
+PASS floor portal accepts actual feet contact and releases above destination
+PASS blocked portal exits cannot embed actors or physical objects
+PASS projectiles and thrown weapons use portals without ownership changes or loops
+PASS portal follows a moving platform and closes when its support collapses
+PASS portal rejects tiny surfaces and overlapping placements without spending charge
+PASS The Hand sweeps ahead after warning, preserving scenery, stationary zones and ownership
+PASS The Hand cannot grab behind the user or through scene walls
+PASS Domain cuts cover multiple fixed warned regions inside its original boundary
+PASS spatial powers restore deterministically through the full shared simulation
+12 V8 spatial powers groups passed

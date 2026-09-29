@@ -1,0 +1,7 @@
+PASS zone reactions wait for delayed observations and then avoid the telegraphed region
+PASS expired hazards and harmless allied zones do not provoke evasions
+PASS friendly fire zones and beam capsules are recognized instead of parried blindly
+PASS a bot routes to its dropped weapon even when its enemy is in the opposite direction
+PASS retrieval cannot override ledge safety and run off an unsupported edge
+PASS zone observation and avoidance survive restoration with the same RNG and commands
+6 V8 AI danger/retrieval groups passed

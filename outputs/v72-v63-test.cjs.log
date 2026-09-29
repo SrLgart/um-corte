@@ -1,0 +1,15 @@
+PASS rapier precise line and staff medium arc differ from spear
+PASS fencing lunge locks vector, cannot feint, stops at walls, longer recovery
+PASS fencing lunge remains parryable and clash pays recovery
+PASS staff sweep must start grounded, covers both sides, can be jumped or parried
+PASS staff cannot move, jump, dash or feint through sweep
+PASS ADMIN actor changes preserve position, score, round and hazards
+PASS ADMIN invincibility handles slash, dagger and fatal fall; flight has no gravity
+PASS round entry freezes physics and charge, follows with countdown, snapshots replay
+PASS ADMIN powers, time, introductions and new ult snapshots replay identically
+PASS Master observes past posture and never reads the current input
+PASS new committed strikes cannot leave stale powers after a kick or death
+PASS ADMIN changes persist through saved training reset without moving the checkpoint
+PASS ADMIN slash scale is proportional on both axes, walls clip sweep at its full reach
+PASS fencing lunge stops at the wall while its attack remains committed
+14 V6.3 groups passed

@@ -1,0 +1,854 @@
+[
+  {
+    "file": "work/v8/actors.js",
+    "role": "generated"
+  },
+  {
+    "file": "work/v8/admin-race.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/admin.html",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/admin.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/app.js",
+    "role": "generated"
+  },
+  {
+    "file": "work/v8/arenas.css",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/audio.js",
+    "role": "generated"
+  },
+  {
+    "file": "work/v8/AUDIT-V8.md",
+    "role": "documentation-or-support"
+  },
+  {
+    "file": "work/v8/bootstrap.cjs",
+    "role": "historical-tool-review-before-running"
+  },
+  {
+    "file": "work/v8/browser-admin-v8.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-boss-intro-art.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-companions.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-contextual-powers.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-control-power-art.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-control-summons.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-copy-check.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-crowd.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-features.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-file.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-flight-resources.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-grab-summons.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-humanoid-details.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-hunting-summons.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-icon-art.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-icon-ui.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-inverted-ai.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-large-summon-lab.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-large-summons.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-late-game-stress.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-latejoin.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-legacy-controls.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-legacy-replay.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-legion-kraken.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-mirror.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-mobility-power-art.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-online-control-summons.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-online-force.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-online-grab-summons.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-online-legion-kraken.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-online-mirror.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-online-summons.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-online-v8.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-path-arena-art.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-path-boundaries.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-path-camera.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-path-intro-flow.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-path-mixed-art.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-path-outcome.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-path-save.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-path-watch.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-physical-summons.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-precision-legacies.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-remaining-summons.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-room.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-small-summons.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-smoke.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-strike-power-art.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-temporal-gameplay.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-temporal-region-art.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-tournament-v8.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-v72.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-v8-lab.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-v8.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-visual.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-wardrobe-motion.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-wardrobe.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-weapon-art.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/browser-weapon-states.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/build.cjs",
+    "role": "generated"
+  },
+  {
+    "file": "work/v8/controls-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/controls.js",
+    "role": "generated"
+  },
+  {
+    "file": "work/v8/daylight.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/DECISIONS.md",
+    "role": "documentation-or-support"
+  },
+  {
+    "file": "work/v8/diagnose-online.cjs",
+    "role": "historical-tool-review-before-running"
+  },
+  {
+    "file": "work/v8/editor-race.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/editor.html",
+    "role": "documentation-or-support"
+  },
+  {
+    "file": "work/v8/editor.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/engine.js",
+    "role": "generated"
+  },
+  {
+    "file": "work/v8/extend-icon-ui-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/extend-large-summon-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/extend-small-summon-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/features-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/finishers.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/install-icon-art.cjs",
+    "role": "historical-tool-review-before-running"
+  },
+  {
+    "file": "work/v8/integrate.cjs",
+    "role": "generator"
+  },
+  {
+    "file": "work/v8/lab.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/legacies.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/legacy-admin-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-ai-danger-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-ai-intent-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-ai-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-boss-soak.cjs",
+    "role": "historical-tool-review-before-running"
+  },
+  {
+    "file": "work/v8/legacy-build-soak.cjs",
+    "role": "historical-tool-review-before-running"
+  },
+  {
+    "file": "work/v8/legacy-catalog.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/legacy-channel-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-charge-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-combat.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/legacy-companion-ai-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-control-summons-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-defense-combo-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-echo-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-equipment-audit-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-flight-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-force-audit-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-grab-summons-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-group-combat-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-hunting-summons-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-interactions-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-inverted-ai-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-kraken-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-lab-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-legion-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-mirror-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-mobility-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-motion-combo-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-online-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-online.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/legacy-physical-summons-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-powers-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-regions-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-relic-precision-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-resource-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-save-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-spatial-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-strikes-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-summons-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-survival-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-techniques-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/legacy-watch-payload-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/lighting.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/make-browser-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/make-catalog.cjs",
+    "role": "historical-tool-review-before-running"
+  },
+  {
+    "file": "work/v8/make-force-network-fixture.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/make-grab-network-fixture.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/make-large-summon-fixture.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/make-mirror-network-fixture.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/menu-fx.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/movement-fx.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/network.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/parameterize-icon-ui-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/parkour.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/path-boundary-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/path-endurance-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/path-full-run-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/path-outcome-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/path-watch.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/path.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/PEERJS-LICENSE.txt",
+    "role": "vendor"
+  },
+  {
+    "file": "work/v8/peerjs.min.js",
+    "role": "vendor"
+  },
+  {
+    "file": "work/v8/post-fx.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/presentation.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/PROGRESS.md",
+    "role": "documentation-or-support"
+  },
+  {
+    "file": "work/v8/README.md",
+    "role": "documentation-or-support"
+  },
+  {
+    "file": "work/v8/refine-armor-art.cjs",
+    "role": "historical-tool-review-before-running"
+  },
+  {
+    "file": "work/v8/refine-control-power-art.cjs",
+    "role": "historical-tool-review-before-running"
+  },
+  {
+    "file": "work/v8/refine-control-summon-art.cjs",
+    "role": "historical-tool-review-before-running"
+  },
+  {
+    "file": "work/v8/refine-grab-summons.cjs",
+    "role": "historical-tool-review-before-running"
+  },
+  {
+    "file": "work/v8/refine-humanoid-summon-art.cjs",
+    "role": "historical-tool-review-before-running"
+  },
+  {
+    "file": "work/v8/refine-inverted-ai.cjs",
+    "role": "historical-tool-review-before-running"
+  },
+  {
+    "file": "work/v8/refine-kraken-slime-art.cjs",
+    "role": "historical-tool-review-before-running"
+  },
+  {
+    "file": "work/v8/refine-large-summon-art.cjs",
+    "role": "historical-tool-review-before-running"
+  },
+  {
+    "file": "work/v8/refine-loose-weapon-art.cjs",
+    "role": "historical-tool-review-before-running"
+  },
+  {
+    "file": "work/v8/refine-mechanics.cjs",
+    "role": "historical-tool-review-before-running"
+  },
+  {
+    "file": "work/v8/refine-mirror-special.cjs",
+    "role": "historical-tool-review-before-running"
+  },
+  {
+    "file": "work/v8/refine-runtime.cjs",
+    "role": "historical-tool-review-before-running"
+  },
+  {
+    "file": "work/v8/refine-small-summon-art.cjs",
+    "role": "historical-tool-review-before-running"
+  },
+  {
+    "file": "work/v8/refine-ui.cjs",
+    "role": "historical-tool-review-before-running"
+  },
+  {
+    "file": "work/v8/refine-wardrobe-art.cjs",
+    "role": "historical-tool-review-before-running"
+  },
+  {
+    "file": "work/v8/refine-weapon-art.cjs",
+    "role": "historical-tool-review-before-running"
+  },
+  {
+    "file": "work/v8/release-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/renderer.js",
+    "role": "generated"
+  },
+  {
+    "file": "work/v8/room-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/room.js",
+    "role": "generated"
+  },
+  {
+    "file": "work/v8/rtc-fixture.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/scenery-extra.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/scenery.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/serve.cjs",
+    "role": "generated"
+  },
+  {
+    "file": "work/v8/session.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/shell.html",
+    "role": "generated"
+  },
+  {
+    "file": "work/v8/skins.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/SPEC-V8.txt",
+    "role": "documentation-or-support"
+  },
+  {
+    "file": "work/v8/special-ui.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/styles.css",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/test-all.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/test-core.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/title.html",
+    "role": "documentation-or-support"
+  },
+  {
+    "file": "work/v8/tournament-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/tournament.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/upgrade-core.cjs",
+    "role": "generator"
+  },
+  {
+    "file": "work/v8/v3.css",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/v33.css",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/v4.css",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/v42.css",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/v43.css",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/v5-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/v5.css",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/v6-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/v6.css",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/v62.css",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/v63-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/v63.css",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/v7-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/v7-ui.js",
+    "role": "generated"
+  },
+  {
+    "file": "work/v8/v7-visuals.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/v7.css",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/v72-test.cjs",
+    "role": "test"
+  },
+  {
+    "file": "work/v8/v8-actors.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/v8-detail.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/v8-ui.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/v8-visuals.js",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/v8.css",
+    "role": "runtime-source"
+  },
+  {
+    "file": "work/v8/weapons.js",
+    "role": "runtime-source"
+  }
+]

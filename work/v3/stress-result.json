@@ -1,0 +1,4256 @@
+[
+  {
+    "a": "knight",
+    "b": "knight",
+    "mapId": "dojo",
+    "difficulty": "normal",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 15,
+      "jump": 19,
+      "parryMiss": 14,
+      "land": 10,
+      "windup": 13,
+      "swing": 11,
+      "whiff": 4,
+      "kill": 7,
+      "round": 6,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "lancer",
+    "mapId": "dojo",
+    "difficulty": "normal",
+    "score": [
+      5,
+      2
+    ],
+    "events": {
+      "start": 1,
+      "guard": 23,
+      "jump": 36,
+      "parryMiss": 21,
+      "land": 33,
+      "windup": 23,
+      "swing": 23,
+      "whiff": 16,
+      "kill": 7,
+      "round": 6,
+      "dash": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "assassin",
+    "mapId": "dojo",
+    "difficulty": "normal",
+    "score": [
+      5,
+      3
+    ],
+    "events": {
+      "start": 1,
+      "guard": 23,
+      "jump": 35,
+      "parryMiss": 23,
+      "land": 22,
+      "windup": 17,
+      "swing": 17,
+      "kill": 8,
+      "round": 7,
+      "whiff": 8,
+      "dash": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "swordsman",
+    "mapId": "dojo",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 16,
+      "jump": 23,
+      "parryMiss": 15,
+      "land": 16,
+      "windup": 15,
+      "swing": 13,
+      "whiff": 7,
+      "kill": 6,
+      "round": 5,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "dojo",
+    "difficulty": "normal",
+    "score": [
+      5,
+      2
+    ],
+    "events": {
+      "start": 1,
+      "guard": 21,
+      "jump": 28,
+      "parryMiss": 20,
+      "land": 21,
+      "windup": 19,
+      "swing": 19,
+      "whiff": 10,
+      "kill": 7,
+      "round": 6,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "knight",
+    "mapId": "dojo",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 9,
+      "jump": 14,
+      "parryMiss": 9,
+      "land": 7,
+      "windup": 9,
+      "swing": 9,
+      "whiff": 4,
+      "kill": 5,
+      "round": 4,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "lancer",
+    "mapId": "dojo",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 13,
+      "jump": 20,
+      "parryMiss": 13,
+      "windup": 15,
+      "land": 15,
+      "swing": 12,
+      "whiff": 6,
+      "kill": 6,
+      "round": 5,
+      "dash": 2,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "assassin",
+    "mapId": "dojo",
+    "difficulty": "normal",
+    "score": [
+      2,
+      2
+    ],
+    "events": {
+      "start": 1,
+      "guard": 31,
+      "jump": 35,
+      "parryMiss": 30,
+      "land": 35,
+      "windup": 18,
+      "swing": 18,
+      "whiff": 14,
+      "kill": 4,
+      "round": 4,
+      "parry": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "swordsman",
+    "mapId": "dojo",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 13,
+      "jump": 17,
+      "parryMiss": 13,
+      "windup": 10,
+      "land": 15,
+      "swing": 10,
+      "kill": 5,
+      "round": 4,
+      "whiff": 4,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "reaper",
+    "mapId": "dojo",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 12,
+      "jump": 12,
+      "parryMiss": 12,
+      "windup": 9,
+      "land": 9,
+      "swing": 8,
+      "kill": 5,
+      "round": 4,
+      "whiff": 2,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "knight",
+    "mapId": "dojo",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 21,
+      "jump": 24,
+      "parryMiss": 17,
+      "windup": 16,
+      "land": 19,
+      "swing": 15,
+      "whiff": 8,
+      "kill": 5,
+      "round": 4,
+      "parry": 2,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "lancer",
+    "mapId": "dojo",
+    "difficulty": "normal",
+    "score": [
+      4,
+      3
+    ],
+    "events": {
+      "start": 1,
+      "guard": 30,
+      "jump": 34,
+      "parryMiss": 28,
+      "land": 30,
+      "windup": 18,
+      "swing": 18,
+      "whiff": 10,
+      "kill": 7,
+      "round": 6,
+      "parry": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "assassin",
+    "mapId": "dojo",
+    "difficulty": "normal",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 16,
+      "jump": 23,
+      "parryMiss": 16,
+      "land": 12,
+      "windup": 12,
+      "swing": 11,
+      "whiff": 4,
+      "kill": 7,
+      "round": 6,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "swordsman",
+    "mapId": "dojo",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 15,
+      "jump": 16,
+      "parryMiss": 14,
+      "windup": 9,
+      "land": 7,
+      "swing": 9,
+      "kill": 6,
+      "round": 5,
+      "whiff": 2,
+      "parry": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "reaper",
+    "mapId": "dojo",
+    "difficulty": "normal",
+    "score": [
+      3,
+      3
+    ],
+    "events": {
+      "start": 1,
+      "guard": 30,
+      "jump": 38,
+      "parryMiss": 30,
+      "windup": 19,
+      "land": 37,
+      "swing": 17,
+      "kill": 6,
+      "round": 5,
+      "whiff": 11,
+      "dash": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "knight",
+    "mapId": "dojo",
+    "difficulty": "normal",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 18,
+      "jump": 26,
+      "parryMiss": 15,
+      "land": 17,
+      "windup": 18,
+      "swing": 18,
+      "whiff": 5,
+      "parry": 2,
+      "kill": 7,
+      "round": 6,
+      "dash": 3,
+      "clash": 2,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "lancer",
+    "mapId": "dojo",
+    "difficulty": "normal",
+    "score": [
+      4,
+      1
+    ],
+    "events": {
+      "start": 1,
+      "guard": 25,
+      "jump": 38,
+      "parryMiss": 23,
+      "land": 36,
+      "windup": 23,
+      "swing": 21,
+      "whiff": 15,
+      "kill": 5,
+      "round": 5,
+      "parry": 1,
+      "dash": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "assassin",
+    "mapId": "dojo",
+    "difficulty": "normal",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 21,
+      "jump": 30,
+      "parryMiss": 20,
+      "land": 20,
+      "windup": 15,
+      "swing": 14,
+      "whiff": 6,
+      "kill": 7,
+      "round": 6,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "swordsman",
+    "mapId": "dojo",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 8,
+      "jump": 13,
+      "parryMiss": 8,
+      "windup": 8,
+      "land": 6,
+      "swing": 7,
+      "kill": 5,
+      "round": 4,
+      "whiff": 2,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "reaper",
+    "mapId": "dojo",
+    "difficulty": "normal",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 19,
+      "jump": 25,
+      "parryMiss": 18,
+      "land": 17,
+      "windup": 18,
+      "swing": 16,
+      "whiff": 8,
+      "kill": 7,
+      "round": 6,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "knight",
+    "mapId": "dojo",
+    "difficulty": "normal",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 19,
+      "jump": 25,
+      "parryMiss": 19,
+      "land": 18,
+      "windup": 16,
+      "swing": 15,
+      "whiff": 8,
+      "kill": 7,
+      "round": 6,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "lancer",
+    "mapId": "dojo",
+    "difficulty": "normal",
+    "score": [
+      5,
+      3
+    ],
+    "events": {
+      "start": 1,
+      "guard": 24,
+      "jump": 33,
+      "parryMiss": 23,
+      "land": 21,
+      "windup": 19,
+      "swing": 18,
+      "whiff": 9,
+      "parry": 1,
+      "kill": 8,
+      "round": 7
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "assassin",
+    "mapId": "dojo",
+    "difficulty": "normal",
+    "score": [
+      3,
+      4
+    ],
+    "events": {
+      "start": 1,
+      "guard": 22,
+      "jump": 32,
+      "parryMiss": 20,
+      "land": 30,
+      "windup": 22,
+      "swing": 22,
+      "whiff": 14,
+      "kill": 7,
+      "round": 6,
+      "dash": 3,
+      "parry": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "swordsman",
+    "mapId": "dojo",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 11,
+      "jump": 12,
+      "parryMiss": 10,
+      "land": 6,
+      "windup": 10,
+      "swing": 8,
+      "whiff": 3,
+      "kill": 5,
+      "round": 4,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "reaper",
+    "mapId": "dojo",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 13,
+      "jump": 16,
+      "parryMiss": 13,
+      "land": 8,
+      "windup": 9,
+      "swing": 8,
+      "kill": 6,
+      "round": 5,
+      "whiff": 2,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "knight",
+    "mapId": "bridge",
+    "difficulty": "normal",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 12,
+      "jump": 23,
+      "parryMiss": 12,
+      "land": 13,
+      "windup": 17,
+      "swing": 14,
+      "whiff": 4,
+      "clash": 2,
+      "kill": 7,
+      "round": 6,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "lancer",
+    "mapId": "bridge",
+    "difficulty": "normal",
+    "score": [
+      5,
+      4
+    ],
+    "events": {
+      "start": 1,
+      "guard": 25,
+      "jump": 35,
+      "parryMiss": 24,
+      "land": 21,
+      "windup": 14,
+      "swing": 14,
+      "whiff": 7,
+      "kill": 9,
+      "round": 8
+    }
+  },
+  {
+    "a": "knight",
+    "b": "assassin",
+    "mapId": "bridge",
+    "difficulty": "normal",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 15,
+      "jump": 23,
+      "parryMiss": 14,
+      "land": 16,
+      "windup": 12,
+      "swing": 12,
+      "whiff": 4,
+      "clash": 1,
+      "kill": 7,
+      "round": 6,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "swordsman",
+    "mapId": "bridge",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 13,
+      "jump": 19,
+      "parryMiss": 11,
+      "land": 14,
+      "windup": 14,
+      "swing": 13,
+      "whiff": 5,
+      "parry": 2,
+      "dash": 1,
+      "kill": 6,
+      "round": 5,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "bridge",
+    "difficulty": "normal",
+    "score": [
+      3,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 16,
+      "jump": 22,
+      "parryMiss": 15,
+      "land": 11,
+      "windup": 9,
+      "swing": 7,
+      "whiff": 3,
+      "kill": 8,
+      "round": 7,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "knight",
+    "mapId": "bridge",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 8,
+      "jump": 13,
+      "parryMiss": 7,
+      "land": 6,
+      "windup": 5,
+      "swing": 3,
+      "kill": 5,
+      "round": 4,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "lancer",
+    "mapId": "bridge",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 19,
+      "jump": 22,
+      "parryMiss": 16,
+      "land": 14,
+      "windup": 8,
+      "swing": 8,
+      "whiff": 6,
+      "kill": 5,
+      "round": 4,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "assassin",
+    "mapId": "bridge",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 15,
+      "jump": 18,
+      "parryMiss": 13,
+      "land": 9,
+      "windup": 5,
+      "swing": 5,
+      "whiff": 3,
+      "kill": 6,
+      "round": 5,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "swordsman",
+    "mapId": "bridge",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 9,
+      "jump": 13,
+      "parryMiss": 9,
+      "land": 9,
+      "windup": 7,
+      "swing": 6,
+      "kill": 6,
+      "round": 5,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "reaper",
+    "mapId": "bridge",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 9,
+      "jump": 14,
+      "parryMiss": 8,
+      "land": 6,
+      "windup": 5,
+      "swing": 4,
+      "kill": 6,
+      "round": 5,
+      "dash": 2,
+      "whiff": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "knight",
+    "mapId": "bridge",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 8,
+      "jump": 15,
+      "parryMiss": 8,
+      "land": 7,
+      "windup": 6,
+      "swing": 6,
+      "whiff": 2,
+      "kill": 6,
+      "round": 5,
+      "dash": 2,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "lancer",
+    "mapId": "bridge",
+    "difficulty": "normal",
+    "score": [
+      5,
+      4
+    ],
+    "events": {
+      "start": 1,
+      "guard": 21,
+      "jump": 32,
+      "parryMiss": 21,
+      "land": 21,
+      "windup": 9,
+      "swing": 9,
+      "whiff": 5,
+      "kill": 9,
+      "round": 8,
+      "dash": 2,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "assassin",
+    "mapId": "bridge",
+    "difficulty": "normal",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 12,
+      "jump": 18,
+      "parryMiss": 11,
+      "land": 9,
+      "windup": 7,
+      "swing": 7,
+      "whiff": 4,
+      "kill": 7,
+      "round": 6,
+      "dash": 1,
+      "parry": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "swordsman",
+    "mapId": "bridge",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 14,
+      "jump": 18,
+      "parryMiss": 10,
+      "land": 8,
+      "windup": 6,
+      "swing": 6,
+      "whiff": 3,
+      "kill": 6,
+      "round": 5,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "reaper",
+    "mapId": "bridge",
+    "difficulty": "normal",
+    "score": [
+      5,
+      4
+    ],
+    "events": {
+      "start": 1,
+      "guard": 20,
+      "jump": 31,
+      "parryMiss": 20,
+      "land": 21,
+      "windup": 13,
+      "swing": 13,
+      "whiff": 9,
+      "kill": 9,
+      "round": 8,
+      "dash": 2,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "knight",
+    "mapId": "bridge",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 10,
+      "jump": 13,
+      "parryMiss": 9,
+      "land": 6,
+      "windup": 4,
+      "dash": 2,
+      "swing": 3,
+      "kill": 6,
+      "round": 5,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "lancer",
+    "mapId": "bridge",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 15,
+      "jump": 18,
+      "parryMiss": 13,
+      "land": 12,
+      "windup": 8,
+      "swing": 8,
+      "whiff": 4,
+      "kill": 5,
+      "round": 4,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "assassin",
+    "mapId": "bridge",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 7,
+      "jump": 12,
+      "parryMiss": 7,
+      "land": 6,
+      "windup": 6,
+      "swing": 5,
+      "kill": 5,
+      "round": 4,
+      "dash": 2,
+      "whiff": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "swordsman",
+    "mapId": "bridge",
+    "difficulty": "normal",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 14,
+      "jump": 18,
+      "parryMiss": 13,
+      "land": 10,
+      "windup": 9,
+      "swing": 8,
+      "clash": 1,
+      "kill": 7,
+      "round": 6,
+      "whiff": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "reaper",
+    "mapId": "bridge",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 14,
+      "jump": 17,
+      "parryMiss": 12,
+      "land": 9,
+      "windup": 6,
+      "swing": 6,
+      "parry": 1,
+      "kill": 6,
+      "round": 5,
+      "whiff": 2,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "knight",
+    "mapId": "bridge",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 11,
+      "jump": 19,
+      "parryMiss": 8,
+      "land": 13,
+      "windup": 10,
+      "swing": 10,
+      "whiff": 3,
+      "kill": 5,
+      "round": 4,
+      "parry": 3,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "lancer",
+    "mapId": "bridge",
+    "difficulty": "normal",
+    "score": [
+      4,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 20,
+      "jump": 31,
+      "parryMiss": 16,
+      "land": 18,
+      "windup": 11,
+      "swing": 11,
+      "whiff": 5,
+      "kill": 9,
+      "round": 8,
+      "dash": 2,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "assassin",
+    "mapId": "bridge",
+    "difficulty": "normal",
+    "score": [
+      4,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 22,
+      "jump": 28,
+      "parryMiss": 19,
+      "land": 19,
+      "windup": 12,
+      "swing": 12,
+      "whiff": 6,
+      "kill": 9,
+      "round": 8,
+      "parry": 1,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "swordsman",
+    "mapId": "bridge",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 10,
+      "jump": 14,
+      "parryMiss": 9,
+      "land": 6,
+      "windup": 5,
+      "swing": 4,
+      "whiff": 1,
+      "kill": 6,
+      "round": 5,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "reaper",
+    "mapId": "bridge",
+    "difficulty": "normal",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 13,
+      "jump": 16,
+      "parryMiss": 11,
+      "land": 6,
+      "windup": 5,
+      "swing": 5,
+      "whiff": 2,
+      "kill": 7,
+      "round": 6,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "knight",
+    "mapId": "ruins",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 8,
+      "jump": 12,
+      "parryMiss": 8,
+      "land": 6,
+      "windup": 7,
+      "swing": 5,
+      "kill": 5,
+      "round": 4,
+      "whiff": 1,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "lancer",
+    "mapId": "ruins",
+    "difficulty": "normal",
+    "score": [
+      5,
+      2
+    ],
+    "events": {
+      "start": 1,
+      "guard": 20,
+      "jump": 27,
+      "parryMiss": 17,
+      "land": 24,
+      "windup": 11,
+      "swing": 11,
+      "whiff": 5,
+      "kill": 7,
+      "round": 6,
+      "dash": 2,
+      "parry": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "assassin",
+    "mapId": "ruins",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 7,
+      "jump": 11,
+      "parryMiss": 7,
+      "land": 6,
+      "windup": 5,
+      "swing": 4,
+      "kill": 5,
+      "round": 4,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "swordsman",
+    "mapId": "ruins",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 9,
+      "jump": 10,
+      "parryMiss": 7,
+      "land": 5,
+      "windup": 5,
+      "swing": 4,
+      "kill": 5,
+      "round": 4,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "ruins",
+    "difficulty": "normal",
+    "score": [
+      3,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 23,
+      "jump": 28,
+      "parryMiss": 22,
+      "land": 22,
+      "windup": 16,
+      "swing": 15,
+      "whiff": 10,
+      "parry": 1,
+      "kill": 8,
+      "round": 7,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "knight",
+    "mapId": "ruins",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 13,
+      "jump": 13,
+      "parryMiss": 13,
+      "land": 10,
+      "windup": 6,
+      "swing": 5,
+      "whiff": 2,
+      "kill": 5,
+      "round": 4,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "lancer",
+    "mapId": "ruins",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 12,
+      "jump": 14,
+      "parryMiss": 11,
+      "land": 11,
+      "windup": 8,
+      "swing": 7,
+      "kill": 5,
+      "round": 4,
+      "whiff": 2,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "assassin",
+    "mapId": "ruins",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 15,
+      "jump": 13,
+      "parryMiss": 13,
+      "land": 8,
+      "windup": 4,
+      "swing": 4,
+      "whiff": 3,
+      "kill": 5,
+      "round": 4,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "swordsman",
+    "mapId": "ruins",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 10,
+      "jump": 11,
+      "parryMiss": 10,
+      "land": 5,
+      "windup": 7,
+      "swing": 5,
+      "kill": 5,
+      "round": 4,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "reaper",
+    "mapId": "ruins",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 10,
+      "jump": 16,
+      "parryMiss": 9,
+      "land": 10,
+      "windup": 9,
+      "swing": 7,
+      "kill": 5,
+      "round": 4,
+      "parry": 1,
+      "whiff": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "knight",
+    "mapId": "ruins",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 13,
+      "jump": 12,
+      "parryMiss": 11,
+      "land": 7,
+      "windup": 6,
+      "swing": 5,
+      "kill": 6,
+      "round": 5,
+      "parry": 1,
+      "whiff": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "lancer",
+    "mapId": "ruins",
+    "difficulty": "normal",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 26,
+      "jump": 30,
+      "parryMiss": 24,
+      "land": 29,
+      "windup": 13,
+      "swing": 13,
+      "whiff": 11,
+      "kill": 7,
+      "round": 6,
+      "dash": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "assassin",
+    "mapId": "ruins",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 7,
+      "jump": 9,
+      "parryMiss": 6,
+      "land": 6,
+      "windup": 7,
+      "swing": 6,
+      "kill": 5,
+      "round": 4,
+      "parry": 1,
+      "whiff": 1,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "swordsman",
+    "mapId": "ruins",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 10,
+      "jump": 12,
+      "parryMiss": 9,
+      "land": 7,
+      "windup": 6,
+      "swing": 5,
+      "kill": 6,
+      "round": 5,
+      "whiff": 1,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "reaper",
+    "mapId": "ruins",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 11,
+      "jump": 11,
+      "parryMiss": 11,
+      "land": 11,
+      "windup": 6,
+      "swing": 6,
+      "whiff": 3,
+      "kill": 6,
+      "round": 5,
+      "dash": 2,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "knight",
+    "mapId": "ruins",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 9,
+      "jump": 16,
+      "parryMiss": 9,
+      "land": 10,
+      "windup": 11,
+      "swing": 8,
+      "kill": 6,
+      "round": 5,
+      "whiff": 1,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "lancer",
+    "mapId": "ruins",
+    "difficulty": "normal",
+    "score": [
+      4,
+      4
+    ],
+    "events": {
+      "start": 1,
+      "guard": 24,
+      "jump": 29,
+      "parryMiss": 23,
+      "land": 24,
+      "windup": 14,
+      "swing": 13,
+      "whiff": 7,
+      "kill": 8,
+      "round": 7,
+      "dash": 2
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "assassin",
+    "mapId": "ruins",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 9,
+      "jump": 14,
+      "parryMiss": 8,
+      "land": 8,
+      "windup": 7,
+      "swing": 6,
+      "whiff": 1,
+      "kill": 6,
+      "round": 5,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "swordsman",
+    "mapId": "ruins",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 10,
+      "jump": 10,
+      "parryMiss": 8,
+      "land": 5,
+      "windup": 6,
+      "swing": 4,
+      "kill": 6,
+      "round": 5,
+      "dash": 1,
+      "parry": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "reaper",
+    "mapId": "ruins",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 12,
+      "jump": 14,
+      "parryMiss": 11,
+      "land": 10,
+      "windup": 7,
+      "swing": 7,
+      "whiff": 5,
+      "kill": 5,
+      "round": 4,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "knight",
+    "mapId": "ruins",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 10,
+      "jump": 13,
+      "parryMiss": 9,
+      "land": 8,
+      "windup": 7,
+      "swing": 4,
+      "kill": 6,
+      "round": 5,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "lancer",
+    "mapId": "ruins",
+    "difficulty": "normal",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 21,
+      "jump": 26,
+      "parryMiss": 19,
+      "land": 22,
+      "windup": 9,
+      "swing": 9,
+      "whiff": 3,
+      "kill": 7,
+      "round": 6,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "assassin",
+    "mapId": "ruins",
+    "difficulty": "normal",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 16,
+      "jump": 20,
+      "parryMiss": 13,
+      "land": 13,
+      "windup": 9,
+      "swing": 9,
+      "kill": 7,
+      "round": 6,
+      "dash": 2,
+      "parry": 1,
+      "whiff": 3,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "swordsman",
+    "mapId": "ruins",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 10,
+      "jump": 11,
+      "parryMiss": 10,
+      "land": 6,
+      "windup": 5,
+      "swing": 5,
+      "kill": 5,
+      "round": 4,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "reaper",
+    "mapId": "ruins",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 7,
+      "jump": 11,
+      "parryMiss": 7,
+      "land": 5,
+      "windup": 5,
+      "swing": 4,
+      "kill": 5,
+      "round": 4,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "knight",
+    "mapId": "bamboo",
+    "difficulty": "normal",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 16,
+      "jump": 25,
+      "parryMiss": 15,
+      "land": 14,
+      "windup": 19,
+      "swing": 16,
+      "whiff": 8,
+      "kill": 7,
+      "round": 6,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "lancer",
+    "mapId": "bamboo",
+    "difficulty": "normal",
+    "score": [
+      5,
+      0
+    ],
+    "events": {
+      "start": 1,
+      "guard": 14,
+      "jump": 26,
+      "parryMiss": 12,
+      "land": 21,
+      "windup": 17,
+      "swing": 16,
+      "whiff": 10,
+      "kill": 5,
+      "round": 4,
+      "dash": 1,
+      "parry": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "assassin",
+    "mapId": "bamboo",
+    "difficulty": "normal",
+    "score": [
+      3,
+      4
+    ],
+    "events": {
+      "start": 1,
+      "guard": 29,
+      "jump": 35,
+      "parryMiss": 27,
+      "land": 23,
+      "windup": 18,
+      "swing": 16,
+      "kill": 7,
+      "round": 7,
+      "dash": 1,
+      "parry": 1,
+      "whiff": 5,
+      "clash": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "swordsman",
+    "mapId": "bamboo",
+    "difficulty": "normal",
+    "score": [
+      4,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 18,
+      "jump": 30,
+      "parryMiss": 17,
+      "land": 14,
+      "windup": 23,
+      "swing": 22,
+      "whiff": 10,
+      "kill": 9,
+      "round": 8,
+      "clash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "bamboo",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 25,
+      "jump": 32,
+      "parryMiss": 24,
+      "windup": 16,
+      "land": 25,
+      "swing": 16,
+      "kill": 6,
+      "round": 5,
+      "whiff": 9,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "knight",
+    "mapId": "bamboo",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 14,
+      "jump": 20,
+      "parryMiss": 14,
+      "land": 11,
+      "windup": 12,
+      "swing": 12,
+      "whiff": 7,
+      "kill": 6,
+      "round": 5,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "lancer",
+    "mapId": "bamboo",
+    "difficulty": "normal",
+    "score": [
+      2,
+      3
+    ],
+    "events": {
+      "start": 1,
+      "guard": 30,
+      "jump": 39,
+      "parryMiss": 30,
+      "land": 35,
+      "windup": 24,
+      "swing": 22,
+      "whiff": 17,
+      "kill": 5,
+      "round": 4
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "assassin",
+    "mapId": "bamboo",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 15,
+      "jump": 28,
+      "parryMiss": 15,
+      "land": 20,
+      "windup": 17,
+      "swing": 17,
+      "whiff": 12,
+      "kill": 6,
+      "round": 5,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "swordsman",
+    "mapId": "bamboo",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 10,
+      "jump": 12,
+      "parryMiss": 9,
+      "windup": 10,
+      "land": 6,
+      "swing": 9,
+      "whiff": 4,
+      "kill": 5,
+      "round": 4,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "reaper",
+    "mapId": "bamboo",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 14,
+      "jump": 17,
+      "parryMiss": 13,
+      "windup": 12,
+      "land": 10,
+      "swing": 10,
+      "kill": 6,
+      "round": 5,
+      "whiff": 4,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "knight",
+    "mapId": "bamboo",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 15,
+      "jump": 18,
+      "parryMiss": 13,
+      "land": 9,
+      "windup": 11,
+      "swing": 11,
+      "kill": 6,
+      "round": 5,
+      "whiff": 3,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "lancer",
+    "mapId": "bamboo",
+    "difficulty": "normal",
+    "score": [
+      5,
+      1
+    ],
+    "events": {
+      "start": 1,
+      "guard": 28,
+      "jump": 34,
+      "parryMiss": 28,
+      "land": 34,
+      "windup": 16,
+      "swing": 16,
+      "kill": 6,
+      "round": 5,
+      "whiff": 12,
+      "dash": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "assassin",
+    "mapId": "bamboo",
+    "difficulty": "normal",
+    "score": [
+      3,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 21,
+      "jump": 30,
+      "parryMiss": 20,
+      "land": 20,
+      "windup": 16,
+      "swing": 15,
+      "whiff": 6,
+      "kill": 8,
+      "round": 7,
+      "parry": 1,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "swordsman",
+    "mapId": "bamboo",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 15,
+      "jump": 20,
+      "parryMiss": 15,
+      "land": 12,
+      "windup": 11,
+      "swing": 9,
+      "kill": 6,
+      "round": 5,
+      "whiff": 3,
+      "dash": 2,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "reaper",
+    "mapId": "bamboo",
+    "difficulty": "normal",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 27,
+      "jump": 30,
+      "parryMiss": 25,
+      "land": 22,
+      "windup": 14,
+      "swing": 13,
+      "whiff": 7,
+      "kill": 7,
+      "round": 6,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "knight",
+    "mapId": "bamboo",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 14,
+      "jump": 21,
+      "parryMiss": 12,
+      "land": 14,
+      "windup": 14,
+      "swing": 13,
+      "whiff": 7,
+      "kill": 5,
+      "round": 4,
+      "parry": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "lancer",
+    "mapId": "bamboo",
+    "difficulty": "normal",
+    "score": [
+      5,
+      0
+    ],
+    "events": {
+      "start": 1,
+      "guard": 15,
+      "jump": 25,
+      "parryMiss": 14,
+      "land": 21,
+      "windup": 18,
+      "swing": 18,
+      "whiff": 12,
+      "kill": 5,
+      "round": 4,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "assassin",
+    "mapId": "bamboo",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 16,
+      "jump": 23,
+      "parryMiss": 16,
+      "land": 15,
+      "windup": 12,
+      "swing": 10,
+      "whiff": 4,
+      "kill": 6,
+      "round": 5,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "swordsman",
+    "mapId": "bamboo",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 9,
+      "jump": 13,
+      "parryMiss": 9,
+      "land": 6,
+      "windup": 11,
+      "swing": 9,
+      "kill": 6,
+      "round": 5,
+      "dash": 2,
+      "whiff": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "reaper",
+    "mapId": "bamboo",
+    "difficulty": "normal",
+    "score": [
+      3,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 18,
+      "jump": 24,
+      "parryMiss": 17,
+      "land": 12,
+      "windup": 17,
+      "swing": 16,
+      "whiff": 5,
+      "kill": 8,
+      "round": 7,
+      "clash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "knight",
+    "mapId": "bamboo",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 15,
+      "jump": 18,
+      "parryMiss": 13,
+      "windup": 15,
+      "land": 12,
+      "swing": 15,
+      "whiff": 7,
+      "kill": 6,
+      "round": 5,
+      "parry": 2,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "lancer",
+    "mapId": "bamboo",
+    "difficulty": "normal",
+    "score": [
+      3,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 20,
+      "jump": 25,
+      "parryMiss": 17,
+      "land": 14,
+      "windup": 16,
+      "swing": 15,
+      "whiff": 7,
+      "kill": 8,
+      "round": 7,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "assassin",
+    "mapId": "bamboo",
+    "difficulty": "normal",
+    "score": [
+      5,
+      2
+    ],
+    "events": {
+      "start": 1,
+      "guard": 25,
+      "jump": 35,
+      "parryMiss": 24,
+      "land": 27,
+      "windup": 19,
+      "swing": 19,
+      "whiff": 11,
+      "parry": 1,
+      "kill": 7,
+      "round": 6
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "swordsman",
+    "mapId": "bamboo",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 13,
+      "jump": 18,
+      "parryMiss": 13,
+      "windup": 12,
+      "land": 11,
+      "swing": 11,
+      "kill": 6,
+      "round": 5,
+      "whiff": 5,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "reaper",
+    "mapId": "bamboo",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 14,
+      "jump": 16,
+      "parryMiss": 13,
+      "windup": 12,
+      "land": 12,
+      "swing": 12,
+      "kill": 6,
+      "round": 5,
+      "whiff": 4,
+      "parry": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "knight",
+    "mapId": "frost",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 9,
+      "jump": 14,
+      "parryMiss": 9,
+      "land": 8,
+      "windup": 8,
+      "swing": 8,
+      "clash": 1,
+      "whiff": 3,
+      "kill": 5,
+      "round": 4,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "lancer",
+    "mapId": "frost",
+    "difficulty": "normal",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 14,
+      "jump": 19,
+      "parryMiss": 13,
+      "land": 12,
+      "windup": 6,
+      "swing": 6,
+      "whiff": 3,
+      "kill": 7,
+      "round": 6,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "assassin",
+    "mapId": "frost",
+    "difficulty": "normal",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 10,
+      "jump": 17,
+      "parryMiss": 9,
+      "land": 9,
+      "windup": 6,
+      "swing": 6,
+      "whiff": 2,
+      "kill": 7,
+      "round": 6,
+      "dash": 3,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "swordsman",
+    "mapId": "frost",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 8,
+      "jump": 13,
+      "parryMiss": 7,
+      "land": 5,
+      "windup": 3,
+      "swing": 3,
+      "kill": 5,
+      "round": 4,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "frost",
+    "difficulty": "normal",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 19,
+      "jump": 23,
+      "parryMiss": 15,
+      "land": 15,
+      "windup": 13,
+      "swing": 13,
+      "whiff": 5,
+      "kill": 7,
+      "round": 6,
+      "dash": 1,
+      "parry": 2,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "knight",
+    "mapId": "frost",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 16,
+      "jump": 18,
+      "parryMiss": 14,
+      "land": 11,
+      "windup": 6,
+      "swing": 5,
+      "whiff": 4,
+      "kill": 6,
+      "round": 5,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "lancer",
+    "mapId": "frost",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 10,
+      "jump": 11,
+      "parryMiss": 10,
+      "land": 7,
+      "windup": 5,
+      "swing": 5,
+      "kill": 5,
+      "round": 4,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "assassin",
+    "mapId": "frost",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 6,
+      "jump": 11,
+      "parryMiss": 6,
+      "land": 4,
+      "windup": 3,
+      "swing": 3,
+      "whiff": 1,
+      "kill": 5,
+      "round": 4,
+      "dash": 2,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "swordsman",
+    "mapId": "frost",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 12,
+      "jump": 17,
+      "parryMiss": 12,
+      "land": 14,
+      "windup": 10,
+      "swing": 7,
+      "kill": 5,
+      "round": 4,
+      "whiff": 2,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "reaper",
+    "mapId": "frost",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 9,
+      "jump": 15,
+      "parryMiss": 9,
+      "land": 8,
+      "windup": 7,
+      "swing": 5,
+      "kill": 6,
+      "round": 5,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "knight",
+    "mapId": "frost",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 13,
+      "jump": 15,
+      "parryMiss": 11,
+      "land": 11,
+      "windup": 9,
+      "swing": 9,
+      "kill": 5,
+      "round": 4,
+      "parry": 1,
+      "whiff": 3,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "lancer",
+    "mapId": "frost",
+    "difficulty": "normal",
+    "score": [
+      5,
+      4
+    ],
+    "events": {
+      "start": 1,
+      "guard": 18,
+      "jump": 27,
+      "parryMiss": 17,
+      "land": 17,
+      "windup": 8,
+      "swing": 8,
+      "whiff": 3,
+      "kill": 9,
+      "round": 8,
+      "dash": 2,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "assassin",
+    "mapId": "frost",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 7,
+      "jump": 10,
+      "parryMiss": 7,
+      "land": 3,
+      "windup": 3,
+      "swing": 3,
+      "kill": 6,
+      "round": 5,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "swordsman",
+    "mapId": "frost",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 8,
+      "jump": 14,
+      "parryMiss": 7,
+      "land": 7,
+      "windup": 5,
+      "swing": 4,
+      "kill": 5,
+      "round": 4,
+      "dash": 2,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "reaper",
+    "mapId": "frost",
+    "difficulty": "normal",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 23,
+      "jump": 29,
+      "parryMiss": 22,
+      "land": 21,
+      "windup": 8,
+      "swing": 8,
+      "whiff": 5,
+      "kill": 7,
+      "round": 6,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "knight",
+    "mapId": "frost",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 9,
+      "jump": 14,
+      "parryMiss": 8,
+      "land": 8,
+      "windup": 7,
+      "swing": 5,
+      "kill": 6,
+      "round": 5,
+      "dash": 1,
+      "parry": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "lancer",
+    "mapId": "frost",
+    "difficulty": "normal",
+    "score": [
+      5,
+      2
+    ],
+    "events": {
+      "start": 1,
+      "guard": 12,
+      "jump": 25,
+      "parryMiss": 11,
+      "land": 14,
+      "windup": 12,
+      "swing": 12,
+      "whiff": 6,
+      "kill": 7,
+      "round": 6,
+      "dash": 1,
+      "parry": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "assassin",
+    "mapId": "frost",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 10,
+      "jump": 14,
+      "parryMiss": 9,
+      "land": 10,
+      "windup": 8,
+      "swing": 7,
+      "kill": 5,
+      "round": 4,
+      "parry": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "swordsman",
+    "mapId": "frost",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 7,
+      "jump": 12,
+      "parryMiss": 7,
+      "land": 7,
+      "windup": 6,
+      "swing": 4,
+      "kill": 5,
+      "round": 4,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "reaper",
+    "mapId": "frost",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 10,
+      "jump": 13,
+      "parryMiss": 8,
+      "land": 6,
+      "windup": 4,
+      "swing": 3,
+      "kill": 5,
+      "round": 4,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "knight",
+    "mapId": "frost",
+    "difficulty": "normal",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 14,
+      "jump": 20,
+      "parryMiss": 13,
+      "land": 11,
+      "windup": 8,
+      "swing": 7,
+      "kill": 7,
+      "round": 6,
+      "dash": 1,
+      "whiff": 3,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "lancer",
+    "mapId": "frost",
+    "difficulty": "normal",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 21,
+      "jump": 23,
+      "parryMiss": 18,
+      "land": 20,
+      "windup": 10,
+      "swing": 10,
+      "kill": 7,
+      "round": 6,
+      "whiff": 4,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "assassin",
+    "mapId": "frost",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 10,
+      "jump": 13,
+      "parryMiss": 8,
+      "land": 6,
+      "windup": 4,
+      "swing": 3,
+      "kill": 6,
+      "round": 5,
+      "dash": 2,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "swordsman",
+    "mapId": "frost",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 8,
+      "jump": 10,
+      "parryMiss": 8,
+      "land": 7,
+      "windup": 5,
+      "swing": 5,
+      "kill": 5,
+      "round": 4,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "reaper",
+    "mapId": "frost",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 10,
+      "jump": 13,
+      "parryMiss": 10,
+      "land": 10,
+      "windup": 7,
+      "swing": 6,
+      "kill": 6,
+      "round": 5,
+      "dash": 1,
+      "whiff": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "knight",
+    "mapId": "forge",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 16,
+      "jump": 20,
+      "parryMiss": 16,
+      "land": 17,
+      "windup": 6,
+      "swing": 5,
+      "kill": 6,
+      "round": 5,
+      "dash": 1,
+      "whiff": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "lancer",
+    "mapId": "forge",
+    "difficulty": "normal",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 27,
+      "jump": 30,
+      "parryMiss": 23,
+      "land": 28,
+      "windup": 10,
+      "swing": 10,
+      "whiff": 6,
+      "parry": 1,
+      "kill": 7,
+      "round": 6,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "assassin",
+    "mapId": "forge",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 10,
+      "jump": 10,
+      "parryMiss": 10,
+      "land": 7,
+      "windup": 2,
+      "swing": 2,
+      "kill": 5,
+      "round": 4,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "swordsman",
+    "mapId": "forge",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 10,
+      "jump": 14,
+      "parryMiss": 10,
+      "land": 12,
+      "windup": 4,
+      "swing": 4,
+      "kill": 5,
+      "round": 4,
+      "dash": 2,
+      "whiff": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "forge",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 16,
+      "jump": 20,
+      "parryMiss": 15,
+      "land": 18,
+      "windup": 8,
+      "swing": 7,
+      "whiff": 5,
+      "parry": 1,
+      "kill": 6,
+      "round": 5,
+      "dash": 2,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "knight",
+    "mapId": "forge",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 11,
+      "jump": 15,
+      "parryMiss": 10,
+      "land": 8,
+      "windup": 5,
+      "swing": 5,
+      "kill": 6,
+      "round": 5,
+      "dash": 2,
+      "whiff": 2,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "lancer",
+    "mapId": "forge",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 21,
+      "jump": 28,
+      "parryMiss": 20,
+      "land": 27,
+      "windup": 16,
+      "swing": 16,
+      "whiff": 13,
+      "kill": 6,
+      "round": 5,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "assassin",
+    "mapId": "forge",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 11,
+      "jump": 17,
+      "parryMiss": 10,
+      "land": 12,
+      "windup": 10,
+      "swing": 9,
+      "whiff": 6,
+      "parry": 1,
+      "kill": 5,
+      "round": 4,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "swordsman",
+    "mapId": "forge",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 8,
+      "jump": 15,
+      "parryMiss": 8,
+      "land": 10,
+      "windup": 5,
+      "swing": 5,
+      "kill": 5,
+      "round": 4,
+      "dash": 3,
+      "whiff": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "lancer",
+    "b": "reaper",
+    "mapId": "forge",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 21,
+      "jump": 24,
+      "parryMiss": 19,
+      "land": 19,
+      "windup": 9,
+      "swing": 9,
+      "whiff": 5,
+      "kill": 6,
+      "round": 5,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "knight",
+    "mapId": "forge",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 12,
+      "jump": 17,
+      "parryMiss": 12,
+      "land": 18,
+      "windup": 5,
+      "swing": 5,
+      "kill": 5,
+      "round": 4,
+      "whiff": 1,
+      "dash": 2,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "lancer",
+    "mapId": "forge",
+    "difficulty": "normal",
+    "score": [
+      3,
+      4
+    ],
+    "events": {
+      "start": 1,
+      "guard": 28,
+      "jump": 32,
+      "parryMiss": 26,
+      "land": 34,
+      "windup": 11,
+      "swing": 11,
+      "whiff": 8,
+      "kill": 7,
+      "round": 7,
+      "dash": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "assassin",
+    "mapId": "forge",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 17,
+      "jump": 20,
+      "parryMiss": 15,
+      "land": 18,
+      "windup": 9,
+      "swing": 8,
+      "kill": 6,
+      "round": 5,
+      "dash": 1,
+      "whiff": 4,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "swordsman",
+    "mapId": "forge",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 11,
+      "jump": 13,
+      "parryMiss": 10,
+      "land": 13,
+      "windup": 6,
+      "swing": 4,
+      "kill": 5,
+      "round": 4,
+      "whiff": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "reaper",
+    "mapId": "forge",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 14,
+      "jump": 19,
+      "parryMiss": 13,
+      "land": 17,
+      "windup": 7,
+      "swing": 6,
+      "kill": 6,
+      "round": 5,
+      "whiff": 2,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "knight",
+    "mapId": "forge",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 18,
+      "jump": 22,
+      "parryMiss": 18,
+      "land": 22,
+      "windup": 9,
+      "swing": 8,
+      "kill": 5,
+      "round": 4,
+      "clash": 1,
+      "whiff": 2,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "lancer",
+    "mapId": "forge",
+    "difficulty": "normal",
+    "score": [
+      1,
+      4
+    ],
+    "events": {
+      "start": 1,
+      "guard": 28,
+      "jump": 35,
+      "parryMiss": 25,
+      "land": 35,
+      "windup": 14,
+      "swing": 13,
+      "parry": 2,
+      "whiff": 10,
+      "kill": 5,
+      "round": 4
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "assassin",
+    "mapId": "forge",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 11,
+      "jump": 13,
+      "parryMiss": 11,
+      "land": 9,
+      "windup": 3,
+      "swing": 3,
+      "kill": 5,
+      "round": 4,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "swordsman",
+    "mapId": "forge",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 10,
+      "jump": 14,
+      "parryMiss": 10,
+      "land": 8,
+      "windup": 4,
+      "swing": 3,
+      "kill": 5,
+      "round": 4,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "swordsman",
+    "b": "reaper",
+    "mapId": "forge",
+    "difficulty": "normal",
+    "score": [
+      3,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 21,
+      "jump": 25,
+      "parryMiss": 21,
+      "land": 18,
+      "windup": 9,
+      "swing": 7,
+      "kill": 8,
+      "round": 7,
+      "whiff": 3,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "knight",
+    "mapId": "forge",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 13,
+      "jump": 21,
+      "parryMiss": 12,
+      "land": 19,
+      "windup": 10,
+      "swing": 10,
+      "kill": 6,
+      "round": 5,
+      "dash": 2,
+      "whiff": 5,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "lancer",
+    "mapId": "forge",
+    "difficulty": "normal",
+    "score": [
+      2,
+      3
+    ],
+    "events": {
+      "start": 1,
+      "guard": 28,
+      "jump": 41,
+      "parryMiss": 26,
+      "land": 42,
+      "windup": 19,
+      "swing": 19,
+      "kill": 5,
+      "round": 4,
+      "dash": 2,
+      "whiff": 15
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "assassin",
+    "mapId": "forge",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 14,
+      "jump": 15,
+      "parryMiss": 12,
+      "land": 12,
+      "windup": 5,
+      "swing": 5,
+      "whiff": 3,
+      "kill": 5,
+      "round": 4,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "swordsman",
+    "mapId": "forge",
+    "difficulty": "normal",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 10,
+      "jump": 18,
+      "parryMiss": 10,
+      "land": 16,
+      "windup": 9,
+      "swing": 8,
+      "whiff": 4,
+      "kill": 5,
+      "round": 4,
+      "dash": 2,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "reaper",
+    "b": "reaper",
+    "mapId": "forge",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 15,
+      "jump": 15,
+      "parryMiss": 13,
+      "land": 11,
+      "windup": 3,
+      "swing": 3,
+      "kill": 6,
+      "round": 5,
+      "whiff": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "dojo",
+    "difficulty": "easy",
+    "score": [
+      4,
+      2
+    ],
+    "events": {
+      "start": 1,
+      "guard": 26,
+      "jump": 38,
+      "parryMiss": 25,
+      "land": 37,
+      "windup": 22,
+      "swing": 20,
+      "whiff": 12,
+      "kill": 6,
+      "round": 5,
+      "dash": 1,
+      "parry": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "bridge",
+    "difficulty": "easy",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 13,
+      "jump": 14,
+      "parryMiss": 11,
+      "land": 7,
+      "windup": 5,
+      "swing": 5,
+      "whiff": 3,
+      "kill": 6,
+      "round": 5,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "ruins",
+    "difficulty": "easy",
+    "score": [
+      4,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 18,
+      "jump": 22,
+      "parryMiss": 17,
+      "land": 14,
+      "windup": 9,
+      "swing": 8,
+      "whiff": 3,
+      "kill": 9,
+      "round": 8,
+      "dash": 2,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "bamboo",
+    "difficulty": "easy",
+    "score": [
+      4,
+      4
+    ],
+    "events": {
+      "start": 1,
+      "guard": 22,
+      "jump": 34,
+      "parryMiss": 22,
+      "land": 23,
+      "windup": 24,
+      "swing": 20,
+      "whiff": 11,
+      "kill": 8,
+      "round": 7
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "frost",
+    "difficulty": "easy",
+    "score": [
+      3,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 18,
+      "jump": 29,
+      "parryMiss": 18,
+      "land": 18,
+      "windup": 11,
+      "swing": 11,
+      "whiff": 6,
+      "kill": 8,
+      "round": 7,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "forge",
+    "difficulty": "easy",
+    "score": [
+      3,
+      4
+    ],
+    "events": {
+      "start": 1,
+      "guard": 30,
+      "jump": 34,
+      "parryMiss": 29,
+      "land": 33,
+      "windup": 9,
+      "swing": 8,
+      "whiff": 4,
+      "kill": 7,
+      "round": 7
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "dojo",
+    "difficulty": "normal",
+    "score": [
+      4,
+      4
+    ],
+    "events": {
+      "start": 1,
+      "guard": 25,
+      "jump": 36,
+      "parryMiss": 24,
+      "land": 24,
+      "windup": 21,
+      "swing": 20,
+      "whiff": 12,
+      "kill": 8,
+      "round": 7
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "bridge",
+    "difficulty": "normal",
+    "score": [
+      3,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 24,
+      "jump": 31,
+      "parryMiss": 24,
+      "land": 20,
+      "windup": 12,
+      "swing": 12,
+      "whiff": 8,
+      "kill": 8,
+      "round": 7,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "ruins",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 10,
+      "jump": 11,
+      "parryMiss": 10,
+      "land": 7,
+      "windup": 6,
+      "swing": 6,
+      "whiff": 4,
+      "kill": 6,
+      "round": 5,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "bamboo",
+    "difficulty": "normal",
+    "score": [
+      5,
+      2
+    ],
+    "events": {
+      "start": 1,
+      "guard": 21,
+      "jump": 27,
+      "parryMiss": 21,
+      "land": 20,
+      "windup": 18,
+      "swing": 17,
+      "whiff": 9,
+      "kill": 7,
+      "round": 6,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "frost",
+    "difficulty": "normal",
+    "score": [
+      5,
+      4
+    ],
+    "events": {
+      "start": 1,
+      "guard": 21,
+      "jump": 32,
+      "parryMiss": 19,
+      "land": 19,
+      "windup": 14,
+      "swing": 12,
+      "kill": 9,
+      "round": 8,
+      "dash": 1,
+      "whiff": 6,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "forge",
+    "difficulty": "normal",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 16,
+      "jump": 15,
+      "parryMiss": 13,
+      "land": 13,
+      "windup": 4,
+      "swing": 4,
+      "kill": 6,
+      "round": 5,
+      "whiff": 2,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "dojo",
+    "difficulty": "adaptive",
+    "score": [
+      4,
+      4
+    ],
+    "events": {
+      "start": 1,
+      "guard": 22,
+      "jump": 32,
+      "parryMiss": 21,
+      "land": 18,
+      "windup": 25,
+      "swing": 25,
+      "whiff": 14,
+      "parry": 1,
+      "dash": 3,
+      "kill": 8,
+      "round": 8
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "bridge",
+    "difficulty": "adaptive",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 22,
+      "jump": 30,
+      "parryMiss": 20,
+      "land": 17,
+      "windup": 16,
+      "swing": 13,
+      "whiff": 7,
+      "kill": 7,
+      "round": 6,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "ruins",
+    "difficulty": "adaptive",
+    "score": [
+      4,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 24,
+      "jump": 24,
+      "parryMiss": 20,
+      "land": 18,
+      "windup": 12,
+      "swing": 11,
+      "kill": 9,
+      "round": 8,
+      "dash": 4,
+      "whiff": 5,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "bamboo",
+    "difficulty": "adaptive",
+    "score": [
+      5,
+      3
+    ],
+    "events": {
+      "start": 1,
+      "guard": 14,
+      "jump": 18,
+      "parryMiss": 13,
+      "windup": 13,
+      "land": 8,
+      "swing": 13,
+      "kill": 8,
+      "round": 7,
+      "whiff": 4,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "frost",
+    "difficulty": "adaptive",
+    "score": [
+      3,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 24,
+      "jump": 27,
+      "parryMiss": 22,
+      "land": 19,
+      "windup": 16,
+      "swing": 14,
+      "kill": 8,
+      "round": 7,
+      "whiff": 9,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "forge",
+    "difficulty": "adaptive",
+    "score": [
+      0,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 18,
+      "jump": 22,
+      "parryMiss": 17,
+      "land": 23,
+      "windup": 5,
+      "swing": 5,
+      "kill": 5,
+      "round": 4,
+      "dash": 1,
+      "whiff": 1,
+      "parry": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "dojo",
+    "difficulty": "impossible",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 19,
+      "jump": 21,
+      "parryMiss": 17,
+      "land": 13,
+      "windup": 14,
+      "swing": 14,
+      "kill": 7,
+      "round": 6,
+      "whiff": 7,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "bridge",
+    "difficulty": "impossible",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 17,
+      "jump": 21,
+      "parryMiss": 17,
+      "land": 14,
+      "windup": 12,
+      "swing": 11,
+      "whiff": 7,
+      "kill": 7,
+      "round": 6,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "ruins",
+    "difficulty": "impossible",
+    "score": [
+      5,
+      1
+    ],
+    "events": {
+      "start": 1,
+      "guard": 21,
+      "jump": 23,
+      "parryMiss": 21,
+      "land": 15,
+      "windup": 12,
+      "swing": 12,
+      "whiff": 6,
+      "kill": 6,
+      "round": 5,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "bamboo",
+    "difficulty": "impossible",
+    "score": [
+      3,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 23,
+      "jump": 24,
+      "parryMiss": 22,
+      "land": 13,
+      "windup": 14,
+      "swing": 13,
+      "whiff": 5,
+      "kill": 8,
+      "round": 7,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "frost",
+    "difficulty": "impossible",
+    "score": [
+      5,
+      3
+    ],
+    "events": {
+      "start": 1,
+      "guard": 22,
+      "jump": 32,
+      "parryMiss": 22,
+      "land": 23,
+      "windup": 15,
+      "swing": 14,
+      "whiff": 7,
+      "kill": 8,
+      "round": 7,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "knight",
+    "b": "reaper",
+    "mapId": "forge",
+    "difficulty": "impossible",
+    "score": [
+      2,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 22,
+      "jump": 22,
+      "parryMiss": 20,
+      "land": 17,
+      "windup": 10,
+      "swing": 10,
+      "whiff": 6,
+      "parry": 1,
+      "kill": 7,
+      "round": 6,
+      "dash": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "lancer",
+    "mapId": "dojo",
+    "difficulty": "adaptive",
+    "score": [
+      2,
+      2
+    ],
+    "events": {
+      "start": 1,
+      "guard": 31,
+      "jump": 22,
+      "parryMiss": 31,
+      "windup": 12,
+      "swing": 12,
+      "land": 24,
+      "whiff": 9,
+      "dash": 4,
+      "kill": 4,
+      "round": 3
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "lancer",
+    "mapId": "bridge",
+    "difficulty": "adaptive",
+    "score": [
+      1,
+      4
+    ],
+    "events": {
+      "start": 1,
+      "guard": 28,
+      "jump": 22,
+      "parryMiss": 27,
+      "land": 17,
+      "kill": 5,
+      "round": 5,
+      "dash": 3,
+      "windup": 10,
+      "swing": 10,
+      "whiff": 9
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "lancer",
+    "mapId": "ruins",
+    "difficulty": "adaptive",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 24,
+      "jump": 16,
+      "parryMiss": 20,
+      "land": 15,
+      "windup": 10,
+      "dash": 5,
+      "swing": 10,
+      "whiff": 6,
+      "kill": 6,
+      "round": 5,
+      "parry": 1,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "lancer",
+    "mapId": "bamboo",
+    "difficulty": "adaptive",
+    "score": [
+      1,
+      4
+    ],
+    "events": {
+      "start": 1,
+      "guard": 30,
+      "jump": 21,
+      "parryMiss": 30,
+      "windup": 11,
+      "swing": 11,
+      "whiff": 9,
+      "land": 14,
+      "dash": 3,
+      "kill": 5,
+      "round": 5
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "lancer",
+    "mapId": "frost",
+    "difficulty": "adaptive",
+    "score": [
+      1,
+      5
+    ],
+    "events": {
+      "start": 1,
+      "guard": 11,
+      "jump": 8,
+      "parryMiss": 10,
+      "land": 5,
+      "windup": 3,
+      "swing": 3,
+      "whiff": 2,
+      "dash": 2,
+      "kill": 6,
+      "round": 5,
+      "matchEnd": 1
+    }
+  },
+  {
+    "a": "assassin",
+    "b": "lancer",
+    "mapId": "forge",
+    "difficulty": "adaptive",
+    "score": [
+      3,
+      2
+    ],
+    "events": {
+      "start": 1,
+      "guard": 32,
+      "jump": 22,
+      "parryMiss": 31,
+      "windup": 11,
+      "swing": 11,
+      "whiff": 9,
+      "land": 21,
+      "dash": 3,
+      "kill": 5,
+      "round": 4
+    }
+  }
+]

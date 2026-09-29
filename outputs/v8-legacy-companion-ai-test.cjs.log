@@ -1,0 +1,9 @@
+PASS servants retain startup, active, recovery and weapon contour of each of eight classes
+PASS servant parry stuns the servant and does not stun its owner
+PASS servants clash with a real slash before body damage
+PASS one slash kills a servant, clears its memory, and never grants a round point
+PASS necromancer servant survives between rounds but not between matches
+PASS Mahoraga learns distinct threats progressively, not each simulation frame
+PASS adapted Mahoraga can deflect a projectile, but another during cooldown kills it
+PASS companion combat and adaptation resume deterministically after a snapshot
+8 V8 companion moveset/adaptation groups passed

@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "errors": [],
+  "checks": [
+    "disconnect during intro",
+    "specials disabled online",
+    "guest admin large custom map",
+    "skin transfer",
+    "moving and collapsing platforms"
+  ]
+}

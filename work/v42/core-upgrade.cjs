@@ -1,0 +1,40 @@
+const fs=require('fs'),path=require('path'),p=n=>path.join(__dirname,n);let s=fs.readFileSync(p('engine.js'),'utf8');
+function rep(a,b){if(!s.includes(a))throw Error('Missing '+a.slice(0,80));s=s.replace(a,b);}
+rep(' knight:{'," boxer:{name:'Pugilista',weapon:'Punhos',description:'O menor alcance. Socos alternados, pés rápidos e contra-golpe explosivo.',speed:378,startup:.119,active:.08925,recovery:.2125,reach:69,minRange:12,length:40,sweep:0,dashSpeed:1100},\n knight:{");
+rep('const DEFAULT_RULES=',"Object.assign(RULES,{boxerWindow:{name:'Pugilista · janela do parry',min:100,max:15000,step:100,unit:'ms',default:5000,numeric:true},boxerRush:{name:'Pugilista · duração da sequência',min:100,max:10000,step:100,unit:'ms',default:2000,numeric:true},boxerPenalty:{name:'Pugilista · bloqueio de dash',min:0,max:15000,step:100,unit:'ms',default:3000,numeric:true},platformSpeed:{name:'Velocidade das plataformas',min:.1,max:5,step:.1,default:1,numeric:true},collapseSpeed:{name:'Tempo para desabar',min:.1,max:5,step:.1,default:1,numeric:true},respawnSpeed:{name:'Tempo para reaparecer',min:.1,max:5,step:.1,default:1,numeric:true}});\nconst DEFAULT_RULES=");
+rep('const DIFFICULTIES=',fs.readFileSync(p('content.txt'),'utf8')+'\nconst DIFFICULTIES=');
+rep('return scale===1?base:',"if(typeof f==='object'&&f.kind==='boxer'&&f.ultMode==='boxerRush')return{...base,startup:.024,active:.04,recovery:0};return scale===1?base:");
+rep("attack:false,parry:false,dash:false,kick:false,special:false", "attack:false,attackHeld:false,parry:false,dash:false,kick:false,special:false");
+rep('function makeMap(id,scale=1){const base=MAPS[id]||MAPS.dojo,', 'function makeMap(id,scale=1,source){const base=source||MAPS[id]||MAPS.dojo,');
+rep('if(scale>1){const original=', 'if(scale>1&&!base.custom){const original=');
+rep('if(p.motion)p.motion={...p.motion,y:p.motion.y*scale};', 'if(p.motion)p.motion={...p.motion,x:(p.motion.x||0)*scale,y:p.motion.y*scale};if(p.fragile)p.fragile={...p.fragile};p.stage="solid";p.crumbleAt=null;p.goneAt=null;');
+rep('width:C.width*scale,height:C.height*scale,deathY:C.deathY*scale', 'width:(base.width||C.width)*scale,height:(base.height||C.height)*scale,deathY:(base.deathY||C.deathY)*scale');
+rep("if(f.kind==='lancer'){const lo=s.minRange", "if(f.kind==='boxer'){const extension=.75+.25*Math.sin(progress*Math.PI),r=s.reach*extension;points=[[12,-5],[r-10,-12],[r,-6],[r,6],[r-10,12],[12,5]].map(p=>at(...p));}\n else if(f.kind==='lancer'){const lo=s.minRange");
+rep("const at=(n,l=0)=>({x:hand.x", "if(f.kind==='boxer'){const active=f.state==='active',guard=f.state==='parry',ga=f.guard==='high'?-Math.PI/2:f.guard==='low'?Math.PI/2:(f.guardFacing>0?0:Math.PI),a=guard?ga:aim,r=active?s.reach*.86:f.state==='startup'?20:30;hand.x=f.x+Math.cos(a)*r;hand.y=f.y-body(f).center+Math.sin(a)*r;angle=a;start=0;end=9;}\n const at=(n,l=0)=>({x:hand.x");
+rep('f.specialCharge=0;f.ultMode=', 'f.specialCharge=0;f.dashLock=0;f.punch=0;f.ultMode=');
+rep("if(f.kind==='knight'){f.ultMode='shield';", "if(f.kind==='boxer'){f.ultMode='boxerGuard';f.ultTime=this.rules.boxerWindow/1000;}\n  if(f.kind==='knight'){f.ultMode='shield';");
+rep('tickSpecial(f,dt){if(f.dead)return;', "boxerParry(f){if(f.kind==='boxer'&&f.ultMode==='boxerGuard'){f.ultMode='boxerRush';f.ultTime=this.rules.boxerRush/1000;this.emit('special',{id:f.id,kind:f.kind,x:f.x,y:f.y-body(f).center});}}\n tickSpecial(f,dt){if(f.dead)return;f.dashLock=Math.max(0,(f.dashLock||0)-dt);");
+rep("if(f.ultMode==='shield'){f.ultMode='';f.parryLock=10;}", "if(f.ultMode==='boxerGuard'){f.ultMode='';f.dashLock=this.rules.boxerPenalty/1000;}else if(f.ultMode==='boxerRush')f.ultMode='';else if(f.ultMode==='shield'){f.ultMode='';f.parryLock=10;}");
+rep('!f.ultMode&&f.parryLock<=0)', '!f.ultMode&&f.parryLock<=0&&f.dashLock<=0)');
+s=s.replaceAll("this.setState(d,'idle');d.parryCooldown=", "this.setState(d,'idle');this.boxerParry(d);d.parryCooldown=");
+rep("characters:change.characters||this.characters,colors:", "characters:change.characters||this.characters,skins:change.skins||this.skins,colors:");
+rep("this.colors=['jade','coral'];", "this.colors=['jade','coral'];this.skins=['default','default'];");
+rep('if(o.colors)this.colors=', 'if(o.skins)this.skins=[0,1].map(i=>cleanSkin(this.characters[i],o.skins[i]));else this.skins=this.skins.map((s,i)=>cleanSkin(this.characters[i],s));if(o.colors)this.colors=');
+rep('this.map=makeMap(this.mapId,this.rules.mapSize);', 'this.mapSource=o.mapData?cleanMap(o.mapData):MAPS[this.mapId];this.map=makeMap(this.mapId,this.rules.mapSize,this.mapSource);');
+rep('resetFighters(){this.fighters=', 'resetFighters(){for(const p of this.map.platforms){p.stage="solid";p.crumbleAt=p.goneAt=null;}this.fighters=');
+rep('for(const f of this.fighters){this.resetSpecial(f);', 'for(const f of this.fighters){f.skin=this.skins[f.id];this.resetSpecial(f);');
+rep('f.attackAim=f.aim;f.attackId=', "if(f.kind==='boxer')f.punch=1-(f.punch||0);f.attackAim=f.aim;f.attackId=");
+rep('if(!(this.canAct(f)||', 'if(f.dashLock>0||!(this.canAct(f)||');
+rep('if(platform?.motion){', "if(platform?.stage==='gone'){f.grounded=false;f.platform=-1;}else if(platform?.motion){");
+rep('if(f.dropTimer>0&&!p.solid)continue;', "if(p.stage==='gone'||f.dropTimer>0&&!p.solid)continue;");
+rep('updatePlatforms(time,carry=true){for(const p of this.map.platforms){const y=p.motion?p.baseY+Math.sin(time*Math.PI*2/p.motion.period)*p.motion.y:p.baseY;p.dy=carry?y-p.y:0;p.dx=0;p.y=y;}}', fs.readFileSync(p('platform-method.txt'),'utf8'));
+rep('if(inp.attack)this.command', "if(inp.attack||(inp.attackHeld&&f.ultMode==='boxerRush'&&this.canAct(f)))this.command");
+rep('inp.move=ai.intent;\n  const navigating=', "inp.move=ai.intent;if(e.ultMode==='boxerRush'&&dist<s.reach+25)inp.attackHeld=true;\n  const navigating=");
+rep("version:4,experimental:", "version:42,mapData:this.mapSource?.custom?{...this.mapSource,background:{...this.mapSource.background,layers:[]}}:null,platformStates:this.map.platforms.map(p=>({stage:p.stage,crumbleAt:p.crumbleAt,goneAt:p.goneAt})),skins:this.skins,experimental:");
+rep('s.version!==4', 's.version!==42');
+rep('this.updatePlatforms(this.time,false);', 'if(s.platformStates)s.platformStates.forEach((p,i)=>Object.assign(this.map.platforms[i]||{},p));this.updatePlatforms(this.time,false);');
+rep('const api={body,', 'const api={SKINS,cleanSkin,cleanMap,registerMap,mapWarnings,body,');
+// Gone platforms cannot support projectiles, shadows or route planning.
+s=s.replaceAll('filter(q=>p.x>=q.x',"filter(q=>q.stage!=='gone'&&p.x>=q.x").replaceAll('find(q=>p.x>=q.x',"find(q=>q.stage!=='gone'&&p.x>=q.x");
+fs.writeFileSync(p('engine.js'),s);
+for(const name of['controls.js','app.js','lab.js']){let q=fs.readFileSync(p(name),'utf8');q=q.replaceAll("['move','aim','jumpHeld','down']","['move','aim','jumpHeld','down','attackHeld']");if(name==='controls.js')q=q.replaceAll("r.jumpHeld=held('jump');","r.attackHeld=held('attack');r.jumpHeld=held('jump');");if(name==='app.js')q=q.replace("'jumpHeld','down','kick','special'","'jumpHeld','down','kick','special','attackHeld'");fs.writeFileSync(p(name),q);}

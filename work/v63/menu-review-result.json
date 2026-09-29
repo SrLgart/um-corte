@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "checks": [
+    "Japanese sunset/cherries title",
+    "cut gesture never activates play",
+    "responsive two-column roster",
+    "random arena last",
+    "V6.3 history",
+    "normal build has no ADMIN",
+    "training panel closed initially"
+  ],
+  "errors": []
+}

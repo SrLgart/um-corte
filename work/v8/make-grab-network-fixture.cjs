@@ -1,0 +1,5 @@
+const fs=require('node:fs'),path=require('node:path');let s=fs.readFileSync(path.join(__dirname,'browser-online-legion-kraken.cjs'),'utf8');
+s=s.replaceAll("['legion','kraken']","['toad','mimic']");
+const a="await host.waitForFunction(()=>duelSnapshot().legacyWorld.entities.some(e=>e.type==='legion'&&e.fighter&&e.age>.3));",b="await guest.keyboard.press('*');await guest.locator('#admin-pause').click();await host.waitForFunction(()=>duelSnapshot().room.paused);await watcher.waitForFunction";
+const start=s.indexOf(a),end=s.indexOf(b,start);if(start<0||end<0)throw Error('Fixture markers');s=s.slice(0,start)+"await host.waitForFunction(()=>duelSnapshot().legacyWorld.entities.some(e=>e.type==='toad'&&e.age>.3)&&duelSnapshot().legacyWorld.entities.some(e=>e.type==='mimic'&&e.age>.3));"+s.slice(end);
+s=s.replace("A(summons[0].entities.some(e=>e.type==='krakenArm'));",'').replace('LEGION ROLES AND COMMANDED KRAKEN SYNC TO GUEST/SPECTATOR','TOAD/MIMIC FOLLOW STATE SYNC TO GUEST/SPECTATOR').replace('v8-online-legion-kraken.png','v8-online-grab-summons.png');fs.writeFileSync(path.join(__dirname,'browser-online-grab-summons.cjs'),s);

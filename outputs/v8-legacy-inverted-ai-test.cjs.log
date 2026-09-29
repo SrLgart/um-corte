@@ -1,0 +1,17 @@
+PASS navigation reflects feet, velocity and surfaces without mutating world or aim
+PASS ordinary gravity keeps the existing navigation decision
+PASS route caches cannot confuse opposite gravities, moving or collapsed supports
+PASS inverted jump and double jump push down, restore on ceiling and preserve world dash
+PASS bot waits for observations, then walks on a ceiling without false edge panic
+PASS variable jump, second jump and fast fall decisions follow personal gravity
+PASS pursuit dash retains world-space vertical input while inverted
+PASS gravity cloak stays on with a ceiling, and turns off without one
+PASS dropped weapon can request normal gravity without stealing or attacking
+PASS bot completes the ceiling-to-floor weapon recovery without flipping back mid-fall
+PASS real movement navigates successive inverted platforms with no teleport or rescue
+PASS inverted AI state and decisions resume identically from a snapshot
+PASS drop-through uses the same one-way platform rule upside down
+PASS moving ceiling carries actor and navigation observes the current surface
+PASS wall jump under inverted gravity pushes away from the wall and ceiling
+PASS full AI pursues a moving rival on a long ceiling for twenty seconds
+16 V8 inverted navigation groups passed

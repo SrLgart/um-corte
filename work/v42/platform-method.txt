@@ -1,0 +1,6 @@
+ updatePlatforms(time,carry=true){for(let i=0;i<this.map.platforms.length;i++){const p=this.map.platforms[i];let x=p.baseX,y=p.baseY;if(p.motion){const m=p.motion,t=time*this.rules.platformSpeed;if(m.route){const span=m.period,wait=m.pause||0,cycle=span*2+wait*2,z=t%cycle,a=z<wait?0:z<wait+span?(z-wait)/span:z<wait*2+span?1:1-(z-wait*2-span)/span;x+=m.x*a;y+=m.y*a;}else y+=Math.sin(t*Math.PI*2/m.period)*m.y;}p.dx=carry?x-p.x:0;p.dy=carry?y-p.y:0;p.x=x;p.y=y;
+  if(!carry||!p.fragile||this.phase!=='playing')continue;const occupied=this.fighters.some(f=>!f.dead&&f.grounded&&f.platform===i);
+  if(p.stage==='solid'&&occupied){p.stage='cracking';p.crumbleAt=time;this.emit('crack',{x:p.x+p.w/2,y:p.y});}
+  if(p.stage==='cracking'&&time-p.crumbleAt>=p.fragile.delay*this.rules.collapseSpeed){p.stage='gone';p.goneAt=time;this.routeCache.clear();for(const f of this.fighters)if(f.platform===i){f.grounded=false;f.platform=-1;f.coyote=.06;}this.emit('collapse',{x:p.x+p.w/2,y:p.y});}
+  if(p.stage==='gone'&&p.fragile.respawn>0&&time-p.goneAt>=p.fragile.respawn*this.rules.respawnSpeed&&!this.fighters.some(f=>!f.dead&&f.x+20>p.x&&f.x-20<p.x+p.w&&f.y>=p.y-12&&f.y-body(f).top<=p.y+20)){p.stage='solid';p.crumbleAt=p.goneAt=null;this.routeCache.clear();}
+ }}

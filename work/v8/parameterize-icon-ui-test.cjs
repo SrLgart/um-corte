@@ -1,0 +1,1 @@
+const fs=require('node:fs'),p='work/v8/browser-icon-ui.cjs';let s=fs.readFileSync(p,'utf8').replace("/um-corte-v8.html');","/'+(process.argv.includes('--admin')?'um-corte-v8-admin.html':'um-corte-v8.html'));");s=s.replace("HUD 6 icons');","HUD 6 icons, responsive draft selection confirmed',process.argv.includes('--admin')?'ADMIN':'normal');");fs.writeFileSync(p,s);

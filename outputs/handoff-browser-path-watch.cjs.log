@@ -1,0 +1,11 @@
+HOST DRAFT ROOM U5TUR5
+WATCH DRAFT
+TOGGLE INVENTORY
+WATCH LEFT
+LATE JOINED
+AFTER CLOSE {
+  menu: false,
+  note: 'ESPECTADORES · U5TUR5 · 2 / 7',
+  peers: [ [ [Object] ] ]
+} []
+PASS real RTC Path: late draft spectator, read-only build, pause, save isolation, rejoin, disconnect

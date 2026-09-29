@@ -1,0 +1,10 @@
+PASS Eye slows hostile fighters and requires a real response
+PASS Eye rejects a parry facing away and a dash without actual escape
+PASS Eye accepts matching guard or movement outside the captured slash
+PASS Eye cannot turn an unparryable ability into a parryable strike
+PASS Eye pending geometry and reaction outcome survive snapshot/load
+PASS survival order is Eye, Crystal, Berserker, then Ring without refund
+PASS Berserker debt cannot be dodged using mist or a late barrier
+PASS Berserker survives on a real group elimination, not merely a blocked hit
+PASS one kill creates only one servant even when lethal and kill event both fire
+9 V8 survival groups passed

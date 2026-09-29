@@ -1,0 +1,9 @@
+PASS boxer has shortest reach and modest speed advantage
+PASS parry unlocks two seconds of held alternating punches with no recovery
+PASS missed boxer parry locks dash and recharge waits
+PASS every skin keeps identical attack and body geometry
+PASS custom maps validate and reject unsafe / malformed input
+PASS moving platforms travel A-B with pauses and carry standing players
+PASS fragile platforms collapse, do not restore through a player, reset per round
+PASS custom map moving / collapsing snapshots replay deterministically
+8 V4.2 feature groups passed

@@ -1,0 +1,13 @@
+PASS Legion has physical melee and two non-contact support roles
+PASS Melee telegraphs a short independent sword cut and can be parried
+PASS Archer locks its firing direction during warning and uses a real projectile
+PASS Archer refuses to shoot through a wall and harmless body touch cannot kill
+PASS Guardian intercepts a frontal projectile once, then visibly recharges
+PASS An unready guardian is defeated in one clean projectile hit
+PASS Guardian cannot block from its back or an unparryable projectile
+PASS Guardian blocks a blade crossing its shield before the owner is hit
+PASS Guardian does not provide an invisible remote shield
+PASS Fallen members stay dead when another summon is added; next duel restores them
+PASS Falling also records defeat; saved Legion does not resurrect on spawn refresh
+PASS Legion states, observation delay and cooldowns survive snapshots/time stop
+12 V8 Legion groups passed

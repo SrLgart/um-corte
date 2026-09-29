@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "transport": "Real PeerJS/WebRTC, two isolated Chrome contexts on same PC",
+  "checks": [
+    "identical chaos across low/high settings",
+    "guest ADMIN changes base rules while preserving Ultra stack",
+    "round progression and metrics synchronized",
+    "airborne kill stored as highlight",
+    "optional replay keeps room connected",
+    "rematch clears Ultra, keeps session wins and highlight"
+  ],
+  "errors": []
+}

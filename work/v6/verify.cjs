@@ -1,0 +1,4 @@
+const cp=require('child_process'),fs=require('fs'),vm=require('vm');const reports=[];
+for(const name of['test-core.cjs','features-test.cjs','release-test.cjs','v5-test.cjs','v6-test.cjs']){const r=cp.spawnSync(process.execPath,[__dirname+'/'+name],{encoding:'utf8'});if(r.status!==0){console.error(r.stdout,r.stderr);process.exit(1)}reports.push({test:name,summary:r.stdout.trim().split('\n').at(-1),passed:true});}
+for(const suffix of['','-admin']){const html=fs.readFileSync(__dirname+'/../../outputs/um-corte-v6'+suffix+'.html','utf8');for(const [,script]of html.matchAll(/<script>([\s\S]*?)<\/script>/g))new vm.Script(script);if(/\/\* (APP|ENGINE|PRESENTATION|MENU_FX|EDITOR) \*\//.test(html))throw Error('Unbuilt marker');}
+fs.writeFileSync(__dirname+'/verification.json',JSON.stringify({passed:true,reports,bundles:'Normal and ADMIN parsed successfully'},null,2));for(const r of reports)console.log(r.summary);console.log('PASS standalone HTML scripts');

@@ -1,0 +1,31 @@
+ resetSpecial(f){f.specialCharge=0;f.ultMode='';f.ultTime=0;f.parryLock=0;f.breakAttackId=0;f.dagger=null;f.ultSide=f.facing;}
+ special(id){const f=this.fighters[id];if(!this.rules.specials||!this.canAct(f)||f.specialCharge+1e-6<this.rules.specialCooldown||f.ultMode||f.parryLock>0)return false;f.specialCharge=0;f.ultSide=f.facing;f.attackAim=f.aim;f.attackHit=false;
+  if(f.kind==='knight'){f.ultMode='shield';f.ultTime=10;}
+  if(f.kind==='reaper'){f.ultMode='reaperBoost';f.ultTime=10;}
+  if(f.kind==='swordsman')f.ultMode='edge';
+  if(f.kind==='lancer'){f.ultMode='charge';f.attackAim=f.ultSide>0?0:Math.PI;this.setState(f,'ultWindup',.3);}
+  if(f.kind==='assassin'){f.ultMode='throw';this.setState(f,'throwWindup',.18);}
+  this.emit('special',{id,kind:f.kind,x:f.x,y:f.y-body(f).center});return true;
+ }
+ endEdge(f){if(f.ultMode==='edgeStrike'){f.ultMode='';f.parryLock=10;f.breakAttackId=0;this.emit('specialEnd',{id:f.id});}}
+ stopCharge(f){if(f.state!=='ultCharge')return;f.ultMode='';f.vx=0;this.setState(f,'ultRecovery',.4);this.emit('chargeStop',{id:f.id,x:f.x,y:f.y-body(f).center});}
+ absorb(f,a){if(f.ultMode!=='shield')return false;f.ultMode='';f.ultTime=0;f.parryLock=10;if(a)a.attackHit=true;this.hitstop=.07;this.emit('shieldBreak',{id:f.id,x:f.x,y:f.y-body(f).center});return true;}
+ lethal(a,d,reason){if(d.dead||this.absorb(d,a))return false;d.dead=true;d.deathTime=0;this.setState(d,'dead');this.finish(a.id,reason,{x:d.x,y:d.y-body(d).center});return true;}
+ tickSpecial(f,dt){if(f.dead)return;f.parryLock=Math.max(0,(f.parryLock||0)-dt);if(f.ultTime>0){f.ultTime=Math.max(0,f.ultTime-dt);if(!f.ultTime){if(f.ultMode==='shield'){f.ultMode='';f.parryLock=10;}else if(f.ultMode==='reaperBoost'){f.ultMode='reaperWeak';f.ultTime=10;}else if(f.ultMode==='reaperWeak')f.ultMode='';this.emit('specialEnd',{id:f.id});}}
+  if(this.rules.specials&&!f.ultMode&&f.parryLock<=0)f.specialCharge=Math.min(this.rules.specialCooldown,(f.specialCharge||0)+dt);
+ }
+ throwDagger(f){const a=f.attackAim;f.ultMode='unarmed';f.dagger={x:f.x+Math.cos(a)*34,y:f.y-body(f).center+Math.sin(a)*34,vx:Math.cos(a)*1350,vy:Math.sin(a)*1350,mode:'flying',time:0,safe:{x:f.x,y:f.y-5},pickup:.25};this.setState(f,'ultRecovery',.24);this.emit('daggerThrow',{id:f.id,x:f.dagger.x,y:f.dagger.y});}
+ updateDaggers(dt){for(const owner of this.fighters){const p=owner.dagger;if(!p||owner.dead)continue;const d=this.fighters[1-owner.id];p.time+=dt;p.pickup=Math.max(0,p.pickup-dt);if(p.mode==='lost'){if(p.time>=2){Object.assign(p,{...p.safe,vx:0,vy:0,mode:'dropped',time:0,pickup:.2});}continue;}
+   const from={x:p.x,y:p.y};if(p.mode==='dropped')p.vy+=1980*this.rules.gravity*dt;let to={x:p.x+p.vx*dt,y:p.y+p.vy*dt};const wall=Math.min(1,...this.map.walls.map(w=>wallFraction(from,to,w)));if(wall<1){to={x:lerp(from.x,to.x,wall),y:lerp(from.y,to.y,wall)};p.vx=0;p.vy=40;p.mode='dropped';}
+   if(p.mode==='flying'&&!d.dead){const db=body(d),guard=blade(d).guard,hit=segmentDistance(from,to,{x:d.x,y:d.y-db.top},{x:d.x,y:d.y-db.bottom})<=db.radius+5,guardTouch=d.state==='parry'&&segmentDistance(from,to,guard.a,guard.b)<=8,angle=Math.atan2(from.y-(d.y-db.center),from.x-d.x),valid=d.state==='parry'&&d.guard===guardSector(angle,false)&&(d.guard!=='normal'||Math.sign(from.x-d.x)===d.guardFacing);
+    if((hit||guardTouch)&&valid){p.mode='dropped';to={x:d.x+d.guardFacing*22,y:d.y-db.center};p.vx=d.guardFacing*65;p.vy=-110;p.pickup=.2;this.setState(d,'idle');d.parryCooldown=Math.min(d.parryCooldown,.18);this.hitstop=.07;this.emit('parry',{id:d.id,x:to.x,y:to.y,projectile:true});}
+    else if(hit){if(this.absorb(d)){p.mode='dropped';p.vx=0;p.vy=30;}else{this.lethal(owner,d,'A adaga encontrou uma abertura.');}}
+   }
+   p.x=to.x;p.y=to.y;const supports=this.map.platforms.filter(q=>p.x>=q.x&&p.x<=q.x+q.w&&q.y>=p.y-6).sort((a,b)=>a.y-b.y);if(supports.length)p.safe={x:p.x,y:supports[0].y-5};
+   if(p.mode==='dropped'&&p.vy>=0){const q=this.map.platforms.find(q=>p.x>=q.x&&p.x<=q.x+q.w&&from.y<=q.y+5&&p.y>=q.y-5);if(q){p.y=q.y-5;p.vy=0;p.vx=0;p.safe={x:p.x,y:p.y};}}
+   if(p.x<0||p.x>this.map.width||p.y>this.map.deathY||p.mode==='flying'&&p.time>3){p.mode='lost';p.time=0;}
+   if(p.mode==='dropped'&&p.pickup<=0&&Math.abs(owner.x-p.x)<29&&p.y>=owner.y-body(owner).top-15&&p.y<=owner.y+12){owner.dagger=null;owner.ultMode='';this.emit('daggerPickup',{id:owner.id,x:owner.x,y:owner.y});}
+  }}
+ adminApply(change){const score=[...this.score],round=this.round;if(change.action==='refill'){for(const f of this.fighters){f.dashCharges=this.rules.dashCount;f.dashCooldown=0;f.parryCooldown=0;f.airDashes=0;this.resetSpecial(f);f.specialCharge=this.rules.specialCooldown;}return;}
+  const options={mode:this.mode,ai:this.aiEnabled,difficulty:this.difficulty,characters:change.characters||this.characters,colors:change.colors||this.colors,mapId:change.mapId||this.mapId,rules:change.rules||this.rules,experimental:true};this.start(options);this.score=score;this.round=round;this.emit('adminReset');
+ }

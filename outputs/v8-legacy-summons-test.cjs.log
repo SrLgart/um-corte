@@ -1,0 +1,9 @@
+PASS support companions never turn into lethal attackers
+PASS terrestrial companions settle on the floor instead of hovering after their owner
+PASS ground pursuit cannot walk through a tall wall
+PASS Falcon telegraphs its dive, survives parry and must return before another command
+PASS a nonlethal hound bite returns home and does not repeatedly shove
+PASS monkey transports a dropped enemy weapon without changing inventory ownership
+PASS striking a monkey releases the carried weapon physically
+PASS physical summon state resumes deterministically from snapshots
+8 V8 summon groups passed

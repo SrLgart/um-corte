@@ -1,0 +1,4 @@
+Spectator payload: 29% of previous fixture size
+PASS spectator frame contains one scene, while real saves retain checkpoint and rewind
+PASS late draft/intro/inventory views preserve metadata and immutable cards
+2 V8 spectator payload groups passed

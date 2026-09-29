@@ -1,0 +1,13 @@
+PASS same-frame dash and attack creates a committed linear slash instead of the normal arc
+PASS late dash attacks and ranged weapons preserve their ordinary moves
+PASS Iaijutsu advances over time, crosses bodies, and never tunnels through a wall
+PASS Iaijutsu requires a completed ground dash and cannot be reused for free
+PASS parry stops the moving technique and its movement does not survive stun
+PASS tap of a charge weapon supports lunge; a full hold keeps its charged attack
+PASS wall strike works before a charge weapon consumes the attack input
+PASS Mikiri checks actual tip contact, aim, walls, timing and committed direction
+PASS Mikiri can intercept a thrust that becomes active just after the dash input
+PASS Mikiri accepts a real lunge from a sword but not a wide sword arc
+PASS Disarm excludes bare fists, knuckles, projectiles and original-class specials
+PASS Echo captures the narrow technique geometry; snapshots reproduce movement and delayed cut
+12 V8 precision strike groups passed

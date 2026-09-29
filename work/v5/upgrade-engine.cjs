@@ -1,0 +1,13 @@
+const fs=require('fs'),p=__dirname+'/engine.js';let s=fs.readFileSync(p,'utf8');
+const replace=(a,b)=>{if(!s.includes(a))throw Error('Missing '+a.slice(0,100));s=s.replace(a,b);};
+replace("['persistSpecial',false]","['persistSpecial',false],['chaos','off']");
+replace("o.persistSpecial=r.persistSpecial===true;return o;","o.persistSpecial=r.persistSpecial===true;o.chaos=['normal','ultra'].includes(r.chaos)?r.chaos:'off';return o;");
+replace("d.dead=true;d.deathTime=0;this.setState(d,'dead');this.finish(a.id,reason,{x:d.x,y:d.y-body(d).center});","const impact=this.deathInfo(a,d);d.dead=true;d.deathTime=0;this.setState(d,'dead');this.finish(a.id,reason,{x:d.x,y:d.y-body(d).center,...impact});");
+replace("if(!body&&!guardTouch)continue;","if(!body&&!guardTouch){const db=DuelBody(d);if(polygonSegment(slash(a,this.map.walls).points,{x:d.x,y:d.y-db.top},{x:d.x,y:d.y-db.bottom},db.radius+9))a.nearCandidate={id:d.id,x:d.x,y:d.y-db.center};continue;}");
+replace("for(const[,d]of hits){d.dead=true;","const impact=this.deathInfo(hits[0][0],hits[0][1]);for(const[,d]of hits){if(d!==hits[0][1])this.deathInfo(hits[1][0],d);d.dead=true;");
+replace("{x:d.x,y:d.y-C.bodyCenter,trade});}","{x:d.x,y:d.y-C.bodyCenter,trade,...impact,cause:trade?'TROCA':impact.cause});}");
+replace("f.dead=true;f.deathTime=0;this.setState(f,'dead');if(!this.fallTimer)","this.deathInfo(null,f);this.metrics?.players[f.id]&&(this.metrics.players[f.id].falls++);f.dead=true;f.deathTime=0;this.setState(f,'dead');if(!this.fallTimer)");
+replace("{x:loser.x,y:710});","{x:loser.x,y:Math.min(loser.y,this.map.height),cause:winner<0?'TROCA':'QUEDA'});");
+replace("version:43","version:50");replace("s.version!==43","s.version!==50");
+replace("const api={","const DuelBody=body;\n"+fs.readFileSync(__dirname+'/v5-engine.inc','utf8')+"\nconst api={CHAOS,MODES,metricPlayer,");
+fs.writeFileSync(p,s);

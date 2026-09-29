@@ -1,0 +1,19 @@
+PASS D20 modifies this match, survives rounds and expires at next match
+PASS new round clears pending attacks, grapples and fatal timers, not consumptions
+PASS Philosopher transforms a random eligible item temporarily and remains consumed
+PASS RNG snapshots preserve subsequent transformations including RNG state zero
+PASS temporary active transformation transfers its key and restores the original next match
+PASS removing a temporary transformation removes its inventory source and controls
+PASS online snapshots retain local keys for transformed powers without sending physical bindings
+PASS Ring rewinds duel and summons but never returns consumed match/run uses
+PASS Ring fall rescue works after save/load and never grows nested snapshots
+PASS network snapshots also strip physical bindings from the rewind anchor
+PASS online legacy edits cannot inject administrative actions or privileges
+PASS Kamehameha charge 1.9 seconds respects parry threshold
+PASS Kamehameha charge 2 seconds respects parry threshold
+PASS Kamehameha charge 2.2 seconds respects parry threshold
+PASS projectile cutting intercepts at the visible slash before touching the body
+PASS Mikiri requires advancing into a thrust, not retreating
+PASS Caminho resume preserves ADMIN retry build from encounter entry
+PASS all fifty encounter transitions, reward gates, saves and final victory
+18 V8 interaction groups passed

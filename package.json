@@ -1,0 +1,12 @@
+{
+  "name": "um-corte-v8",
+  "version": "8.0.0",
+  "private": true,
+  "description": "Ferramentas locais de build e documentação; sem dependências de produção.",
+  "scripts": {
+    "build": "node tools/build.cjs",
+    "test": "node work/v8/test-all.cjs",
+    "verify:frozen": "node tools/verify-frozen.cjs",
+    "serve": "node work/v8/serve.cjs"
+  }
+}

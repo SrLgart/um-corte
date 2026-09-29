@@ -1,0 +1,1 @@
+const fs=require('fs'),path=require('path'),file=path.join(__dirname,'app.js');let s=fs.readFileSync(file,'utf8');const anchor="p.color=game.colors[i];});}}";if(!s.includes(anchor))throw Error('Missing admin completion');s=s.replace(anchor,"p.color=game.colors[i];});}consumeEvents();}");fs.writeFileSync(file,s);

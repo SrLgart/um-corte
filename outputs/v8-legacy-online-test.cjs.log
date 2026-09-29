@@ -1,0 +1,9 @@
+PASS online private offers, equal base rarity and reveal only after both choices
+PASS timeout selects each latest highlighted card, never freezes a match
+PASS spectator cannot pick or mutate builds; forged choices and stale packets ignored
+PASS clover and draft modifiers benefit their owner only
+PASS coin reroll is authoritative and once; owner bindings never transmitted
+PASS admin build edits synchronize even when admin is the joining player
+PASS path save totals count each encounter once and Crown grants an explicit extra choice
+PASS online Orb previews preserve mark until owner accepts and reject a second use
+8 V8 online/save groups passed

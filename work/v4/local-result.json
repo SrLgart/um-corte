@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "errors": [],
+  "controller": "simulated standard Gamepad API",
+  "checks": [
+    "independent inputs",
+    "jump",
+    "low air guard",
+    "colors",
+    "custom rules",
+    "disconnect pause",
+    "reconnect",
+    "remap conflict",
+    "persistence",
+    "defaults",
+    "responsive menu"
+  ]
+}

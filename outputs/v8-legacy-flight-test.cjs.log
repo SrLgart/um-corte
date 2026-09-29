@@ -1,0 +1,11 @@
+PASS Icarus hover integrates once; descent has exact controlled speed
+PASS Icarus and glide obey walls through shared physics, not after-move teleport
+PASS Rocket fuel clamps to zero, falls when exhausted and restores only grounded
+PASS Glide stays usable after other equipment exhausts fuel and closes on release
+PASS Dash direction wins throughout dash, not just the activation frame
+PASS Double jump remains immediate and fast fall overrides glide/rockets
+PASS Flight cannot cancel stun and snapshots preserve energy/control
+PASS Kneepads extends slide state and Iaijutsu anchor by the actual extra duration
+PASS Icarus world up stays up under inverted gravity and energy is exposed in HUD status
+PASS Mirror Cloak stores a stationary harmless pose, isolated from later actor changes
+10 V8 flight integration groups passed

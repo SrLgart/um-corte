@@ -1,0 +1,8 @@
+PASS charge-weapon quick tap uses press aim and executes its ordinary attack
+PASS Yamato marks the actual distant region and releases a stationary spatial cut
+PASS holding Ruyi extends once without release; recoil requires actual floor contact
+PASS Ruyi extension stops at walls; charge thresholds and recovery follow speed rules
+PASS interrupted charges cannot fire while stunned or with a removed weapon
+PASS charge preparation is available during dash without changing its trajectory
+PASS gust continuously pushes enemies and light objects but cannot reach through walls
+7 V8 charged weapons/wind groups passed

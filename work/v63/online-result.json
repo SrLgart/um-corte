@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "environment": "Real PeerJS/WebRTC between isolated Chrome contexts on one PC",
+  "results": [
+    {
+      "editions": [
+        false,
+        false
+      ],
+      "confirmation": "off",
+      "passed": true
+    },
+    {
+      "editions": [
+        true,
+        false
+      ],
+      "confirmation": "early",
+      "elapsed": 223,
+      "passed": true
+    },
+    {
+      "editions": [
+        false,
+        true
+      ],
+      "confirmation": "one",
+      "elapsed": 10264,
+      "passed": true
+    },
+    {
+      "editions": [
+        true,
+        true
+      ],
+      "confirmation": "none",
+      "elapsed": 10263,
+      "passed": true
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,17 @@
+const {chromium}=require('C:/Users/Luiz/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright'),A=require('node:assert/strict');
+(async()=>{const browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});try{
+ const page=await browser.newPage({viewport:{width:1440,height:1080}}),errors=[];page.on('pageerror',e=>errors.push(e.stack));await page.goto('http://127.0.0.1:4189/um-corte-v8.html');
+ const result=await page.evaluate(()=>{
+  const D=DuelCore,L=DuelLegacy,panel=document.createElement('div');panel.id='precision-check';panel.style.cssText='position:fixed;inset:0;z-index:99999;background:#121e2a;display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px;color:#f7edda;overflow:auto';document.body.append(panel);const checked=[];
+  for(const [id,label]of [['lunge','INVESTIDA · CORTE LINEAR'],['zenith','ZENITH · TRAJETÓRIAS ANUNCIADAS'],['kamehameha','KAMEHAMEHA · CARGA COMPLETA'],['amaterasu','AMATERASU · SUPERFÍCIE CONECTADA']]){
+   const card=document.createElement('section'),title=document.createElement('h3'),canvas=document.createElement('canvas');title.textContent=label;title.style.cssText='font:13px monospace;letter-spacing:2px;margin:6px';canvas.style.cssText='width:100%;height:440px;display:block';card.append(title,canvas);panel.append(card);
+   const g=new D.Game({mode:'local',ai:false,mapId:'dojo',rules:{specials:false},characters:['knight','lancer']});g.start({legacies:[[id],[]]});g.phase='playing';g.map.walls=[];g.map.platforms=[{x:0,y:700,baseX:0,baseY:700,w:g.map.width,stage:'solid',solid:true}];g.fighters.forEach((f,i)=>Object.assign(f,{x:760+i*460,y:700,state:'idle',grounded:true,aim:i?Math.PI:0}));const f=g.fighters[0];
+   if(id==='lunge'){g.dash(0,1);g.attack(0);for(let i=0;i<240&&f.state==='startup';i++)g.step(1/240,[D.neutral(),D.neutral()]);for(let i=0;i<6;i++)g.step(1/240,[D.neutral(),D.neutral()]);if(L.attackTechnique(f)?.type!=='lunge')throw Error('Missing lunge');}
+   else if(id==='zenith'){g.attack(0);for(let i=0;i<240&&f.state==='startup';i++)g.step(1/240,[D.neutral(),D.neutral()]);}
+   else if(id==='kamehameha'){L.activate(g,f,id,{aim:0});L.command(g,f,{...D.neutral(),legadoHeld:[id]},2.1);}
+   else{L.activate(g,f,id,{aim:Math.PI/4});for(let i=0;i<160;i++)L.worldStep(g,.01);}
+   const r=new DuelRenderer(canvas),effects={wallJumps:[],lights:[],signatures:[],particles:[],cuts:[],shake:0,flash:0,impact:0};r.snapCamera=true;const before=JSON.stringify(g.snapshot());for(let i=0;i<30;i++)r.render(g,effects,1+i/60);if(before!==JSON.stringify(g.snapshot()))throw Error('Renderer changed '+id);checked.push({id,entities:g.legacyWorld.entities.map(e=>e.type),channel:!!f.legacy.channel});
+  }return checked;
+ });
+ A(result.find(x=>x.id==='zenith').entities.includes('spectralblade'));A(result.find(x=>x.id==='kamehameha').channel);A.equal(result.find(x=>x.id==='amaterasu').entities.filter(x=>x==='blackfire').length,3);await page.screenshot({path:'outputs/v8-precision-legacies.png'});await page.setViewportSize({width:800,height:1100});await page.locator('#precision-check').evaluate(e=>e.style.gridTemplateColumns='1fr');await page.screenshot({path:'outputs/v8-precision-legacies-narrow.png'});A.deepEqual(errors,[]);console.log('PASS browser: lunge, Zenith, Kamehameha and Amaterasu render without state mutation; wide/narrow');
+}finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

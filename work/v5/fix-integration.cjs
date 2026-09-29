@@ -1,0 +1,3 @@
+const fs=require('fs');for(const f of['engine.js','v5-engine.inc']){const p=__dirname+'/'+f;let s=fs.readFileSync(p,'utf8');s=s.replace('this.rollChaos();this.rebuildRoundRules();original.resetFighters.call(this,false);','this.rollChaos();if(this.baseRules.chaos===\'off\')this.rules={...this.baseRules};else this.rebuildRoundRules();original.resetFighters.call(this,false);');fs.writeFileSync(p,s);}
+// Keep the old regression checks against the new public entry points.
+for(const f of['ui-check.cjs','online-check.cjs']){let s=fs.readFileSync(__dirname+'/../v43/'+f,'utf8').replaceAll('v43','v5').replaceAll('V4.3','V5').replaceAll("'4.3'","'5'");fs.writeFileSync(__dirname+'/'+f,s);}

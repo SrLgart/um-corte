@@ -1,0 +1,17 @@
+PASS Slime attaches on body contact without killing, pushing or stunning
+PASS Slime follows slowly on the ground and cannot attach across a wall or from afar
+PASS Slime slows only ordinary movement; attack, jump and dash remain available
+PASS Attached Slime follows target elevation/teleport and expires without instant reattachment
+PASS Slime contact can be parried and does not stun its owner
+PASS Killing the Slime removes slowdown after its short refresh expires
+PASS Multiple Slimes refresh one bounded penalty, never stack to paralysis
+PASS Medusa gives a 600 ms warning before the electric area becomes lethal
+PASS Medusa body is not a lethal contact hit while charging
+PASS Electric area follows its slow source, with no swept hit along a teleport
+PASS A wall blocks electric damage, and escaping the visible radius is safe
+PASS Destroying or removing Medusa cancels its pending/active field
+PASS Medusa cycles without accumulating fields; owner time stop freezes charge and motion
+PASS Lantern periodically marks one target without affecting combat stats
+PASS Lantern respects detection distance and does not switch its locked mark mid-cycle
+PASS Control summon state and slowdown continue identically after snapshots
+16 V8 control summon groups passed

@@ -1,0 +1,5 @@
+PASS training reset keeps edited items, equipped weapon and bindings at the saved position
+PASS interactive replay forwards an active power once and leaves source clip immutable
+PASS interactive replay carries held channels until release and preserves pending input over hitstop
+PASS replay retry restores used powers and weapon geometry from its own starting snapshot
+4 V8 laboratory/replay groups passed

@@ -1,0 +1,16 @@
+PASS mixed build 0 32.65833333333333s matchEnd [ 1, 7 ] resumed 199
+PASS mixed build 1 28.058333333333334s matchEnd [ 1, 7 ] resumed 180
+PASS mixed build 2 27.041666666666668s matchEnd [ 1, 7 ] resumed 150
+PASS mixed build 3 39.833333333333336s matchEnd [ 7, 1 ] resumed 240
+PASS mixed build 4 45s playing [ 6, 5 ] resumed 270
+PASS mixed build 5 21.066666666666666s matchEnd [ 2, 7 ] resumed 120
+PASS mixed build 6 23.183333333333334s matchEnd [ 3, 7 ] resumed 150
+PASS mixed build 7 45s roundEnd [ 5, 3 ] resumed 270
+PASS mixed build 8 22.783333333333335s matchEnd [ 0, 7 ] resumed 150
+PASS mixed build 9 23.258333333333333s matchEnd [ 1, 7 ] resumed 150
+PASS mixed build 10 24.966666666666665s matchEnd [ 1, 7 ] resumed 150
+PASS mixed build 11 45s playing [ 6, 4 ] resumed 270
+PASS mixed build 12 25.433333333333334s matchEnd [ 1, 3 ] resumed 150
+PASS mixed build 13 17.75s matchEnd [ 0, 3 ] resumed 120
+PASS mixed build 14 33.31666666666667s matchEnd [ 2, 3 ] resumed 210
+PASS 15 varied-build encounters and deterministic resumptions

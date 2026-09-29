@@ -1,0 +1,20 @@
+const fs=require('fs'),path=require('path'),file=path.join(__dirname,'actors.js');
+let src=fs.readFileSync(file,'utf8');
+function replace(a,b){if(!src.includes(a))throw Error('Missing anchor '+a.slice(0,90));src=src.replace(a,b);}
+replace('st.kind!==f.kind||','st.kind!==f.kind||st.skin!==f.skin||');
+replace('st={kind:f.kind,time:t','st={kind:f.kind,skin:f.skin,time:t');
+replace('portrait,back=-f.facing){','portrait,back=-f.facing,trim=gold){');
+replace("if(f.kind==='reaper'||f.kind==='lancer'){const a=left[n-1]", "if(trim&&(f.kind==='reaper'||f.kind==='lancer')){const a=left[n-1]");
+replace('},{x:b[0],y:b[1]},gold,3);','},{x:b[0],y:b[1]},trim,3);');
+replace("shade=tint(color,.58),side=f.facing||1;", "shade=tint(color,.58),side=f.facing||1,custom=DuelSkins.active(f);");
+const start=src.indexOf("  if(f.skin==='kite'){"),end=src.indexOf("else if(f.kind==='boxer'){",start);
+if(start<0||end<0)throw Error('cloth anchors');
+src=src.slice(0,start)+"  if(DuelSkins.cloth(r,f,{hip,shoulder,head,side,st,t,portrait})){}"+src.slice(end);
+replace('knee=ik(root,feet[i],26,28,-side);this.limb','knee=ik(root,feet[i],26,28,-side);if(DuelSkins.leg(r,f,{root,knee,foot:feet[i],side,i}))continue;this.limb');
+replace('j=ik(root,target,25,25,(front?1:-1)*side);this.limb','j=ik(root,target,25,25,(front?1:-1)*side);if(DuelSkins.arm(r,f,{root,j,target,front,side,t}))return;this.limb');
+replace("arm(second,false);if(f.kind==='boxer'&&f.punch)","arm(second,false);if(f.kind==='boxer'&&f.punch&&!custom)");
+replace('  r.path([[shoulder.x-18,shoulder.y]', '  if(!custom){r.path([[shoulder.x-18,shoulder.y]');
+replace('  DuelSkins.dress(r,f,{hip,shoulder,head,side,st,t,portrait});','  }else r.line({x:shoulder.x,y:shoulder.y+3},{x:head.x,y:head.y+8},DuelSkins.neck(f),9);\n  DuelSkins.dress(r,f,{hip,shoulder,head,side,st,t,portrait});');
+replace("  r.line({x:shoulder.x,y:shoulder.y+3},{x:head.x,y:head.y+8},f.kind==='reaper'?ink:skinDark,9);", "  if(!custom)r.line({x:shoulder.x,y:shoulder.y+3},{x:head.x,y:head.y+8},f.kind==='reaper'?ink:skinDark,9);");
+replace("  if(f.kind==='lancer'){r.line({x:head.x", "  if(f.kind==='lancer'&&!custom){r.line({x:head.x");
+fs.writeFileSync(file,src);

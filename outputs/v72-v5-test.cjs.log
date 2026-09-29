@@ -1,0 +1,16 @@
+PASS chaos defaults off; preset preserves chaos and base rules
+PASS normal chaos seeded, exactly one modifier, no repeat across 40 rounds
+PASS Ultra adds compatible unique modifiers on ties, stops without duplicates, rematch clears
+PASS intro freezes physics and charging, then runs after 3-2-1
+PASS special carry keeps percentage through changing cooldown and disabled rounds
+PASS fragile modifier does not alter safe spawn supports or source map
+PASS all chaos phases and admin changes survive snapshot replay
+PASS cause is sampled before death, stats count actual attacks and outcomes
+PASS near miss emits only for completed whiff and once per attack
+PASS highlights detect match point, airborne dash and trade without autoplay
+PASS session aggregates rematches once, resets for new opponent and ignores training
+PASS physical near miss sounds distinguish fatal reach, grazing miss and safe distance
+PASS match point appears after the round reset, and after the chaos countdown
+PASS highlight replay includes the fall without altering session metrics
+PASS shrinking a custom arena keeps spawn capsules outside walls and apart
+15 V5 groups passed

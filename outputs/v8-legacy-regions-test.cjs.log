@@ -1,0 +1,7 @@
+PASS Zenith warns three fixed distinct curves, does not home, and has bounded lifetime
+PASS Zenith blades stop at terrain and can be reflected out of their scripted path
+PASS Amaterasu spreads once to two neighboring surface patches, each with warning
+PASS black fire crosses connected platform edges, never empty gaps
+PASS surface flames follow moving supports and vanish if the support collapses
+PASS curves and spreading regions reproduce identically after snapshot restoration
+6 V8 spectral trajectories/surface fire groups passed

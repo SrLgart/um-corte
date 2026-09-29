@@ -1,0 +1,20 @@
+PASS Doppel replays changing real contours and positions after exactly its delay
+PASS Doppel preserves old reach, body/attack scale and punch; it clips against current walls
+PASS Doppel repeats jump/motion without normal body collision or recursive summons
+PASS Doppel does not reproduce projectiles, original specials or unarmed lost-weapon attacks
+PASS Doppel contact uses the recorded slash, not the owner or an invisible circle
+PASS Parrying a Doppel cut cancels that copied attack and does not stun its owner
+PASS Spectral materializes on a valid flank, locks aim there and cuts after warning
+PASS Spectral uses a real directional slash and can be escaped during telegraph
+PASS Spectral checks walls/platforms before materializing; hidden form cannot be destroyed
+PASS Skeleton uses slower sword startup and recovery, not lethal body touch
+PASS Skeleton parry and reconstruction clear old attacks without granting a score
+PASS Doppel active history is bounded and full trio resumes deterministically
+PASS Doppel slash clashes without killing either combatant or mutating the source attack
+PASS Spectral slash can be parried without stunning its owner
+PASS Delayed slash cannot pass through a wall added before playback
+PASS Older development-save Doppel buffers reset safely; stopped owner time does not record
+PASS Directional barrier checks the summon side, not its distant owner
+PASS Fatal presentation records the copied contour and angle instead of owner slash
+PASS Real movement/attack frames with all three summons continue identically after save
+19 V8 physical summon identity groups passed

@@ -1,0 +1,11 @@
+PASS V6.2 defaults and explicit special opt-out
+PASS all presets preserve arenas, points and every special setting
+PASS recovery changes independently of startup/active and preserves class differences
+PASS custom positive integer score wins at the selected threshold, ties do not score
+PASS preserve exact 70% for both survivor and defeated, no charge during round pause
+PASS disabled persistence resets even a ready special
+PASS used specials do not refund charge; temporary buffs and penalties end
+PASS round persistence survives snapshot and deterministic replay
+PASS admin can reduce point target below current score and end the match
+PASS lowering ADMIN target on a tie waits for a decisive point
+10 release groups passed

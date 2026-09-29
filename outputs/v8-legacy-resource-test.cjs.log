@@ -1,0 +1,13 @@
+PASS Mirror failed copy retains memory and use; success consumes exactly once
+PASS Mirror borrows a power without altering owned resources or transformed inventory
+PASS Mirror rejects recursive or unknown copies, survives rounds and clears on new match
+PASS Only nearby unused Mirrors memorize successful supported abilities
+PASS Swap blocked destination does not consume mark; retry teleports position only
+PASS Swap refuses moving platform through body and expired mark starts fresh
+PASS D20 extremes preserve boss floors and improve every card on 20
+PASS Marked card preserves actual boss guarantee and Magnet partner in every slot
+PASS Marked common waits rather than spoiling exceptional D20; naturally drawn mark is consumed
+PASS Chosen or now ineligible marked cards are safely cleared
+PASS Orb rejected preview consumes only Orb; accepted preview commits draft resources
+PASS Orb cannot reopen partial Contract draft; pending preview survives serialization
+12 V8 resource transaction groups passed

@@ -1,0 +1,66 @@
+[
+  {
+    "kind": "duelist",
+    "impossible": 5,
+    "master": 3,
+    "ties": 0,
+    "timeouts": 0,
+    "averageSeconds": 5.95
+  },
+  {
+    "kind": "staff",
+    "impossible": 1,
+    "master": 7,
+    "ties": 0,
+    "timeouts": 0,
+    "averageSeconds": 3.24
+  },
+  {
+    "kind": "boxer",
+    "impossible": 7,
+    "master": 1,
+    "ties": 0,
+    "timeouts": 0,
+    "averageSeconds": 5.87
+  },
+  {
+    "kind": "knight",
+    "impossible": 1,
+    "master": 6,
+    "ties": 1,
+    "timeouts": 0,
+    "averageSeconds": 2.44
+  },
+  {
+    "kind": "lancer",
+    "impossible": 5,
+    "master": 3,
+    "ties": 0,
+    "timeouts": 0,
+    "averageSeconds": 5.59
+  },
+  {
+    "kind": "assassin",
+    "impossible": 2,
+    "master": 6,
+    "ties": 0,
+    "timeouts": 0,
+    "averageSeconds": 2.64
+  },
+  {
+    "kind": "swordsman",
+    "impossible": 1,
+    "master": 7,
+    "ties": 0,
+    "timeouts": 0,
+    "averageSeconds": 2.67
+  },
+  {
+    "kind": "reaper",
+    "impossible": 1,
+    "master": 7,
+    "ties": 0,
+    "timeouts": 0,
+    "averageSeconds": 2.27
+  }
+]

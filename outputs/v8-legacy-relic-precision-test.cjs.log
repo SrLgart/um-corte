@@ -1,0 +1,9 @@
+PASS Shadow Dash crosses bodies only in its brief window and never solid walls
+PASS Stone Mask adds wall cling and stronger jumps without changing other actors
+PASS Incense remains armed while moving and consumes exactly one successful parry
+PASS War Bell refills dash without gifting jumps or flight fuel
+PASS Survivor Glass activates on a real near miss, not distance or an incoming fatal hit
+PASS Wolf Tooth needs a near miss during dash and buffs only the next complete attack
+PASS Iron Talisman reduces the real base kick and nonlethal power knockback once
+PASS stopped time cannot refill flight fuel or prepare idle-based relics
+8 V8 relic/clothing precision groups passed

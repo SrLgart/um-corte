@@ -1,0 +1,4466 @@
+# UM CORTE — V8
+# ESPECIFICAÇÃO DEFINITIVA DE IMPLEMENTAÇÃO
+
+Quero que você implemente a V8 do UM CORTE partindo da versão atual do projeto.
+
+LEIA E ENTENDA TODO O CÓDIGO ATUAL ANTES DE MODIFICAR QUALQUER COISA.
+
+Esta especificação é a fonte de verdade da V8.
+
+NÃO simplifique sistemas descritos aqui.
+NÃO substitua mecânicas por versões genéricas só para terminar mais rápido.
+NÃO remova recursos existentes.
+NÃO reformule a arquitetura final para múltiplos arquivos como mudança de produto.
+O entregável final do jogo deve continuar funcionando como um HTML autocontido, assim como as versões atuais.
+
+Você pode organizar internamente o código dentro do próprio HTML com objetos, registries, helpers e seções bem definidas. O importante é que o produto final continue simples de executar/distribuir.
+
+Produzir:
+
+- um-corte-v8.html
+- um-corte-v8-admin.html
+
+Atualizar também histórico/changelog/versionamento interno para V8.
+
+======================================================================
+1. PRINCÍPIOS DO UM CORTE
+======================================================================
+
+UM CORTE continua sendo um jogo em que:
+
+- um golpe limpo mata;
+- NÃO existe barra de HP convencional;
+- combate depende de posicionamento, spacing, leitura, parry, movimentação e timing;
+- poder não deve substituir habilidade;
+- Legados podem criar situações absurdas, mas ainda devem gerar interação;
+- ataques precisam continuar legíveis;
+- não transformar inimigos ou bosses em esponjas de dano;
+- não adicionar HP apenas para artificialmente aumentar dificuldade;
+- bosses também obedecem a filosofia de um golpe por duelo, salvo efeitos explícitos de Legados como Armadura de Cristal/Berserker etc.
+
+A V8 NÃO terá campanha narrativa.
+Campanha está adiada para outra versão.
+
+O foco da V8 é:
+
+1. Caminho do Guerreiro
+2. Sistema completo de Legados
+3. Combat AI 2.0
+4. 12 bosses
+5. 5 arenas exclusivas do Caminho
+6. rework visual dos ataques/slashes
+7. rework da corrida do Corredor
+8. integração de Legados com outros modos
+9. interface completa de Legados
+10. save/continue do Caminho
+
+======================================================================
+2. NÃO REGREDIR SISTEMAS EXISTENTES
+======================================================================
+
+Preservar tudo que já funciona atualmente:
+
+- Duelo
+- PvE
+- Local
+- Online / PeerJS
+- Training
+- Tournament
+- Admin
+- Parkour
+- Map Editor
+- mapas customizados
+- replay/Retry do Training
+- skins
+- parry lateral
+- Perfect Parry
+- clash
+- feint
+- kick
+- slide
+- dash
+- air dash
+- wall jump
+- fast fall
+- hitstop
+- fatal falls
+- ataques durante dash
+- spectator online
+- cenas de título
+- ciclo/variações visuais já existentes
+- controles customizáveis
+- demais recursos atuais
+
+Não trocar o estilo central de movimentação.
+
+Não adicionar sistema de momentum complexo.
+
+O controle precisa continuar preciso e responsivo.
+
+======================================================================
+3. VERIFICAR REQUISITOS DA V7.2
+======================================================================
+
+Antes da V8, verificar se estes requisitos já estão presentes.
+
+Se já estiverem implementados corretamente, preservar.
+Se ainda não estiverem, implementar junto da V8.
+
+MOVIMENTO:
+
+- W e Space devem poder pular.
+- W sozinho pula.
+- Space sozinho pula.
+- W + Dash deve permitir air dash para cima SEM consumir acidentalmente o pulo/double jump.
+- adicionar 1 double jump universal.
+- double jump reseta ao tocar chão/plataforma.
+- integrar corretamente com wall jump, air dash e fast fall.
+- dash cooldown base = 320 ms.
+- recalibrar qualquer modificador como Turbo para nunca tornar dash pior que o padrão.
+
+BALANCE:
+
+- Ceifador: nerf perceptível mas não destrutivo, principalmente startup/recovery.
+- Lanceiro: buff perceptível mantendo precisão/sweet spot, sem simplesmente criar hitbox enorme.
+- Monge: manter balance atual salvo bug real.
+
+ARENA NORMAL:
+
+O que antes conceitualmente era arena 1.5x deve virar o novo tamanho padrão 1.0.
+
+Ou seja:
+o tamanho padrão da arena V8 deve ser aproximadamente 50% maior que o antigo padrão pré-V7.2.
+
+Não aumentar personagem/hitbox junto.
+Só aumentar espaço físico da arena.
+
+PARKOUR:
+
+Quando “Permitir todas as classes” estiver DESATIVADO:
+- mostrar seleção de personagem;
+- mostrar somente Corredor;
+- Corredor selecionado.
+
+Quando estiver ATIVADO:
+- mostrar Corredor + todas as classes normais.
+
+As 3 pistas oficiais de Parkour devem ser significativamente mais longas:
+aproximadamente 2–3x o percurso útil original.
+
+NÃO simplesmente esticar o mapa.
+Criar mais seções, obstáculos, caminhos e checkpoints.
+
+Cena “Chuva sobre os Telhados”:
+reformular SOMENTE a chuva/atmosfera molhada.
+
+Preservar:
+- paleta
+- lua
+- silhuetas
+- lanternas
+- logo
+- composição
+
+Melhorar:
+- direção consistente das gotas
+- camadas fundo/meio/frente
+- respingos nos telhados
+- água escorrendo
+- gotas nas bordas
+- poças/ripples/reflexos
+- gotas iluminadas pelas lanternas
+- leve névoa
+- raro relâmpago sutil opcional
+
+Não parecer poeira/neve/linhas aleatórias.
+
+======================================================================
+4. SISTEMA CENTRAL DE LEGADOS
+======================================================================
+
+Criar um sistema central e único de Legados.
+
+IMPORTANTE:
+
+Cada Legado deve existir UMA VEZ no código.
+
+Os modos NÃO devem possuir cópias independentes da lógica do mesmo Legado.
+
+Diferentes modos só mudam:
+- como o Legado é adquirido;
+- se ele está elegível;
+- quando reseta;
+- regras de draft.
+
+Usar um registry central de Legados.
+
+Sugestão conceitual de dados para cada Legado:
+
+id
+name
+category
+rarity
+description
+controlDescription
+stackable
+activeType
+defaultBinding
+usageScope
+modeEligibility
+requiresWeapon
+iconRenderer / iconAsset
+worldRepresentation
+onAcquire
+onRemove
+onRoundStart
+onMatchStart
+onAttack
+onParry
+onPerfectParry
+onDash
+onKill
+onDeath
+onUpdate
+etc.
+
+Não precisa seguir exatamente esses nomes, mas a arquitetura deve permitir isso.
+
+Categorias:
+
+1. Armas
+2. Vestimentas
+3. Relíquias
+4. Técnicas
+5. Invocações
+6. Poderes
+
+Raridades:
+
+- COMUM
+- RARO
+- LENDÁRIO
+
+Cor da UI/estilo pode respeitar raridade, mas sem poluir.
+
+Por padrão, Legados NÃO acumulam consigo mesmos.
+
+Se o jogador já possui um Legado:
+ele não deve aparecer novamente num draft.
+
+Só permitir repetição quando aquele Legado estiver explicitamente marcado como stackable.
+
+Atualmente, assumir os Legados da V8 como não-stackable, salvo caso futuro.
+
+======================================================================
+5. REPRESENTAÇÃO VISUAL DOS LEGADOS
+======================================================================
+
+Todo Legado deve possuir:
+
+1. ÍCONE DE INTERFACE
+2. REPRESENTAÇÃO VISUAL NO JOGO
+
+Isso NÃO significa necessariamente literalmente dois sprites estáticos.
+
+Exemplos:
+
+Arma:
+- ícone
+- arma equipada no personagem
+
+Vestimenta:
+- ícone
+- peça visual no personagem
+
+Invocação:
+- ícone
+- criatura/entidade na arena
+
+Relíquia:
+- ícone
+- pequeno objeto, símbolo, aura ou manifestação quando ativa
+
+Técnica:
+- ícone
+- pose/animação/VFX próprio da técnica
+
+Poder:
+- ícone
+- manifestação visual/VFX dentro da arena
+
+O personagem deve visualmente contar a história da build.
+
+Entretanto:
+NÃO transformar um jogador avançado numa pilha ilegível de sprites.
+
+Criar sistema de prioridade visual:
+
+- equipamentos principais ficam visíveis
+- acessórios menores ficam discretos
+- relíquias podem aparecer apenas como detalhes
+- efeitos temporários se manifestam somente quando ativam
+- se várias vestimentas ocuparem a mesma região corporal, combinar visualmente de maneira limpa
+
+NÃO limitar combinações mecânicas só porque duas peças ocupariam a mesma parte do corpo.
+
+Exemplo:
+Bota Alada + Botas-Foguete + Botas Magnéticas DEVEM poder funcionar juntas.
+
+======================================================================
+6. HUD DISCRETA DOS LEGADOS
+======================================================================
+
+Durante combate, mostrar discretamente TODOS os Legados adquiridos.
+
+Local:
+canto inferior esquerdo.
+
+Visual:
+
+- somente ícones
+- pequenos
+- sem nome
+- sem descrição
+- sem caixas grandes
+- sem excesso de bordas
+- sem “frufru”
+
+Organizar na ORDEM DE AQUISIÇÃO.
+
+Quando houver muitos:
+- quebrar em segunda linha
+- reduzir levemente o tamanho se necessário
+- manter legibilidade
+
+Legados consumidos durante a run não desaparecem necessariamente da lista.
+
+Exemplo:
+Pedra Filosofal consumida:
+mostrar ícone apagado/rachado.
+
+A lista inferior esquerda serve para:
+“olhar rapidamente e lembrar da build”.
+
+NÃO usar essa fita como inventário detalhado.
+
+======================================================================
+7. TAB — PAINEL COMPLETO DOS LEGADOS
+======================================================================
+
+TAB abre o painel de Legados.
+
+No Caminho/PvE/Training offline:
+TAB pausa.
+
+No online:
+TAB NÃO pausa a partida.
+
+No online:
+remapeamentos grandes devem preferencialmente ser feitos entre duelos/rounds para evitar acidentes.
+
+Painel deve mostrar categorias:
+
+ARMAS
+VESTIMENTAS
+RELÍQUIAS
+TÉCNICAS
+INVOCAÇÕES
+PODERES
+
+Cada Legado mostra:
+
+- ícone
+- nome
+- raridade
+- descrição
+- como usar
+- cooldown, se houver
+- limite de uso
+- tecla atual, se houver
+- estado consumido/disponível
+
+Quando passar o mouse sobre um Legado:
+destacar sua manifestação visual no personagem/arena quando fizer sentido.
+
+Exemplos:
+
+Bota Alada -> pés destacam
+Máscara de Pedra -> máscara destaca
+Machado Leviatã -> arma destaca
+Corvo -> corvo destaca
+
+======================================================================
+8. KEYBINDINGS DOS LEGADOS ATIVOS
+======================================================================
+
+Criar slots gerais de ações especiais:
+
+1 até 9
+
+Quando um Legado exige botão próprio:
+atribuir automaticamente ao primeiro slot livre.
+
+Exemplo:
+
+primeiro ativo -> 1
+segundo -> 2
+terceiro -> 3
+
+Mas esses são apenas DEFAULTS.
+
+No TAB:
+permitir remapear para outras teclas/botões válidos.
+
+Exemplos:
+E
+Q
+Mouse4
+Mouse5
+1
+2
+3
+etc.
+
+Se uma tecla estiver ocupada:
+avisar antes de substituir.
+
+Legados que já usam controles naturais NÃO precisam ocupar slot.
+
+Exemplo:
+
+Machado Leviatã:
+M1 = ataque
+segurar M1 = arremessar
+M1 novamente quando longe = recall
+
+Isso não precisa ocupar 1–9.
+
+Se houver mais ativos do que slots automáticos:
+marcar extras como “sem tecla atribuída” até o jogador remapear.
+
+No networking:
+NÃO sincronizar a tecla física.
+Sincronizar a AÇÃO SEMÂNTICA do Legado.
+
+Exemplo:
+o jogador pode usar The World no E localmente,
+mas a rede recebe algo como activateLegacy("star_platinum_world").
+
+======================================================================
+9. TERMINOLOGIA DE RESET
+======================================================================
+
+Usar estes conceitos de forma consistente:
+
+DUELO:
+uma rodada individual que termina quando alguém morre.
+
+PARTIDA:
+o confronto completo daquele nível, composto pelos duelos do formato atual do jogo.
+
+NÍVEL:
+uma partida dentro do Caminho do Guerreiro.
+
+RUN:
+a sequência completa do Caminho até o nível 50 ou até derrota.
+
+Tipos de uso:
+
+“1x por duelo”
+-> reseta no próximo duelo.
+
+“1x por partida”
+-> reseta somente no próximo nível/confronto.
+
+“1x por run”
+-> não volta até a run terminar.
+
+======================================================================
+10. CATÁLOGO COMPLETO — ARMAS
+======================================================================
+
+ARMAS COMUNS:
+
+1. VASSOURA
+- alcance razoavelmente bom
+- ataque relativamente lento
+- cobertura ampla
+- arma improvisada
+- fácil de entender
+
+2. ESPADA
+- comportamento base semelhante à espada do Cavaleiro
+- equilibrada
+- referência vanilla da categoria
+
+3. ARCO
+- ataque à distância
+- pequeno tempo de puxada
+- aproximadamente 3 segundos entre tiros
+- flecha legível
+- flecha colide com paredes/plataformas
+- flecha pode ser aparada
+- parry deve desviar/refletir adequadamente
+
+4. SOCO-INGLÊS
+- alcance extremamente curto
+- ataques muito rápidos
+- sensação semelhante ao Pugilista
+- NÃO concede automaticamente o kit completo do Pugilista
+
+5. MACHADO
+- ataque pesado
+- arco amplo
+- alcance médio
+- startup/recovery maiores que espada
+- leitura forte
+
+6. KUNAI
+- projétil de curto/médio alcance
+- cooldown aproximadamente 1–1.5s
+- trajetória reta
+- parryable
+- para/cai após distância razoável
+
+--------------------------------------------------
+
+ARMAS RARAS:
+
+7. MACHADO LEVIATÃ
+Referência God of War.
+
+M1:
+ataque melee normal.
+
+Segurar M1:
+arremessa o machado.
+
+Quando o machado está longe:
+M1 chama o machado de volta.
+
+O machado:
+- mata indo
+- mata voltando
+- colide com cenário quando adequado
+- é fisicamente visível
+
+Enquanto está longe:
+jogador fica desarmado.
+
+8. AGULHA
+Inspiração Hollow Knight / Silksong.
+
+Identidade principal:
+POGO.
+
+Permitir pogo:
+- em inimigos
+- em superfícies válidas
+- inclusive no chão
+
+Pogo deve devolver impulso vertical.
+
+É híbrido de combate e mobilidade.
+
+9. GUNBLADE
+Inspiração FFVIII.
+
+Ataque normal:
+corte de espada.
+
+Durante janela específica no impacto:
+input adicional de trigger cria disparo/impacto extra.
+
+O valor mecânico vem do timing dentro do timing.
+
+10. BACAMARTE
+- tiro muito curto
+- espalhamento largo
+- quase instantâneo
+- um disparo muito perigoso
+- reload/cooldown longo
+- possível pequeno recoil aéreo
+
+11. IOIÔ
+Inspiração Terraria.
+
+Segurar M1:
+lança e mantém ioiô ativo.
+
+Controle:
+posição/direção influenciada pela mira dentro de raio máximo.
+
+Soltar M1:
+retorna.
+
+Regras:
+- não atravessa parede
+- medium range
+- tempo ativo limitado
+- cooldown curto após retorno
+- ameaça persistente
+- parryable
+
+--------------------------------------------------
+
+ARMAS LENDÁRIAS:
+
+12. YAMATO
+Referência Devil May Cry.
+
+M1:
+corte rápido.
+
+Segurar M1:
+breve postura de bainha/preparação.
+
+Durante preparação:
+marcar direção/área.
+
+Soltar:
+gera corte instantâneo à distância.
+
+NÃO é projétil viajando.
+
+É literalmente um corte espacial aparecendo na região.
+
+13. RUYI JINGU BANG
+Bastão do Rei Macaco.
+
+M1:
+ataque normal rápido.
+
+Segurar M1:
+bastão se estende violentamente a enorme distância.
+
+Se apontado contra o chão:
+extensão pode lançar o jogador para cima.
+
+Mistura:
+arma
+controle de espaço
+mobilidade
+
+14. ZENITH
+Inspiração Terraria.
+
+Ataque:
+golpe principal + 2 ou 3 lâminas espectrais adicionais atravessando trajetórias ao redor da região ofensiva.
+
+Não copiar exatamente Terraria.
+Adaptar ao UM CORTE.
+
+15. LÂMINA DO ECO
+Original.
+
+Ataque acontece normalmente.
+
+Aproximadamente 0.6s depois:
+o EXATO MESMO CORTE reaparece no MESMO ESPAÇO DO MUNDO onde ocorreu originalmente.
+
+Não seguir o jogador.
+
+Mostrar fissura/eco visual discreto avisando onde o segundo corte acontecerá.
+
+======================================================================
+11. CATÁLOGO COMPLETO — VESTIMENTAS
+======================================================================
+
+VESTIMENTAS COMUNS:
+
+1. BOTA ALADA
++1 salto aéreo adicional.
+
+2. SANDÁLIAS DO VENTO
+aumento perceptível de velocidade base de corrida.
+
+3. JOELHEIRAS
+slide:
+- percorre distância maior
+- mantém fluidez
+- melhora eficiência
+
+4. LUVAS DE ESCALADA
+Ao segurar direção contra a parede:
+personagem trava completamente na parede.
+
+Não desliza.
+
+Soltar direção:
+desgruda.
+
+Pular:
+wall jump normal.
+
+Não usar stamina inicialmente.
+
+5. CAPA LEVE
+Segurar pulo enquanto cai:
+reduz velocidade de queda.
+
+Não é glide completo.
+
+6. FAIXA DO DUELISTA
+reduz recovery de um parry errado/missed parry.
+
+--------------------------------------------------
+
+VESTIMENTAS RARAS:
+
+7. MANTO SOMBRIO
+Dash vira Shadow Dash.
+
+Durante parte curta do dash:
+- intangível contra ataques
+- atravessa inimigos
+
+Ótimo para cross-up.
+
+NÃO atravessa paredes sólidas.
+Isso pertence ao Traje Fantasma.
+
+8. CAPA PLANADORA
+Segurar pulo no ar:
+glide verdadeiro.
+
+- mantém deslocamento horizontal
+- queda lenta
+- soltar fecha
+- controle claro
+
+9. ARMADURA DE CRISTAL
+Bloqueia 1 golpe mortal por PARTIDA.
+
+Ao bloquear:
+- estilhaça visualmente
+- perde proteção até próxima partida
+
+No próximo nível/confronto:
+reconstrói.
+
+10. BOTAS MAGNÉTICAS
+Ao segurar contra parede:
+permite correr ao longo dela por período curto.
+
+Não permitir andar livremente no teto.
+
+11. MANTO DO ESPELHO
+Ao dar dash:
+deixa afterimage convincente na posição inicial.
+
+Afterimage:
+- não ataca
+- não colide
+- serve como distração visual
+
+12. BOTAS-FOGUETE
+No ar:
+segurar pulo aciona pequenos propulsores.
+
+Usa combustível curto.
+
+Combustível:
+- recarrega somente ao tocar chão/plataforma
+
+Permitir controle vertical.
+
+Não virar voo ilimitado.
+
+Integrar com:
+- double jump
+- air dash
+- fast fall
+
+--------------------------------------------------
+
+VESTIMENTAS LENDÁRIAS:
+
+13. ARMADURA DO BERSERKER
+1x por PARTIDA.
+
+Quando o jogador recebe golpe mortal:
+não morre imediatamente.
+
+Entra em estado de fúria por aproximadamente 2 segundos.
+
+Se matar um inimigo dentro desse período:
+sobrevive.
+
+Se não matar:
+morre ao terminar o período.
+
+Visualmente:
+armadura ativa/fecha e personagem entra em estado agressivo.
+
+14. ASAS DE ÍCARO
+Voo real limitado.
+
+Ao ativar:
+permitir deslocamento aéreo controlado.
+
+Usar barra de energia curta.
+
+Energia recupera ao pousar.
+
+Não permitir voo infinito.
+
+15. TRAJE FANTASMA
+Dash atravessa GEOMETRIA do mapa.
+
+Pode passar:
+- paredes
+- plataformas válidas
+
+Precisa de proteção contra:
+- softlock
+- sair permanentemente da arena
+- ficar preso em collider
+
+16. MÁSCARA DE PEDRA
+Referência JoJo.
+
+Transformação vampírica.
+
+Concede:
+- movimentação mais predatória
+- wall cling natural
+- saltos mais agressivos
+- matar inimigo restaura imediatamente recursos de mobilidade como dash/air dash/pulos relevantes
+
+Não adicionar HP.
+
+17. MANTO DA GRAVIDADE
+Ação ativa.
+
+Inverte a gravidade SOMENTE do próprio personagem.
+
+Chão vira teto.
+
+Nova ativação:
+volta gravidade ao normal.
+
+Integrar corretamente com:
+- plataformas
+- dash
+- wall systems
+- ataques
+- câmera
+- fatal fall logic
+
+======================================================================
+12. CATÁLOGO COMPLETO — RELÍQUIAS
+======================================================================
+
+RELÍQUIAS COMUNS:
+
+1. SINO DE GUERRA
+Perfect Parry:
+recarrega imediatamente dash.
+
+2. AMPULHETA RACHADA
+Ao matar inimigo:
+restaurar recursos de movimentação:
+- dash
+- air dash
+- saltos aéreos
+
+3. OLHO DE VIDRO
+Quando inimigo entra em startup de ataque:
+pequeno flash/brilho informativo.
+
+Não aumentar mecanicamente reaction window.
+É apenas clareza visual.
+
+4. MOEDA VICIADA
+Em cada draft:
+permite 1 reroll da seleção inteira.
+
+Se Trevo de Quatro Folhas estiver ativo:
+reroll continua mostrando 4 cartas.
+
+5. DENTE DE LOBO
+Depois de evitar um ataque perigosamente próximo através de dash:
+próximo ataque dentro de janela curta recebe área/slash levemente maior.
+
+Não aumenta “dano”, porque UM CORTE é one-hit.
+
+6. TALISMÃ DE FERRO
+Reduz fortemente deslocamento recebido por:
+- chutes
+- knockbacks
+- impulsos não-letais
+
+7. INCENSO DA CALMA
+Depois de permanecer parado brevemente:
+arma o próximo parry.
+
+O próximo parry recebe uma janela levemente maior.
+
+Depois de usado:
+precisa ficar parado novamente para rearmar.
+
+--------------------------------------------------
+
+RELÍQUIAS RARAS:
+
+8. TREVO DE QUATRO FOLHAS
+Drafts mostram 4 opções em vez de 3.
+
+9. D6
+1x por PARTIDA.
+
+Jogador escolhe UM Legado próprio elegível.
+
+Esse Legado é temporariamente rerrolado para outro Legado ALEATÓRIO da MESMA raridade durante aquela partida.
+
+No fim da partida:
+Legado original volta.
+
+Excluir:
+- o próprio D6
+- Legados incompatíveis com modo
+- Legados já possuídos
+
+10. RELÓGIO PARADO
+Perfect Parry:
+gera breve slow-motion dos inimigos/mundo hostil.
+
+Jogador permanece praticamente normal.
+
+Usar cooldown interno pequeno para não ficar permanente em cadeias absurdas.
+
+11. ESPELHO PARTIDO
+1x por PARTIDA.
+
+Quando adversário usa uma habilidade/especial próximo:
+Espelho pode memorizar aquela habilidade.
+
+Próxima ativação do slot do Espelho:
+executa UMA cópia da habilidade.
+
+Depois:
+Espelho fica gasto até próxima partida.
+
+Não copiar:
+- transformações persistentes impossíveis
+- recursos exclusivos de boss que não façam sentido
+- efeitos que quebrariam estado do jogo
+
+12. CARTA MARCADA
+Durante um draft:
+jogador pode marcar uma das opções rejeitadas.
+
+A carta marcada é garantida em um draft futuro válido da mesma run.
+
+Quando reaparece:
+marca é consumida.
+
+Se ela deixar de ser elegível:
+rerrolar de maneira segura.
+
+13. AMPULHETA DO SOBREVIVENTE
+1x por PARTIDA.
+
+Se o jogador passar extremamente perto de um ataque letal sem ser atingido:
+acionar micro slow-motion automático por alguns décimos.
+
+14. ÍMÃ DA FORTUNA
+Se um draft contiver uma carta Lendária:
+pelo menos UMA das outras opções deve ser Rara ou melhor.
+
+--------------------------------------------------
+
+RELÍQUIAS LENDÁRIAS:
+
+15. PEDRA FILOSOFAL
+USO ÚNICO POR RUN.
+
+Ao ativar:
+
+- escolher ALEATORIAMENTE um Legado próprio que possa subir de raridade;
+- jogador NÃO escolhe qual;
+- transformar ALEATORIAMENTE esse Legado em outro da categoria/raridade superior adequada;
+- transformação dura apenas a PARTIDA atual;
+- ao terminar a partida, Legado original volta;
+- Pedra Filosofal permanece consumida pelo resto da run.
+
+Common -> Rare
+Rare -> Legendary
+
+Não selecionar Legendary como alvo, pois não há tier acima.
+
+Ao usar:
+Pedra deve quebrar/desintegrar visualmente.
+
+16. COROA DO CONQUISTADOR
+No Caminho do Guerreiro:
+
+ao derrotar Miniboss:
+permitir roubar UM dos Legados que ele possuía.
+
+Esse Legado é adicionado permanentemente à build daquela run.
+
+Não substituir o draft normal.
+
+É uma recompensa extra.
+
+Em modos sem Miniboss:
+não oferecer a Coroa no pool normal, salvo Admin.
+
+17. CONTRATO DO DIABO
+Funciona SOMENTE em drafts após Miniboss.
+
+Normal:
+escolhe 1 carta.
+
+Com Contrato:
+pode escolher 2 cartas.
+
+Não funciona em Boss normal.
+Não funciona em drafts comuns.
+
+18. ORBE DO DESTINO
+1x por RUN.
+
+Durante um draft:
+permite visualizar uma futura seleção válida de Legados.
+
+Jogador pode:
+- manter draft atual
+OU
+- substituir o draft atual pela seleção futura mostrada
+
+Respeitar Trevo, pools, garantias e exclusões.
+
+Depois:
+Orbe fica consumido.
+
+19. ANEL DA SEGUNDA CHANCE
+1x por PARTIDA.
+
+Quando jogador morrer em um duelo:
+em vez de registrar imediatamente aquela derrota,
+rebobinar TODO O DUELO para o estado inicial.
+
+Resetar:
+- posições
+- projéteis
+- summons
+- cooldowns do início daquele duelo
+- estados transitórios
+
+NÃO resetar o próprio consumo do Anel.
+
+Ou seja:
+não criar loop infinito.
+
+Placar da partida permanece como estava antes daquele duelo.
+
+20. DADO DE 20 FACES
+1x por PARTIDA.
+
+Antes de rolar:
+jogador escolhe um dos dois modos:
+
+A) PERSONAGEM
+B) PRÓXIMO DRAFT
+
+Depois:
+rolar visualmente 1–20.
+
+MODO PERSONAGEM:
+efeito dura aquela partida.
+
+1:
+penalidade severa.
+
+2–5:
+penalidade moderada.
+
+6–9:
+pequena penalidade.
+
+10–11:
+efeito quase neutro.
+
+12–15:
+benefício moderado.
+
+16–19:
+benefício forte.
+
+20:
+benefício excepcional.
+
+Possíveis parâmetros:
+- velocidade de corrida
+- tamanho/alcance ofensivo
+- dash cooldown
+- recovery
+- mobilidade aérea
+
+Não alterar HP.
+
+MODO PRÓXIMO DRAFT:
+
+resultado baixo:
+piora raridade das cartas não-garantidas.
+
+resultado alto:
+melhora raridade.
+
+20:
+garantir pelo menos uma Lendária e fazer outras opções terem qualidade alta.
+
+1:
+draft extremamente ruim, mas NUNCA violar garantias obrigatórias de Miniboss/Boss.
+
+21. OLHO DO DESTINO
+1x por PARTIDA.
+
+Quando um golpe fatal está prestes a conectar:
+micro-freeze dramático.
+
+Jogador recebe uma curtíssima última janela para:
+- dash
+- parry
+- pular
+- escapar de alguma forma válida
+
+Não salva automaticamente.
+
+Se não reagir:
+morre normalmente.
+
+======================================================================
+13. CATÁLOGO COMPLETO — TÉCNICAS
+======================================================================
+
+TÉCNICAS COMUNS:
+
+1. GOLPE DESCENDENTE
+No ar:
+↓ + ataque
+
+Executa ataque direcionado para baixo usando arma atual.
+
+Desarmado:
+vira golpe/pisada corporal.
+
+2. GOLPE ASCENDENTE
+↑ + ataque
+
+Ataque orientado verticalmente para ameaças acima.
+
+Adaptar geometria conforme arma.
+
+3. CHUTE VOADOR
+Chute no ar:
+projeta personagem diagonalmente para frente.
+
+Não mata diretamente.
+Empurra significativamente.
+
+4. CHUTE GIRATÓRIO
+Segurar chute brevemente:
+executa roundhouse amplo.
+
+Maior área e knockback.
+Não letal por si.
+
+5. PISADA
+No ar:
+↓ + chute
+
+Personagem despenca rapidamente.
+
+Acertando inimigo:
+empurra para baixo e dá pequeno bounce ao jogador.
+
+6. SALTO DE PAREDE OFENSIVO
+Durante wall state:
+atacar junto do wall jump cria saída ofensiva.
+
+Jogador salta para fora da parede atacando simultaneamente.
+
+--------------------------------------------------
+
+TÉCNICAS RARAS:
+
+7. CONTRA-ATAQUE
+Depois de parry bem-sucedido:
+janela curta para ataque.
+
+Executa resposta muito rápida com arma atual.
+
+Não automático.
+
+8. CANCELAMENTO DE DASH
+Permite gastar carga/recurso de dash para cancelar parte do recovery de ataque.
+
+Uso:
+ataque -> percebe risco -> dash cancel.
+
+9. CORTE DE PROJÉTEIS
+Com timing correto:
+atingir projétil com ataque destrói ou rebate o projétil.
+
+Diferente de parry.
+
+10. ARREMESSO
+Próximo do inimigo:
+combinação como ↓ + chute.
+
+Agarra e joga adversário para o outro lado.
+
+Não mata diretamente.
+
+Pode:
+- reposicionar
+- jogar em hazard
+- jogar de plataforma
+
+11. PASSO DE RECUO
+Durante startup de ataque:
+direção oposta + dash em janela curta.
+
+Cancela ataque e executa pequeno retreat.
+
+12. INVESTIDA OFENSIVA
+Atacar imediatamente no início do dash:
+converte em ataque de investida próprio.
+
+Não apenas “ataque comum durante dash”.
+
+Possui:
+- trajetória específica
+- commitment
+- leitura própria
+
+13. IAIJUTSU — VERSÃO V8 REFORMULADA
+NÃO usar a antiga versão de “ficar parado carregando”.
+Isso repetia Sem Saque.
+
+Nova versão:
+
+depois de um dash terrestre:
+durante pequena janela,
+pressionar ataque executa um corte de saque atravessando a linha ofensiva.
+
+Quando possível:
+jogador termina do outro lado do alvo/linha.
+
+Visual:
+saque extremamente rápido.
+
+Adaptar ao tipo de arma atual.
+
+--------------------------------------------------
+
+TÉCNICAS LENDÁRIAS:
+
+14. MIKIRI
+Contra ataques identificados como:
+- estocada
+- investida linear
+
+Dar dash NA DIREÇÃO do golpe em timing difícil:
+neutraliza a ameaça e coloca jogador em posição favorável.
+
+Não exigir janela impossível.
+Deve ser difícil, mas aprendível.
+
+15. DESARMAMENTO
+Perfect Parry:
+automaticamente desarma adversário quando ele estiver usando arma elegível.
+
+Arma cai fisicamente no cenário.
+
+Inimigo fica desarmado até recuperá-la.
+
+Não exigir segundo input.
+
+O Perfect Parry já é o teste de habilidade.
+
+16. PASSO PERFEITO
+Dash no último instante antes de um golpe acertar:
+gera Perfect Dodge.
+
+Jogador escapa e recebe pequena oportunidade de resposta.
+
+Não ler input inimigo.
+Usar estado real da hitbox/ameaça.
+
+17. SEM SAQUE
+No chão:
+ficar parado brevemente permite entrar em postura.
+
+Enquanto em postura:
+ataque executa golpe extremamente rápido.
+
+Se errar:
+recovery alto.
+
+Fantasia:
+duelo de nervos.
+
+18. MESTRE DAS ARMAS
+Permite arremessar QUALQUER arma equipada.
+
+Arma:
+- vira projétil físico
+- pode matar
+- pode ser aparada
+- colide com cenário
+- cai fisicamente onde terminar
+
+Jogador fica desarmado até recuperar.
+
+Interações emergentes devem funcionar.
+
+Exemplos:
+Mestre das Armas + Macaquinho Ladrão
+Mestre das Armas + Telecinese
+Mestre das Armas + Desarmamento
+Mestre das Armas + Portais
+
+Machado Leviatã mantém seu recall específico.
+
+======================================================================
+14. CATÁLOGO COMPLETO — INVOCAÇÕES
+======================================================================
+
+INVOCAÇÕES COMUNS:
+
+1. CORVO
+Voa perto do jogador.
+
+Periodicamente:
+rasante contra adversário.
+
+Não mata.
+Causa pequeno empurrão/interrupção.
+
+2. SLIME
+Segue jogador lentamente pelo chão.
+
+Ao tocar inimigo:
+gruda por curto período e reduz movimento.
+
+Não paralisar completamente.
+
+3. BESOURO-ESCUDO
+Orbita jogador.
+
+Pode interceptar UM projétil hostil.
+
+Depois:
+cooldown antes de voltar a proteger.
+
+Não bloqueia melee.
+
+4. FADA
+Segue jogador.
+
+Se jogador passar certo tempo sem tocar chão:
+dá pequeno impulso vertical automático.
+
+Não é voo.
+Não é salto extra sob comando.
+
+5. CÃO DE CAÇA
+Corre atrás do adversário.
+
+Quando alcança:
+mordida não letal com knockback.
+
+Depois:
+retorna e entra em cooldown.
+
+6. ESPÍRITO-LANTERNA
+Flutua próximo.
+
+Periodicamente:
+marca inimigo com brilho claro.
+
+Serve para acompanhar posição em meio a:
+- fumaça
+- efeitos
+- cenários escuros
+- confusão visual
+
+7. MACAQUINHO LADRÃO
+Corre atrás de armas caídas.
+
+Quando encontra:
+pega e leva até o jogador.
+
+Pode pegar:
+- arma própria arremessada
+- arma desarmada de adversário
+
+Criar animação clara carregando arma.
+
+--------------------------------------------------
+
+INVOCAÇÕES RARAS:
+
+8. FALCÃO DE GUERRA
+Circula acima.
+
+Possui ação ativa.
+
+Ao ativar:
+mergulha na direção da mira/alvo.
+
+Pode matar.
+
+Ataque:
+- telegráfico
+- parryable
+
+Depois:
+precisa retornar ao jogador antes de novo ataque.
+
+9. ESPADACHIM ESPECTRAL — VERSÃO V8 REFORMULADA
+NÃO copiar o último ataque do jogador.
+Isso repetia Lâmina do Eco/Doppelgänger.
+
+Nova versão:
+
+fica intangível/invisível na maior parte do tempo.
+
+Periodicamente:
+- escolhe flanco do adversário
+- materializa
+- mostra aviso curto
+- executa um corte independente
+- desaparece novamente
+
+É uma ameaça autônoma de flanco.
+
+10. SAPO-GIGANTE
+Usa língua.
+
+Pode atingir:
+- inimigos
+- armas
+- objetos
+
+Inimigo:
+puxa em direção ao sapo/jogador.
+
+Objeto:
+traz de volta.
+
+IMPORTANTE:
+NÃO funciona como grappling hook para o jogador.
+
+11. CAVALEIRO ESQUELETO
+Aliado autônomo com espada.
+
+Ataca adversários.
+
+Golpes:
+- lentos
+- legíveis
+- podem matar
+- podem ser aparados
+
+Se for atingido:
+desmonta em ossos.
+
+Depois de cooldown grande:
+reconstrói.
+
+12. MÍMICO
+Segue jogador como baú.
+
+Quando inimigo entra perto:
+abre e tenta agarrar por curto instante.
+
+Depois:
+cooldown.
+
+Também pode tentar engolir certos projéteis/objetos que cruzem sua área.
+
+13. MEDUSA ABISSAL
+Substitui completamente o antigo Polvo do Vazio.
+
+Água-viva/entidade flutuante.
+
+Move lentamente.
+
+Periodicamente:
+carrega eletricidade e cria zona circular perigosa ao redor.
+
+A zona transforma a Medusa numa área móvel de controle.
+
+Não usar tentáculos.
+
+14. DOPPELGÄNGER
+Cópia fantasmagórica do jogador.
+
+Repete com pequeno atraso:
+- movimentação
+- saltos
+- ataques físicos
+
+Não possui body collision normal.
+
+Não copia:
+- poderes absurdos
+- summons
+- ativações que causariam recursão
+
+É um replay atrasado do comportamento.
+
+15. NECROMANTE MIRIM
+Pequeno espírito/criatura.
+
+Quando jogador mata inimigo no Caminho:
+pode reanimar aquele inimigo como servo temporário.
+
+Máximo:
+1 cadáver reanimado por vez.
+
+Servo dura até:
+- morrer
+- terminar partida
+- ser substituído
+
+Usar classe/moveset do inimigo morto com IA aliada simplificada.
+
+--------------------------------------------------
+
+INVOCAÇÕES LENDÁRIAS:
+
+16. DRAGÃO ANCESTRAL
+Entidade gigante circulando fundo/acima.
+
+Ação ativa:
+jogador marca direção/região.
+
+Depois de telegraph claro:
+dragão atravessa/ataca com enorme rajada de fogo.
+
+Rajada é letal.
+
+Pode atingir o próprio invocador se ele permanecer na área.
+
+17. MAHORAGA
+Referência JJK.
+
+Invocação baseada em ADAPTAÇÃO.
+
+Durante a partida:
+observa/interage com ameaças e progressivamente melhora respostas.
+
+Exemplos:
+- projéteis -> passa a defender/esquivar melhor
+- ataques frontais -> procura flanco
+- inimigo aéreo -> adapta ataques verticais
+
+Não virar invencível.
+
+A adaptação deve ser perceptível através da roda/efeito visual.
+
+Resetar adaptação conforme regra apropriada de partida.
+
+18. STAR PLATINUM
+Referência JoJo.
+
+Manifestado próximo do jogador.
+
+Passivamente:
+acompanha alguns ataques com golpes curtos e rápidos.
+
+Ação ativa:
+THE WORLD.
+
+The World:
+- uso muito limitado
+- aproximadamente 1x por duelo
+- para o tempo por intervalo BEM curto
+- não criar cutscene longa
+
+Representar visualmente com forte efeito temporal.
+
+19. KRAKEN
+Entidade colossal fora da arena.
+
+Tentáculos gigantes surgem:
+- bordas
+- chão
+- paredes
+
+Jogador pode ordenar ataques em regiões.
+
+Variações:
+- esmagar
+- agarrar
+- bloquear rota
+
+Telegraph obrigatório.
+
+20. REI SLIME
+Slime gigantesco.
+
+Ataca pulando/esmagando.
+
+Ao morrer:
+divide em 2 slimes menores.
+
+Esses podem se dividir novamente em 4 menores.
+
+Depois da última camada:
+desaparecem.
+
+21. LEGIÃO
+Invoca três guerreiros espectrais:
+
+1 melee
+1 ranged
+1 defensivo/protetor
+
+Individualmente são menos fortes que uma Invocação Lendária única.
+
+Força vem do grupo.
+
+Quando um morre:
+fica morto até próximo duelo.
+
+22. CAÇADOR DO ABISMO
+Criatura gigantesca que observa fora da arena.
+
+Periodicamente:
+marca um adversário como presa.
+
+Depois de aviso claro:
+entra na arena especificamente para caçar aquele alvo por período curto.
+
+O jogador marcado deve perceber claramente:
+“fui escolhido”.
+
+Depois:
+criatura recua e entra em cooldown.
+
+======================================================================
+15. CATÁLOGO COMPLETO — PODERES
+======================================================================
+
+PODERES COMUNS:
+
+1. BOLA DE FOGO
+Projétil relativamente lento.
+
+Letal.
+
+Legível.
+
+Parryable.
+
+Cooldown razoável.
+
+2. PULSO CINÉTICO
+Onda curta ao redor/frente do personagem.
+
+Não mata diretamente.
+
+Empurra fortemente:
+- inimigos
+- objetos
+
+3. IMPULSO
+Explosão de força aplicada no próprio personagem.
+
+Lança jogador na direção da mira.
+
+Não causa dano diretamente.
+
+4. BARREIRA ARCANA
+Cria pequena barreira frontal temporária.
+
+Bloqueia um ataque/projétil e quebra.
+
+Cooldown relativamente alto.
+
+Não funciona como Perfect Parry.
+
+Não contra-ataca automaticamente.
+
+5. TELECINESE
+Puxa para o jogador:
+- arma caída
+- objeto físico elegível
+
+Não puxa diretamente jogadores.
+
+6. RAJADA DE VENTO
+Corrente de ar durante curto período.
+
+Empurra continuamente:
+- inimigos
+- objetos
+- projéteis leves quando apropriado
+
+7. TROCA
+Primeira ativação:
+marca posição atual.
+
+Segunda ativação dentro de janela:
+teleporta jogador de volta para marca.
+
+Não rebobina mundo.
+
+Não restaura estado anterior.
+
+--------------------------------------------------
+
+PODERES RAROS:
+
+8. WEB SHOOTERS
+Referência Spider-Man.
+
+Disparar teia para direção da mira.
+
+Se acertar parede/teto:
+cria fio e permite swing/pull.
+
+Movimentação deve depender de geometria.
+
+NÃO virar voo grátis.
+
+Se atingir inimigo:
+prende brevemente ou puxa levemente conforme contexto.
+
+Se atingir objeto/arma:
+puxa até jogador.
+
+Esta é a principal mecânica de grappling hook da V8.
+
+9. BLINK
+Teleporte curto na direção da mira.
+
+Pode atravessar:
+- inimigos
+- pequenas paredes/plataformas finas válidas
+
+Cooldown considerável.
+
+Diferença para dash:
+não existe trajetória física entre origem e destino.
+
+10. POÇO GRAVITACIONAL
+Cria esfera/área temporária.
+
+Puxa:
+- jogadores
+- projéteis
+- objetos soltos
+
+Para centro.
+
+Não mata diretamente.
+
+11. CORPO DE NÉVOA
+Por período curto:
+personagem vira névoa.
+
+Intangível contra ataques físicos.
+
+Pode atravessar adversário.
+
+Enquanto em névoa:
+não pode atacar.
+
+12. CORRENTE ELÉTRICA
+Raio de curto/médio alcance.
+
+Ao acertar:
+pode saltar para outro inimigo próximo.
+
+Muito útil contra grupos.
+
+Telegraph suficiente para defesa.
+
+13. CRIOCINESE
+Permite criar gelo.
+
+No chão:
+faixa escorregadia temporária.
+
+Na parede:
+pequena plataforma de gelo.
+
+Acertando diretamente inimigo:
+pequena travada de movimento.
+
+NÃO congelar por vários segundos.
+
+14. BOMBA DE SOMBRA
+Arremessa esfera em superfície.
+
+Reativar:
+explode criando região escura/fumaça.
+
+Dificulta visão local.
+
+Não torna usuário literalmente invisível.
+
+15. REPULSOR
+Dispara explosão direcional.
+
+Empurra alvo.
+
+Também empurra o próprio jogador em direção oposta.
+
+Permite:
+- recoil aéreo
+- impulso mirando para baixo
+- reposicionamento
+
+--------------------------------------------------
+
+PODERES LENDÁRIOS:
+
+16. SANDEVISTAN
+Referência Cyberpunk / David.
+
+Ação ativa.
+
+Durante período curto:
+o mundo inteiro desacelera violentamente.
+
+Jogador continua quase em velocidade normal.
+
+NÃO é stop total.
+
+Ainda pode morrer.
+
+Aproximadamente 1 uso por duelo.
+
+Visual:
+- distorção
+- afterimages
+- sensação extrema de velocidade
+
+17. ROOM
+Referência Law / One Piece.
+
+Cria esfera grande ao redor.
+
+Dentro dela:
+habilita Shambles.
+
+Shambles:
+troca posição instantaneamente entre jogador e alvo válido.
+
+Alvos possíveis:
+- objetos
+- armas
+- certas entidades
+- adversário quando regra permitir
+
+Permitir combinações emergentes.
+
+Exemplo:
+arremessar arma e trocar posição com ela.
+
+18. PORTAIS
+Permite criar Portal A e Portal B em superfícies válidas.
+
+Entrar em um:
+sair pelo outro.
+
+Preservar momentum/velocidade.
+
+Permitir passar:
+- jogadores
+- projéteis
+- armas arremessadas
+- entidades compatíveis
+
+Precisa de proteção contra loops infinitos e softlocks.
+
+19. AMATERASU
+Referência Naruto.
+
+Marca pequena região/superfície.
+
+Cria chamas negras persistentes.
+
+Região se torna mortal temporariamente.
+
+Pode se espalhar LEVEMENTE por superfícies conectadas.
+
+Não permitir fogo tomar mapa inteiro.
+
+20. KAMEHAMEHA
+Segurar botão:
+carrega.
+
+Carga menor que 2 segundos:
+- feixe menor
+- pode ser aparado
+
+A partir de 2 segundos:
+- muda claramente som/VFX
+- feixe se torna NÃO-PARRYABLE
+
+Ainda pode:
+- ser desviado por movimentação
+- ser evitado usando cenário
+- ser escapado por Blink/Portal/etc.
+
+Durante carga:
+jogador fica vulnerável e telegraph deve ser óbvio.
+
+Depois de 2 segundos:
+mais carga pode aumentar:
+- largura
+- duração visual
+- presença
+
+Não precisa escalar infinitamente.
+
+21. THE HAND / APAGAR ESPAÇO
+Referência JoJo.
+
+Ataque curto de varrida.
+
+Apaga trecho do espaço.
+
+Elementos depois do trecho são puxados para perto porque aquela distância foi removida.
+
+Pode servir:
+- ofensivamente
+- para puxar adversário
+
+Não permitir apagar estruturas essenciais permanentemente.
+
+22. EXPANSÃO DE DOMÍNIO
+Poder Lendário de grande presença.
+
+Implementação inicial inspirada em Santuário Malevolente.
+
+Ao ativar:
+arena entra temporariamente em estado especial.
+
+Cortes aparecem em diversas regiões.
+
+Cada corte:
+- possui micro telegraph visual
+- é letal
+- pode ser evitado por movimentação correta
+
+Usuário continua lutando normalmente durante o caos.
+
+NÃO fazer:
+ativou -> cutscene -> inimigo morreu automaticamente.
+
+Jogador adversário deve poder sobreviver com habilidade.
+
+======================================================================
+16. EVITAR REPETIÇÃO DE CONCEITOS
+======================================================================
+
+Já revisamos o catálogo.
+
+Três alterações foram feitas especificamente para evitar repetição:
+
+- Iaijutsu foi reformulado como ataque após dash.
+- Polvo do Vazio foi removido e substituído por Medusa Abissal.
+- Espadachim Espectral deixou de copiar ataques e virou flanqueador independente.
+
+Não reverter essas mudanças.
+
+Conceitos próximos que DEVEM permanecer distintos:
+
+Manto Sombrio:
+intangibilidade durante dash.
+
+Corpo de Névoa:
+estado temporário intangível sem ataque.
+
+Traje Fantasma:
+dash atravessa geometria.
+
+Blink:
+teleporte sem trajetória.
+
+--------------------------------------------------
+
+Bota Alada:
+extra jump.
+
+Fada:
+salvamento/impulso automático.
+
+Botas-Foguete:
+propulsão com combustível.
+
+Asas de Ícaro:
+voo real limitado.
+
+--------------------------------------------------
+
+Capa Leve:
+queda lenta.
+
+Capa Planadora:
+glide.
+
+Asas:
+voo.
+
+--------------------------------------------------
+
+Armadura de Cristal:
+nega um golpe.
+
+Berserker:
+adiamento da morte condicionado a matar.
+
+Anel:
+reseta duelo inteiro.
+
+Olho do Destino:
+última janela de reação.
+
+--------------------------------------------------
+
+Relógio Parado:
+slow após Perfect Parry.
+
+Star Platinum:
+stop curto ativo.
+
+Sandevistan:
+tempo desacelerado relativo.
+
+--------------------------------------------------
+
+Troca:
+âncora pessoal.
+
+Blink:
+teleporte curto.
+
+ROOM:
+troca entre posições/alvos.
+
+Portais:
+conexão persistente entre dois pontos.
+
+Esses NÃO são duplicados.
+
+======================================================================
+17. INTERAÇÕES ENTRE LEGADOS
+======================================================================
+
+FILOSOFIA FUNDAMENTAL:
+
+Permitir combinações sempre que possível.
+
+NÃO criar incompatibilidades artificiais apenas para facilitar código.
+
+Não criar um sistema de “slots de corpo” limitando Vestimentas.
+
+Não criar regra do tipo:
+“você não pode usar X porque já tem Y”
+salvo incompatibilidade REAL.
+
+Quando duas mecânicas usam um sistema genérico:
+fazer a interação emergir naturalmente.
+
+Exemplos desejados:
+
+Mestre das Armas + Macaquinho:
+macaco recupera arma arremessada.
+
+Desarmamento + Macaquinho:
+macaco pode roubar arma derrubada.
+
+Mestre das Armas + Telecinese:
+puxar arma jogada.
+
+Portais + projéteis:
+projétil entra em um e sai no outro.
+
+Portais + arma arremessada:
+arma atravessa portal.
+
+ROOM + arma arremessada:
+trocar posição com arma válida.
+
+Botas-Foguete + double jump + air dash:
+todos coexistem.
+
+Sandevistan + técnicas:
+técnicas continuam funcionando dentro do efeito temporal.
+
+Se uma combinação realmente quebrar estado/física:
+corrigir o caso técnico sem simplesmente proibir toda a combinação.
+
+======================================================================
+18. CAMINHO DO GUERREIRO
+======================================================================
+
+Criar novo modo principal:
+
+CAMINHO DO GUERREIRO
+
+Modo solo/PvE.
+
+Não é campanha.
+Não precisa de história longa.
+
+É um roguelite/run mode.
+
+RUN:
+50 níveis.
+
+Cada nível:
+uma PARTIDA usando a estrutura de duelos existente do UM CORTE.
+
+Os níveis escalam progressivamente.
+
+Miniboss:
+5, 15, 25, 35, 45.
+
+Boss:
+10, 20, 30, 40.
+
+Boss Final:
+50.
+
+======================================================================
+19. ERRANTE
+======================================================================
+
+Classe exclusiva inicial do Caminho:
+
+ERRANTE.
+
+No nível 1:
+deve parecer MISERÁVEL.
+
+Visual inicial:
+
+- somente tanga/cueca simples
+- sem camisa
+- descalço
+- sem armadura
+- sem arma
+- sem acessórios
+
+Ataque inicial:
+soco ridículo.
+
+Comparado ao Pugilista:
+
+- alcance menor
+- startup pior
+- recovery pior
+- não possui velocidade absurda de soco
+- não possui kit completo de Pugilista
+
+Errante usa o sistema universal de movimento.
+
+O objetivo visual da run é transformar:
+
+nível 1:
+coitado quase pelado
+
+em
+
+late game:
+guerreiro absurdo visualmente formado pelos Legados obtidos.
+
+======================================================================
+20. DRAFT DO CAMINHO
+======================================================================
+
+Do nível 1 ao 20:
+
+após TODA vitória de nível:
+mostrar draft.
+
+3 cartas por padrão.
+
+Com Trevo:
+4.
+
+Do nível 21 em diante:
+
+níveis normais NÃO dão draft.
+
+Somente:
+- Miniboss
+- Boss
+
+dão novas escolhas.
+
+Exceção:
+nível 50.
+
+Como recompensa depois do Boss Final seria inútil,
+ANTES de enfrentar o nível 50 mostrar:
+
+ÚLTIMO LEGADO
+
+Draft com pelo menos 1 Lendário garantido.
+
+======================================================================
+21. RARIDADE DOS DRAFTS NORMAIS
+======================================================================
+
+Níveis 1–4:
+
+Comum 86%
+Raro 13%
+Lendário 1%
+
+Níveis 6–9:
+
+Comum 78%
+Raro 20%
+Lendário 2%
+
+Níveis 11–14:
+
+Comum 68%
+Raro 28%
+Lendário 4%
+
+Níveis 16–19:
+
+Comum 58%
+Raro 35%
+Lendário 7%
+
+Cada slot rola raridade individualmente.
+
+Nunca oferecer Legado já possuído, salvo stackable.
+
+Nunca duplicar a mesma carta dentro do mesmo draft.
+
+======================================================================
+22. GARANTIAS DE MINIBOSS E BOSS
+======================================================================
+
+Draft após Miniboss:
+pelo menos UMA carta Rara ou melhor.
+
+Draft após Boss:
+pelo menos UMA carta Lendária.
+
+Garantia é piso.
+
+Exemplo:
+um Miniboss pode naturalmente gerar Lendário.
+
+Não obrigar jogador a escolher carta de maior raridade.
+
+Se Raro encaixar melhor na build:
+jogador pode escolher Raro.
+
+Contrato do Diabo:
+após Miniboss permite escolher duas.
+
+Trevo:
+aumenta número de opções mas não altera garantias negativamente.
+
+D20:
+não pode quebrar garantias obrigatórias.
+
+======================================================================
+23. PROGRESSÃO DOS INIMIGOS NORMAIS
+======================================================================
+
+1–4:
+1 inimigo.
+Sem Legados.
+
+6–9:
+1 inimigo.
+Sem Legados.
+
+11–14:
+2 inimigos.
+Cada um com 1 Comum.
+
+16–19:
+2 inimigos.
+Cada um com 1 Comum.
+
+21–24:
+2 inimigos.
+Cada um com 1 Comum.
+Um deles pode ocasionalmente possuir também 1 Raro.
+
+26–29:
+2 inimigos.
+Cada um com 1 Raro.
+
+31–34:
+2 inimigos.
+Cada um com:
+1 Raro + 1 Comum.
+
+36–39:
+3 inimigos.
+Cada um com 1 Raro.
+
+41–44:
+3 inimigos.
+Cada um com 2 Raros.
+
+46–49:
+3 inimigos.
+Cada um com 2 Raros.
+IA em nível avançado.
+
+Três inimigos é o TETO padrão.
+
+Não aumentar continuamente quantidade de inimigos.
+
+Dificuldade late game deve vir de:
+- builds inimigas
+- inteligência
+- combinação
+- pressão
+- arenas
+- Legados
+
+Não de colocar 7 inimigos na tela.
+
+4+ só se for mecânica específica de Boss/Summon.
+
+======================================================================
+24. MINIBOSSES
+======================================================================
+
+Minibosses NÃO precisam ser personagens únicos.
+
+São versões elite das classes normais.
+
+Podem ser:
+
+- Cavaleiro
+- Monge
+- Ceifador
+- Lanceiro
+- Assassino
+- Espadachim
+- Pugilista
+- Duelista
+etc.
+
+Alterações visuais discretas:
+
+- cicatriz
+- máscara
+- ombreira
+- detalhes diferentes
+- aura sutil
+- arma visualmente personalizada
+- faixa
+- símbolo
+
+Não mudar hitboxes por causa desses acessórios.
+
+Progressão:
+
+MINIBOSS 5:
+1 Legado Comum.
+
+MINIBOSS 15:
+2 Comuns.
+
+MINIBOSS 25:
+1 Raro + 1 Comum.
+
+MINIBOSS 35:
+2 Raros.
+
+MINIBOSS 45:
+1 Lendário + 1 Raro.
+
+Podem receber uma intro curtíssima:
+
+“MINIBOSS”
++
+nome/título da classe
+
+Exemplo:
+CEIFADOR VETERANO
+
+Sem cutscene completa.
+
+======================================================================
+25. BOSSES — FILOSOFIA
+======================================================================
+
+Boss NÃO é:
+
+“inimigo normal com Legados fortes”.
+
+Boss é personagem próprio.
+
+Cada Boss possui:
+
+- design visual próprio
+- silhueta própria
+- nome
+- subtítulo
+- intro
+- comportamento próprio
+- IA/personality própria
+- build fixa
+- modo de luta reconhecível
+
+A BUILD DE UM BOSS NÃO MUDA ENTRE RUNS.
+
+Se um Boss possui Build A:
+na próxima run ele continua exatamente com Build A.
+
+Boss não ganha Legados aleatórios.
+
+Boss também não recebe HP extra.
+
+Boss é perigoso pela:
+- build
+- inteligência
+- comportamento
+- sinergia
+- execução
+
+======================================================================
+26. BOSS POOL
+======================================================================
+
+Criar 11 bosses rotativos + 1 Boss Final fixo.
+
+Uma run escolhe 4 bosses rotativos diferentes para:
+
+10
+20
+30
+40
+
+Nenhum pode repetir dentro da mesma run.
+
+Aplicar preferência para bosses que NÃO apareceram na run imediatamente anterior.
+
+Guardar histórico mínimo local para isso.
+
+Não tornar sequência previsível.
+
+Bosses têm faixas de aparição para manter dificuldade coerente.
+
+======================================================================
+27. BOSS 1 — O RONIN
+======================================================================
+
+Nome:
+
+O RONIN
+
+Subtítulo:
+
+A Lâmina que Espera
+
+Pode aparecer:
+10 ou 20.
+
+Build fixa:
+
+- Espada
+- Sem Saque
+- Passo Perfeito
+
+Personalidade:
+
+paciente.
+
+Não corre desesperadamente atrás.
+
+Espera erro.
+
+Usa spacing.
+
+Pode ficar parado de propósito.
+
+Pune aproximações ruins.
+
+Intro:
+
+pode estar:
+- sentado
+- de costas
+- ou ajoelhado
+
+Levanta lentamente.
+
+Mão vai para espada.
+
+Nome aparece.
+
+Luta começa.
+
+======================================================================
+28. BOSS 2 — A ARANHA
+======================================================================
+
+Nome:
+
+A ARANHA
+
+Subtítulo:
+
+Filha dos Telhados
+
+Pode aparecer:
+10 ou 20.
+
+Build:
+
+- Web Shooters
+- Bota Alada
+- Kunai
+- Golpe Descendente
+
+Personalidade:
+
+mobilidade aérea.
+
+Usa paredes/teto/teias.
+
+Muda altura constantemente.
+
+Tenta atacar em ângulos desconfortáveis.
+
+Intro:
+
+desce pela teia de cima da tela.
+
+======================================================================
+29. BOSS 3 — O CARRASCO
+======================================================================
+
+Nome:
+
+O CARRASCO
+
+Subtítulo:
+
+O Peso da Sentença
+
+Pode aparecer:
+10 ou 20.
+
+Build:
+
+- Machado
+- Armadura de Cristal
+- Pulso Cinético
+
+Personalidade:
+
+lento.
+pesado.
+ameaçador.
+
+Tenta controlar centro/espaço.
+
+Usa Pulso para afastar e criar oportunidade.
+
+Primeira quebra da Armadura de Cristal deve ser visualmente dramática.
+
+Intro:
+
+entra carregando/arrastando machado.
+
+Impacto pesado.
+
+======================================================================
+30. BOSS 4 — O ESPECTRO
+======================================================================
+
+Nome:
+
+O ESPECTRO
+
+Subtítulo:
+
+Ninguém Está Ali
+
+Pode aparecer:
+10 / 20 / 30.
+
+Build:
+
+- Kunai
+- Manto Sombrio
+- Corpo de Névoa
+- Blink
+
+Personalidade:
+
+cross-up.
+
+teleporte.
+
+mudança constante de lado.
+
+Não ficar spamando Blink sem lógica.
+
+Intro:
+
+arena parece vazia.
+
+Espectro materializa atrás do jogador.
+
+Câmera revela.
+
+======================================================================
+31. BOSS 5 — O DOMADOR
+======================================================================
+
+Nome:
+
+O DOMADOR
+
+Subtítulo:
+
+Senhor das Feras
+
+Pode aparecer:
+20 / 30.
+
+Build:
+
+- Arco
+- Cão de Caça
+- Falcão de Guerra
+- Mímico
+
+Personalidade:
+
+controla a arena através de summons.
+
+Mantém distância.
+
+Usa animais para pressionar enquanto ataca com Arco.
+
+Intro:
+
+entra sozinho.
+
+Sombras/criaturas aparecem ao redor dele.
+
+======================================================================
+32. BOSS 6 — O ARTÍFICE
+======================================================================
+
+Nome:
+
+O ARTÍFICE
+
+Subtítulo:
+
+O Impossível é Ferramenta
+
+Pode aparecer:
+20 / 30 / 40.
+
+Build:
+
+- Bacamarte
+- Portais
+- Telecinese
+- Mestre das Armas
+
+Personalidade:
+
+usa física.
+
+Joga arma.
+
+Atira através de portal.
+
+Teleporta projéteis.
+
+Recupera objetos.
+
+É o Boss de interações sistêmicas.
+
+Intro:
+
+abre portal.
+
+Uma arma cai por outro.
+
+Ele atravessa.
+
+======================================================================
+33. BOSS 7 — O VAMPIRO
+======================================================================
+
+Nome:
+
+O VAMPIRO
+
+Subtítulo:
+
+A Fome
+
+Pode aparecer:
+20 / 30.
+
+Build:
+
+- Soco-inglês
+- Máscara de Pedra
+- Passo Perfeito
+- Impulso
+
+Personalidade:
+
+agressão curta.
+
+pressiona.
+
+quer estar perto.
+
+usa Impulso para fechar distância.
+
+Ao conseguir kill/efeito associado à máscara:
+restaura mobilidade.
+
+Intro:
+
+figura elegante/silenciosa.
+
+Máscara ativa.
+
+Postura muda.
+
+======================================================================
+34. BOSS 8 — A BRUXA DA GRAVIDADE
+======================================================================
+
+Nome:
+
+A BRUXA DA GRAVIDADE
+
+Subtítulo:
+
+Acima e Abaixo
+
+Pode aparecer:
+30 / 40.
+
+Build:
+
+- Manto da Gravidade
+- Poço Gravitacional
+- Criocinese
+- Bola de Fogo
+
+Personalidade:
+
+controle de espaço.
+
+Anda no teto.
+
+Cria gelo.
+
+Puxa adversário para posições ruins.
+
+Intro:
+
+ela aparece no “teto”.
+
+gravidade visual inverte por um instante.
+
+Nome pode girar/inverter levemente antes de estabilizar.
+
+======================================================================
+35. BOSS 9 — O SENHOR DA LEGIÃO
+======================================================================
+
+Nome:
+
+O SENHOR DA LEGIÃO
+
+Subtítulo:
+
+Muitos em Um
+
+Pode aparecer:
+30 / 40.
+
+Build:
+
+- Espada
+- Legião
+- Barreira Arcana
+- Contra-Ataque
+
+Personalidade:
+
+mais defensivo.
+
+Deixa seus três espectros criarem pressão.
+
+Entra diretamente quando adversário está ocupado.
+
+Intro:
+
+Boss aparece sozinho.
+
+Depois:
+três silhuetas espectrais aparecem uma a uma atrás dele.
+
+======================================================================
+36. BOSS 10 — OS GÊMEOS
+======================================================================
+
+Nome:
+
+OS GÊMEOS
+
+Subtítulo:
+
+Dois Cortes
+
+Pode aparecer:
+30 / 40.
+
+É o único Boss naturalmente composto por dois lutadores.
+
+GÊMEO A:
+
+- Gunblade
+- Passo de Recuo
+
+GÊMEO B:
+
+- Ioiô
+- Poço Gravitacional
+
+Eles devem complementar um ao outro.
+
+Um pressiona/entra.
+Outro controla espaço.
+
+Não simplesmente executar duas IAs sem coordenação.
+
+Intro:
+
+um entra de cada lado.
+
+Nome aparece centralmente.
+
+======================================================================
+37. BOSS 11 — O HOMEM DO TEMPO
+======================================================================
+
+Nome:
+
+O HOMEM DO TEMPO
+
+Subtítulo:
+
+Um Segundo Basta
+
+Pode aparecer:
+somente 40.
+
+Build:
+
+- Espada
+- Sandevistan
+- Olho do Destino
+- Sem Saque
+
+Personalidade:
+
+extremamente preciso.
+
+Poucas ferramentas.
+Uso excelente delas.
+
+Não é spammer.
+
+Intro:
+
+arena congela/distorce por fração.
+
+Ele aparece alguns metros à frente.
+
+Afterimage se encaixa nele.
+
+Nome aparece.
+
+======================================================================
+38. BOSS FINAL — O PRIMEIRO ERRANTE
+======================================================================
+
+Nível:
+50.
+
+É o único Boss garantido em toda run.
+
+Nome:
+
+O PRIMEIRO ERRANTE
+
+Subtítulo:
+
+O caminho termina onde o dele terminou.
+
+Visual:
+
+completamente equipado.
+
+Parece alguém que terminou seu próprio Caminho.
+
+É o oposto visual do Errante nível 1.
+
+Build FIXA:
+
+- Lâmina do Eco
+- Manto do Espelho
+- Passo Perfeito
+- Mestre das Armas
+- Doppelgänger
+- ROOM
+
+Tema da build:
+
+- eco
+- espaço
+- cópia
+- posicionamento
+- domínio da arma
+
+Não adicionar 20 Legados aleatórios.
+
+A build precisa parecer intencional.
+
+Durante a PARTIDA:
+pode aumentar agressividade e sofisticação conforme os duelos avançam.
+
+Mas:
+não mudar build.
+
+Não ganhar HP.
+
+Intro:
+
+6–8 segundos na primeira vez.
+
+Mais elaborada que todos os outros.
+
+Ainda pulável depois de já vista anteriormente.
+
+Usar Arena do Juízo.
+
+Sem hazard aleatório roubando o clímax.
+
+O confronto deve parecer:
+
+“minha build de 50 níveis”
+VS
+“a build perfeita dele”.
+
+======================================================================
+39. INTRO DOS BOSSES
+======================================================================
+
+Todos os 11 rotativos:
+
+intro de aproximadamente 2–5 segundos.
+
+Elementos:
+
+- pequena mudança de câmera
+- ação própria
+- som próprio
+- nome enorme
+- subtítulo
+- entrada da música
+- FIGHT
+
+Primeira vez encontrando:
+intro completa.
+
+Depois que jogador já viu aquele Boss:
+permitir pular.
+
+Não tocar intro completa novamente a cada duelo da mesma partida.
+
+A intro é da PARTIDA/Boss encounter.
+
+======================================================================
+40. CINCO ARENAS DO CAMINHO
+======================================================================
+
+Exatamente 5 arenas principais novas.
+
+Uma por bloco de 10 níveis.
+
+Todas devem ser arenas DE COMBATE.
+
+NÃO pistas de parkour.
+
+NÃO basear dificuldade em buracos.
+
+NÃO criar mapas em que a maior ameaça é cair.
+
+Pode haver bordas/algumas quedas, mas chão sólido deve dominar.
+
+A arena não deve matar mais que os inimigos.
+
+Bosses usam a arena correspondente ao bloco atual.
+
+Não criar 12 arenas extras para bosses nesta versão.
+
+Boss pode alterar iluminação/VFX/set dressing durante intro,
+mas geometria continua sendo a arena do bloco.
+
+--------------------------------------------------
+
+ARENA 1 — ARENA DA RUA
+
+Níveis:
+1–10.
+
+Conceito:
+arena improvisada de rua.
+
+Visual:
+
+- rua/beco
+- estruturas improvisadas
+- cordas
+- cercas
+- caixas/arquibancadas improvisadas
+- postes
+- lanternas
+- tecido/faixas
+- público atrás observando
+
+Pessoas do público:
+APENAS VISUAIS.
+
+Não possuem colisão.
+
+Clima:
+clandestino.
+humilde.
+começo pequeno.
+
+Layout:
+
+- menor das cinco
+- chão principal grande
+- 1–2 plataformas simples
+- quase nenhum buraco
+- extremamente legível
+
+Tamanho relativo:
+1.00x.
+
+--------------------------------------------------
+
+ARENA 2 — COLISEU DE PEDRA
+
+Níveis:
+11–20.
+
+Conceito:
+arena de gladiador.
+
+Visual:
+
+- pedra
+- arquibancadas
+- tochas
+- bandeiras
+- colunas
+- público maior
+- chão de areia/pedra
+
+Layout:
+
+- maior
+- suporta confortavelmente 2 inimigos
+- chão sólido largo
+- verticalidade moderada
+- plataformas grandes
+- sem parkour obrigatório
+
+Tamanho aproximado:
+1.20–1.25x Arena 1.
+
+--------------------------------------------------
+
+ARENA 3 — PÁTIO DO TEMPLO
+
+Níveis:
+21–30.
+
+Conceito:
+arena solene.
+
+Visual:
+
+- pátio de templo
+- arquitetura elegante
+- pilares
+- estátuas
+- jardim seco
+- incenso
+- bandeiras
+- atmosfera mais silenciosa
+
+Layout:
+
+- grande
+- chão contínuo
+- elevações táticas
+- algumas plataformas amplas
+- múltiplas rotas
+- poucos ou nenhum buraco relevante
+
+Tamanho:
+aproximadamente 1.40–1.50x Arena 1.
+
+--------------------------------------------------
+
+ARENA 4 — GRANDE ARENA IMPERIAL
+
+Níveis:
+31–40.
+
+Conceito:
+arena monumental/nobre.
+
+Visual:
+
+- escadarias
+- estátuas grandes
+- brasões
+- arquibancadas monumentais
+- iluminação dramática
+- grande escala
+
+Layout:
+
+- preparada para 3 inimigos
+- mais larga
+- verticalidade controlada
+- plataformas grandes
+- espaço para summons/poderes
+- chão continua sendo elemento dominante
+
+Tamanho:
+aproximadamente 1.65–1.75x Arena 1.
+
+--------------------------------------------------
+
+ARENA 5 — ARENA DO JUÍZO
+
+Níveis:
+41–50.
+
+Conceito:
+arena final/mítica.
+
+Ainda é uma arena.
+
+Não virar plataforma abstrata de parkour.
+
+Visual:
+
+- arquitetura monumental
+- céu dramático/eclipsado
+- pilares enormes
+- runas/detalhes antigos
+- estátuas quebradas
+- poucos elementos distrativos
+- sensação de destino/final
+
+Layout:
+
+- maior das cinco
+- muito espaço horizontal
+- verticalidade moderada
+- plataformas amplas
+- praticamente nenhum buraco dominante
+- preparada para:
+  - três inimigos
+  - summons
+  - Portais
+  - poderes
+  - builds late-game
+
+Tamanho:
+aproximadamente 1.9–2.0x Arena 1.
+
+======================================================================
+41. TRANSIÇÃO ENTRE ARENAS
+======================================================================
+
+A cada 10 níveis:
+mostrar transição curta.
+
+10 -> 11
+20 -> 21
+30 -> 31
+40 -> 41
+
+Não precisa cutscene longa.
+
+Pode mostrar:
+- nome da nova arena
+- breve fade
+- mudança de música/ambiente
+
+A progressão visual deve ser:
+
+briga de rua
+->
+arena de gladiador
+->
+provação de templo
+->
+arena imperial
+->
+arena mítica/final
+
+A sensação narrativa sem história explícita é:
+
+“o Errante começou pequeno e foi sendo levado a arenas cada vez mais sérias.”
+
+======================================================================
+42. COMBAT AI 2.0
+======================================================================
+
+PRIORIDADE ALTÍSSIMA.
+
+A IA atual, mesmo no Mestre, não acompanha adequadamente jogadores que dominam:
+- dash
+- air dash
+- movimentação aérea
+- double jump
+- fast fall
+- wall jump
+- cross-ups
+
+Isso precisa ser corrigido.
+
+A IA não pode simplesmente:
+andar até o player -> atacar -> parry.
+
+Ela precisa realmente JOGAR UM CORTE.
+
+======================================================================
+43. REGRA ABSOLUTA DA IA
+======================================================================
+
+A IA NÃO PODE LER INPUT DO JOGADOR.
+
+Não usar:
+
+“player apertou ataque neste frame, então IA parry”.
+
+IA pode reagir a:
+
+- posição
+- velocidade
+- facing
+- startup visível
+- hitbox ativa
+- projéteis existentes
+- trajetória
+- cooldown conhecido
+- estado do cenário
+- informações que um jogador humano poderia perceber
+
+Ela pode prever trajetória a partir de:
+posição + velocidade + contexto.
+
+Não pode ter conhecimento mágico de input.
+
+======================================================================
+44. MOVIMENTO QUE A IA PRECISA DOMINAR
+======================================================================
+
+IA deve entender e usar:
+
+- corrida
+- jump
+- double jump
+- dash
+- air dash
+- dash ofensivo
+- dash defensivo
+- fast fall
+- wall slide
+- wall jump
+- spacing
+- reposicionamento
+- cross-up
+- perseguição aérea
+- fuga aérea
+- recuperação de queda
+- plataformas
+- rotas da arena
+
+Double jump:
+não gastar automaticamente ao sair do chão.
+
+Air dash:
+usar com intenção.
+
+Fast fall:
+usar para:
+- mudar timing
+- retornar ao chão
+- escapar de ameaça aérea
+
+Wall jump:
+não ficar entrando em loop idiota contra parede.
+
+======================================================================
+45. COMBATE QUE A IA PRECISA DOMINAR
+======================================================================
+
+IA avançada deve:
+
+- reconhecer alcance das armas
+- respeitar recovery
+- punir whiff
+- evitar atacar sempre no primeiro instante possível
+- usar parry lateral corretamente
+- reconhecer cross-up
+- preservar dash em certas situações
+- baitar parry ocasionalmente
+- recuar
+- não atacar quando atacar seria ruim
+- pressionar adversário vulnerável
+- controlar distância
+- reagir a projéteis
+- entender hazards
+- entender summons
+- lidar com Legados
+
+IA Mestre deve parecer boa,
+não psychic.
+
+======================================================================
+46. DIFICULDADES DE IA
+======================================================================
+
+Fácil:
+
+- reação lenta
+- erros frequentes
+- uso simples de dash
+- pouco spacing
+- desperdiça recursos
+- ataques previsíveis
+
+Normal:
+
+- movimento razoável
+- dash funcional
+- parry razoável
+- entende distância básica
+
+Difícil:
+
+- air dash
+- double jump consciente
+- fast fall
+- whiff punish
+- melhor spacing
+- algumas fintas
+
+Mestre:
+
+- kit praticamente completo
+- cross-ups
+- resource management
+- parry lateral avançado
+- punição
+- bait
+- combina Legados
+- sabe esperar
+- sabe fugir
+- comportamento menos previsível
+
+Não reduzir dificuldade apenas a reaction time.
+
+======================================================================
+47. IA NO CAMINHO
+======================================================================
+
+IA deve ficar mais sofisticada conforme run avança.
+
+1–10:
+mais simples.
+
+11–20:
+dash/spacing melhores.
+
+21–30:
+movimento aéreo melhor e punição de recovery.
+
+31–40:
+combina movimento com Legados.
+
+41–50:
+próxima de Mestre completo.
+
+Bosses:
+usam versões especializadas do sistema de IA.
+
+======================================================================
+48. IA DE GRUPO
+======================================================================
+
+Quando existem 2–3 inimigos:
+
+não fazer todos simplesmente ocuparem a mesma posição.
+
+Criar papéis dinâmicos:
+
+- pressionador
+- flanqueador
+- suporte/distância
+
+Esses papéis podem mudar durante luta.
+
+Evitar:
+
+três inimigos correndo em linha reta para exatamente o mesmo ponto.
+
+Eles devem criar pressão coletiva sem parecer hive-mind perfeito.
+
+======================================================================
+49. SAVE / CONTINUAR RUN
+======================================================================
+
+Uma run de 50 níveis pode ser longa.
+
+Salvar é obrigatório.
+
+Menu:
+
+CAMINHO DO GUERREIRO
+
+- Nova Run
+- Continuar Run — Nível X
+
+Uma run normal ativa por vez.
+
+Nova Run quando já existe uma:
+pedir confirmação.
+
+Usar persistência robusta, preferencialmente localStorage estruturado/versionado.
+
+Salvar:
+
+- seed/random state quando necessário
+- nível
+- duelo atual / progresso da partida
+- build
+- ordem de aquisição
+- arma equipada
+- Legados consumidos
+- cooldowns persistentes relevantes
+- bosses sorteados
+- bosses derrotados
+- arenas
+- bindings dos Legados
+- D20/Orbe/etc.
+- estatísticas da run
+
+AUTOSAVE:
+
+- depois de duelo
+- depois de draft
+- entre níveis
+- depois de mudanças importantes no inventário
+
+Se fechar no meio de um duelo:
+ao continuar, reiniciar aquele duelo a partir do snapshot seguro do início dele.
+
+Não salvar frame exato no meio da ação.
+
+======================================================================
+50. MORTE DA RUN
+======================================================================
+
+Modo normal:
+
+perder a PARTIDA/nivel:
+RUN ENCERRADA.
+
+Invalidar save de continuação daquela run.
+
+Mostrar tela:
+
+CAMINHO INTERROMPIDO
+
+Com:
+
+- nível alcançado
+- tempo
+- Legados
+- bosses encontrados
+- bosses derrotados
+- estatísticas básicas
+
+Não permitir carregar save antigo para desfazer morte.
+
+======================================================================
+51. ADMIN RETRY
+======================================================================
+
+No Admin:
+
+se morrer/perder a run:
+mostrar opção adicional:
+
+TENTAR NOVAMENTE
+
+Ao usar:
+
+- continuar no MESMO NÍVEL
+- restaurar build que o jogador tinha ao entrar naquele nível
+- restaurar o mesmo boss/miniboss/inimigos
+- reiniciar a PARTIDA daquele nível
+
+Não voltar ao nível 1.
+
+Admin é sandbox/teste.
+
+======================================================================
+52. VITÓRIA
+======================================================================
+
+Derrotar Boss Final nível 50:
+
+CAMINHO CONCLUÍDO
+
+Mostrar:
+
+- tempo total
+- build final
+- Legados obtidos
+- bosses enfrentados
+- estatísticas
+- recordes
+
+Não adicionar power creep permanente nesta versão.
+
+Nada de:
+
+“+5% velocidade em todas as próximas runs”.
+
+Cada run começa justa.
+
+Pode salvar:
+
+- número de vitórias
+- maior nível
+- melhor tempo
+- bosses já vistos
+- intros já vistas
+
+======================================================================
+53. LEGADOS NOS OUTROS MODOS
+======================================================================
+
+O UM CORTE normal continua com Legados DESATIVADOS por padrão.
+
+O combate vanilla não deve ser substituído.
+
+Criar opções para ativá-los.
+
+DUEL / ONLINE / PVE:
+
+Legados:
+- OFF
+- 1 POR PARTIDA
+- 1 POR DUELO, CUMULATIVO
+
+1 POR PARTIDA:
+
+antes da partida:
+cada lado recebe draft.
+
+Escolhe 1.
+
+Fica durante toda partida.
+
+1 POR DUELO CUMULATIVO:
+
+antes de cada duelo:
+cada lado recebe novo draft.
+
+Escolhe 1.
+
+Legados anteriores permanecem.
+
+Ambos recebem escolha,
+independentemente de quem venceu duelo anterior.
+
+======================================================================
+54. FAIRNESS DE RARIDADE NO PVP
+======================================================================
+
+Para PvP:
+
+não deixar um jogador receber:
+
+3 Comuns
+
+e outro:
+
+3 Lendários
+
+puramente pelo RNG.
+
+Rolar primeiro um PADRÃO DE RARIDADES compartilhado.
+
+Exemplo:
+
+Comum / Raro / Comum.
+
+Cada jogador recebe Legados diferentes,
+mas respeitando o mesmo padrão de raridade.
+
+Isso preserva variedade sem criar loteria injusta.
+
+No online:
+opções dos jogadores ficam ocultas até ambos confirmarem.
+
+Depois:
+revelar escolhas.
+
+======================================================================
+55. TOURNAMENT
+======================================================================
+
+Legados opcionais também no Tournament.
+
+Por padrão:
+resetar Legados entre confrontos diferentes da bracket.
+
+Cada confronto inicia sua própria build.
+
+Admin pode possuir opção especial para preservar se desejado.
+
+======================================================================
+56. TRAINING
+======================================================================
+
+Training deve ser laboratório completo de Legados.
+
+Permitir:
+
+- escolher qualquer Legado
+- adicionar
+- remover
+- randomizar
+- selecionar arma equipada
+- atribuir ao player
+- atribuir ao dummy/AI
+- resetar cooldown
+- resetar uso
+- testar interações
+
+Não exigir desbloqueios.
+
+======================================================================
+57. ADMIN
+======================================================================
+
+Admin tem controle absoluto.
+
+Permitir:
+
+- adicionar qualquer Legado
+- remover qualquer Legado
+- qualquer quantidade
+- ignorar limites
+- resetar usos
+- forçar raridades
+- gerar draft
+- escolher boss
+- escolher miniboss
+- escolher arena do Caminho
+- escolher nível
+- alterar dificuldade de IA
+- testar summons
+- testar cooldowns
+- retry no Caminho
+
+Admin pode ignorar regras normais.
+
+======================================================================
+58. LEGADOS INCOMPATÍVEIS COM MODO
+======================================================================
+
+Não oferecer aleatoriamente um Legado cujo efeito seja completamente inútil naquele modo.
+
+Exemplo:
+
+Coroa do Conquistador:
+não oferecer em Duelo comum sem Miniboss.
+
+Contrato do Diabo:
+não oferecer em modo sem draft de Miniboss.
+
+Orbe/Carta Marcada:
+não oferecer quando não haverá nenhum draft futuro.
+
+Admin pode forçar qualquer um.
+
+======================================================================
+59. ARMAS MÚLTIPLAS
+======================================================================
+
+Jogador pode possuir várias Armas na build.
+
+Mas durante um duelo:
+uma ARMA PRIMÁRIA equipada por vez.
+
+Entre duelos:
+pode escolher qual usar através do TAB.
+
+Ao adquirir uma nova arma:
+pode equipá-la automaticamente como sugestão,
+mas permitir trocar antes do próximo duelo.
+
+Não permitir troca livre no meio da luta,
+salvo Legado futuro que explicitamente permita.
+
+Todas as armas possuídas continuam aparecendo na lista de Legados.
+
+======================================================================
+60. SUMMONS — REGRAS GERAIS
+======================================================================
+
+Invocações hostis podem ser atingidas quando fizer sentido.
+
+Por padrão:
+um golpe limpo pode destruir uma summon vulnerável.
+
+Matar summon:
+NÃO vence o duelo.
+
+Vitória continua ligada ao combatente principal.
+
+Não permitir que ataques do próprio jogador matem seus companions,
+salvo habilidade explicitamente projetada para friendly fire.
+
+Exceção conhecida:
+Dragão Ancestral pode criar região perigosa para o próprio invocador.
+
+======================================================================
+61. REWORK VISUAL DOS ATAQUES
+======================================================================
+
+Um dos objetivos visuais principais da V8.
+
+Atualmente:
+muitos ataques parecem “arma se move + trail”.
+
+Quero linguagem visual mais próxima da ideia de Katana ZERO:
+
+O CORTE deve parecer um objeto/forma visual própria no ar.
+
+IMPORTANTE:
+
+não copiar movimentação do Katana ZERO.
+Apenas a linguagem visual do slash.
+
+O personagem mantém movimentação UM CORTE.
+
+O slash:
+
+- nasce durante janela ativa
+- é curto
+- forte
+- separado visualmente da arma
+- corresponde aproximadamente à região real de perigo
+- ajuda a ler hitbox
+
+Exemplos:
+
+Espada:
+crescent/slash claro.
+
+Machado:
+arco mais grosso/pesado.
+
+Ceifador:
+grande curva longa.
+
+Monge:
+arco quase circular.
+
+Lanceiro:
+rasgo/linha de estocada.
+
+Pugilista:
+impacto curto/estouro, não crescent clássico.
+
+Kunai/Arco:
+projétil claro.
+
+Golpes Lendários:
+podem ter linguagem mais exagerada.
+
+Não usar VFX gigantes que escondam gameplay.
+
+O slash precisa melhorar leitura.
+
+Não alterar silenciosamente hitbox só para combinar com efeito.
+Ideal:
+VFX representar a hitbox existente/intencional.
+
+======================================================================
+62. CORREDOR — REWORK
+======================================================================
+
+Corredor atualmente parece correr de maneira boba/lenta.
+
+Reformular animação.
+
+Ele precisa parecer um SPRINT de verdade.
+
+Visual:
+
+- tronco inclinado para frente
+- passada maior
+- joelhos mais ativos
+- braços mais fortes
+- cadência rápida
+- postura atlética
+- sensação de esforço/velocidade
+
+Aumentar SOMENTE velocidade base de corrida do Corredor.
+
+NÃO aumentar automaticamente:
+
+- dash
+- air dash
+- demais classes
+
+Preservar sistema universal de movimentação.
+
+======================================================================
+63. PERFORMANCE E POLUIÇÃO VISUAL
+======================================================================
+
+Late game pode conter:
+
+- 3 inimigos
+- várias summons
+- poderes
+- projéteis
+- 20+ Legados
+- VFX
+
+O jogo precisa continuar legível e performático.
+
+Fazer pooling quando apropriado.
+
+Limitar partículas puramente decorativas.
+
+Não limitar mecânicas importantes só para ganhar FPS.
+
+Priorizar:
+
+1. hitboxes
+2. jogadores
+3. ameaças
+4. telegraphs
+5. efeitos mecânicos
+6. decoração
+
+Telegraph de ataque nunca pode desaparecer em meio a partículas.
+
+======================================================================
+64. ONLINE E LEGADOS
+======================================================================
+
+Em modos online com Legados:
+
+sincronizar:
+
+- Legado adquirido
+- ativação
+- cooldowns relevantes
+- projéteis
+- summons
+- transformações
+- arma equipada
+- efeitos de mundo
+
+Não sincronizar binding físico.
+
+Usar IDs estáveis.
+
+A seleção do draft:
+só revelar após confirmação dos dois jogadores.
+
+Não permitir que diferenças de FPS façam timers de Legados divergirem gravemente.
+
+Preservar a arquitetura PeerJS atual,
+sem reescrever networking inteiro sem necessidade.
+
+======================================================================
+65. ÍCONES E CARTAS
+======================================================================
+
+Todo Legado deve ter ícone próprio reconhecível.
+
+Cartas de draft devem mostrar claramente:
+
+- ícone
+- nome
+- categoria
+- raridade
+- descrição
+- como usar
+- limite/cooldown importante
+
+Não exigir que jogador já conheça Legado.
+
+Tela de draft é parte da aprendizagem.
+
+======================================================================
+66. DRAFT UX
+======================================================================
+
+Ao aparecer draft:
+
+- combate parado
+- três cartas centralizadas
+- quatro se Trevo
+- mouse e teclado suportados
+- destaque no hover
+- confirmação clara
+
+Mostrar categoria visualmente,
+mas sem encher tela de texto.
+
+Se Legado possui tecla:
+explicar:
+
+“Receberá automaticamente um slot ativo e poderá ser remapeado no TAB.”
+
+======================================================================
+67. BUILD ÚNICA POR RUN
+======================================================================
+
+Objetivo fundamental:
+
+uma run NÃO deve inevitavelmente terminar igual à outra.
+
+Por isso:
+
+- somente ~20 drafts frequentes antes/de até nível 20
+- depois disso apenas Miniboss/Boss
+- sem duplicatas
+- grande pool
+- raridade controlada
+
+Jogador deve terminar forte,
+mas não possuir “quase tudo”.
+
+Runs devem permitir histórias como:
+
+run focada em:
+- summons
+
+ou:
+- mobilidade
+
+ou:
+- técnicas
+
+ou:
+- armas
+
+ou:
+- poderes
+
+ou:
+misturas completamente absurdas.
+
+======================================================================
+68. QUANTIDADE FINAL DE LEGADOS
+======================================================================
+
+Implementar o catálogo aprovado da V8.
+
+Total atual:
+
+ARMAS:
+15
+
+VESTIMENTAS:
+17
+
+RELÍQUIAS:
+21
+
+TÉCNICAS:
+18
+
+INVOCAÇÕES:
+22
+
+PODERES:
+22
+
+TOTAL:
+115 LEGADOS
+
+Não adicionar novos Legados aleatórios nesta implementação sem necessidade.
+
+Não remover nenhum aprovado.
+
+======================================================================
+69. TESTES OBRIGATÓRIOS — MOVIMENTO
+======================================================================
+
+Testar:
+
+- W jump
+- Space jump
+- W + Dash para cima
+- double jump
+- wall jump
+- air dash
+- fast fall
+- Corredor sprint
+- Botas-Foguete + double jump
+- Asas de Ícaro
+- gravidade invertida
+- Web Shooters
+- Repulsor
+- Blink
+- Portais
+
+Não aceitar travamentos/softlocks.
+
+======================================================================
+70. TESTES OBRIGATÓRIOS — LEGADOS
+======================================================================
+
+Cada um dos 115 Legados precisa ser testado individualmente.
+
+Depois testar combinações críticas.
+
+Obrigatórias:
+
+Mestre das Armas + Macaquinho
+Mestre das Armas + Telecinese
+Mestre das Armas + Portais
+Desarmamento + Macaquinho
+Leviatã + Mestre das Armas
+ROOM + arma arremessada
+Portais + flecha
+Portais + Kunai
+Portais + projéteis
+Bota Alada + Botas-Foguete + Asas
+Manto Sombrio + Corpo de Névoa
+Traje Fantasma + Blink
+Sandevistan + ataques
+Star Platinum + outros efeitos temporais
+Doppelgänger + ataques
+Lâmina do Eco + ataques direcionais
+Legião + múltiplos inimigos
+Necromante + inimigo morto
+Kamehameha com 1.9s
+Kamehameha com 2.0s
+Kamehameha acima de 2s
+
+Verificar:
+<2s é parryable.
+>=2s não é parryable.
+
+======================================================================
+71. TESTES OBRIGATÓRIOS — CAMINHO
+======================================================================
+
+Testar progressão completa:
+
+1
+5
+10
+11
+15
+20
+21
+25
+30
+31
+35
+40
+41
+45
+49
+50
+
+Confirmar:
+
+- inimigos corretos
+- número correto
+- builds corretas
+- draft correto
+- arena correta
+- Miniboss correto
+- Boss correto
+- save correto
+- Último Legado
+- Boss Final
+
+======================================================================
+72. TESTES OBRIGATÓRIOS — SAVE
+======================================================================
+
+Testar:
+
+fechar jogo:
+- entre níveis
+- depois de draft
+- no meio de partida
+- no meio de duelo
+
+Continuar.
+
+Confirmar:
+nenhum Legado duplica.
+nenhum Boss sorteado muda.
+nenhuma arena incorreta.
+bindings continuam.
+Pedra consumida continua consumida.
+
+Modo normal:
+morrer invalida run.
+
+Admin:
+Tentar novamente funciona.
+
+======================================================================
+73. TESTES OBRIGATÓRIOS — AI
+======================================================================
+
+Testar IA contra jogador que:
+
+- dá dash repetidamente
+- usa air dash
+- pula por cima
+- faz cross-up
+- fica em parede
+- usa fast fall
+- atira projéteis
+- usa summons
+- usa Portais
+- usa Web Shooters
+- usa Blink
+
+IA Mestre não pode ficar perdida.
+
+Também validar:
+não está lendo input.
+
+Verificar logs/debug se necessário.
+
+======================================================================
+74. TESTES OBRIGATÓRIOS — BOSSES
+======================================================================
+
+Testar os 12.
+
+Confirmar:
+
+- intro
+- nome
+- subtítulo
+- build fixa
+- personalidade
+- faixa de aparição
+- sem repetição na run
+- Boss 50 sempre fixo
+- Boss 40 pool correto
+- intro pulável após primeira visualização
+
+Os Gêmeos:
+validar coordenação.
+
+Homem do Tempo:
+validar Sandevistan sem input reading.
+
+Primeiro Errante:
+validar ROOM + Doppelgänger + Mestre das Armas + Lâmina do Eco sem quebrar estado.
+
+======================================================================
+75. TESTES OBRIGATÓRIOS — UI
+======================================================================
+
+Validar:
+
+- fita de ícones inferior esquerda
+- ordem de aquisição
+- múltiplas linhas
+- ícone consumido
+- TAB
+- descrição
+- categorias
+- highlight visual
+- remap
+- conflitos de tecla
+- HUD de ativos
+- cooldown
+- usos
+- online sem pausa
+- offline com pausa
+
+A fita inferior esquerda NÃO deve virar menu textual.
+
+======================================================================
+76. TELEGRAPH / FAIRNESS
+======================================================================
+
+Mesmo Poderes Lendários precisam de telegraph adequado.
+
+Não fazer ataques instantâneos invisíveis sem motivo.
+
+Exemplos:
+
+Dragão:
+telegraph grande.
+
+Kraken:
+sombra/aviso.
+
+Domínio:
+marcas antes do corte.
+
+Kamehameha:
+carga extremamente visível.
+
+Falcão:
+trajetória anunciada.
+
+Boss:
+não esconder ataques por partículas.
+
+A dificuldade deve vir de:
+reconhecimento + decisão + execução.
+
+Não de informação invisível.
+
+======================================================================
+77. CASOS DE SEGUNDA CHANCE
+======================================================================
+
+Existem vários Legados próximos desse tema,
+mas mecanicamente diferentes.
+
+Não fundi-los.
+
+ARMADURA DE CRISTAL:
+nega golpe.
+
+BERSERKER:
+adiamento condicionado.
+
+ANEL:
+reinicia duelo inteiro.
+
+OLHO DO DESTINO:
+oportunidade de reação.
+
+Não criar mais efeitos genéricos de “reviver”.
+
+======================================================================
+78. ADMIN DEBUG ÚTIL
+======================================================================
+
+No Admin, incluir ferramentas úteis para desenvolvimento:
+
+- lista pesquisável dos 115 Legados
+- filtrar por categoria
+- filtrar por raridade
+- adicionar/remover
+- forçar cooldown ready
+- consumir/resetar
+- spawn summon
+- matar summon
+- escolher boss
+- escolher nível do Caminho
+- escolher arena
+- simular draft
+- simular Miniboss reward
+- simular Boss reward
+- forçar D20 1–20
+- forçar Pedra Filosofal
+- forçar seed
+
+Isso é ferramenta de debug, não menu normal.
+
+======================================================================
+79. PRIORIDADE DE IMPLEMENTAÇÃO
+======================================================================
+
+Não tente montar tudo como hacks independentes.
+
+Ordem recomendada:
+
+1. registry central de Legados
+2. UI de ícones/TAB/keybindings
+3. sistema genérico de efeitos/use scopes
+4. Armas
+5. Vestimentas
+6. Relíquias
+7. Técnicas
+8. Invocações
+9. Poderes
+10. Caminho básico
+11. save
+12. arenas
+13. AI 2.0
+14. Minibosses
+15. Bosses
+16. integração PvP/Training/Admin
+17. slash VFX
+18. Corredor
+19. otimização
+20. regression tests
+
+Mas manter tudo dentro da build final única.
+
+======================================================================
+80. NÃO FAZER
+======================================================================
+
+NÃO:
+
+- criar HP bar
+- tornar Boss HP sponge
+- criar campanha
+- inventar meta progression de stats
+- obrigar parkour nas arenas do Caminho
+- encher arenas de buracos
+- criar 100 níveis
+- dar draft normal depois do nível 20
+- fazer inimigos late game simplesmente virarem multidão
+- permitir IA ler input
+- transformar Legendary em “+25% stat” sem identidade
+- remover combinações por conveniência
+- duplicar implementação de Legados por modo
+- esconder mecânica sem descrição
+- usar a mesma arena escalada 5 vezes
+- fazer slash apenas como motion trail antigo
+- tornar Corredor mais rápido aumentando todas as outras classes
+- alterar builds fixas dos bosses aleatoriamente
+- criar Boss como classe normal apenas com vários buffs
+
+======================================================================
+81. CRITÉRIO DE SUCESSO
+======================================================================
+
+Quando a V8 estiver pronta, deve ser possível começar o Caminho assim:
+
+ERRANTE:
+de tanga,
+descalço,
+sem arma,
+com um soco horrível.
+
+E terminar uma run com algo como:
+
+Machado Leviatã
++
+Asas de Ícaro
++
+Manto da Gravidade
++
+Moeda Viciada
++
+Trevo
++
+Mestre das Armas
++
+Mikiri
++
+Macaquinho Ladrão
++
+Falcão
++
+Web Shooters
++
+Sandevistan
++
+outros Legados
+
+e tudo isso deve:
+
+- funcionar junto
+- aparecer visualmente
+- ser consultável no TAB
+- aparecer discretamente na fita de ícones
+- respeitar controles
+- respeitar saves
+- funcionar com IA
+- não destruir legibilidade
+
+A sensação correta é:
+
+“eu construí ESTE personagem durante ESTA run”.
+
+Não:
+
+“cheguei no fim e peguei praticamente tudo”.
+
+======================================================================
+82. ENTREGA FINAL
+======================================================================
+
+Ao concluir:
+
+1. entregar um-corte-v8.html
+2. entregar um-corte-v8-admin.html
+3. manter arquivos executáveis diretamente no navegador
+4. registrar V8 no histórico/changelog
+5. listar resumidamente os sistemas implementados
+6. listar bugs conhecidos reais, se existirem
+7. não alegar que algo funciona se não foi testado
+8. testar regressões nos modos antigos
+9. garantir que nenhuma feature antiga importante foi removida
+10. garantir que Caminho, Legados e AI 2.0 estejam realmente funcionais, e não apenas menus/placeholder
+
+IMPORTANTE:
+
+Não pare depois de criar interface/estrutura vazia.
+
+A tarefa só está concluída quando as mecânicas estão jogáveis.
+
+Esta V8 é uma expansão de gameplay, não um mockup.

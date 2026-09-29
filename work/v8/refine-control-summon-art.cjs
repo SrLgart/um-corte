@@ -1,0 +1,6 @@
+const fs=require('node:fs'),p='work/v8/v8-visuals.js';let s=fs.readFileSync(p,'utf8');const changes=[
+["r.ellipse(0,-4,charge?6:4,5,charge?'#f5fcff':color);","for(let i=0;i<5;i++){const x=(i-2)*5,sway=Math.sin(t*4-i*.8)*(charge?2:4);r.path([[x,3],[x+sway,12],[x-sway*.5,21+i%2*5],[x+sway*.7,29-i%2*3]],null,i%2?'#7fa9b8':color,1.3);}r.ellipse(0,-4,charge?6:4,5,charge?'#f5fcff':color);"],
+["r.ellipse(0,3,3,5+Math.sin(t*9),'#fff8d2');","r.ellipse(0,3,3,5+Math.sin(t*9),'#fff8d2');for(const x of[-7,7])r.line({x,y:-10},{x:x*.8,y:12},'#8ca9a4',1.5);r.path([[-11,-13],[0,-18],[11,-13]],'#42626b',color,1);"],
+["r.line({x:-10,y:-2},{x:10,y:-2},'#233c37',2);","for(const x of[-14,-5,6,14])r.ellipse(x,2+(x%3),1.5,1,'#2f6856');for(const sign of[-1,1])for(let i=0;i<3;i++)r.line({x:sign*14,y:9},{x:sign*(16+i*3),y:11+i%2},'#95b78a',1.5);r.line({x:-10,y:-2},{x:10,y:-2},'#233c37',2);"],
+["r.ellipse(2,5,2,3,chew?'#fff0b0':'#202c32');","for(const y of[4,9])r.line({x:-14,y},{x:14,y},'#916b48',1);r.ellipse(2,5,2,3,chew?'#fff0b0':'#202c32');for(const x of[-13,13])r.ellipse(x,10,1,1,'#efd196');"]
+];for(const[a,b]of changes){if(!s.includes(a))throw Error('missing detail');s=s.replace(a,b);}fs.writeFileSync(p,s);

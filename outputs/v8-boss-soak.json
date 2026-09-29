@@ -1,0 +1,310 @@
+{
+  "note": "Actual simulated attacks/collisions. No induced wins or invincibility. Scripted player, not human balance validation.",
+  "results": [
+    {
+      "boss": "ronin",
+      "frames": 2350,
+      "simulationSeconds": 19.583333333333332,
+      "phase": "matchEnd",
+      "score": [
+        1,
+        3
+      ],
+      "events": {
+        "start": 1,
+        "dash": 8,
+        "legacyUse:fireball": 2,
+        "windup": 8,
+        "swing": 4,
+        "kill": 4,
+        "round": 3,
+        "roundGo": 3,
+        "matchPoint": 2,
+        "whiff": 1,
+        "matchEnd": 1
+      }
+    },
+    {
+      "boss": "spider",
+      "frames": 1624,
+      "simulationSeconds": 13.533333333333333,
+      "phase": "matchEnd",
+      "score": [
+        0,
+        3
+      ],
+      "events": {
+        "start": 1,
+        "dash": 6,
+        "legacyUse:fireball": 2,
+        "windup": 3,
+        "swing": 3,
+        "whiff": 3,
+        "kill": 3,
+        "round": 2,
+        "roundGo": 2,
+        "matchPoint": 1,
+        "matchEnd": 1
+      }
+    },
+    {
+      "boss": "executioner",
+      "frames": 1690,
+      "simulationSeconds": 14.083333333333334,
+      "phase": "matchEnd",
+      "score": [
+        3,
+        0
+      ],
+      "events": {
+        "start": 1,
+        "dash": 6,
+        "legacyUse:fireball": 2,
+        "windup": 6,
+        "shieldBreak": 1,
+        "swing": 3,
+        "kill": 3,
+        "round": 2,
+        "roundGo": 2,
+        "matchPoint": 1,
+        "whiff": 1,
+        "matchEnd": 1
+      }
+    },
+    {
+      "boss": "specter",
+      "frames": 1624,
+      "simulationSeconds": 13.533333333333333,
+      "phase": "matchEnd",
+      "score": [
+        0,
+        3
+      ],
+      "events": {
+        "start": 1,
+        "dash": 6,
+        "legacyUse:fireball": 2,
+        "windup": 3,
+        "swing": 3,
+        "whiff": 3,
+        "kill": 3,
+        "round": 2,
+        "roundGo": 2,
+        "matchPoint": 1,
+        "matchEnd": 1
+      }
+    },
+    {
+      "boss": "tamer",
+      "frames": 1730,
+      "simulationSeconds": 14.416666666666666,
+      "phase": "matchEnd",
+      "score": [
+        0,
+        3
+      ],
+      "events": {
+        "start": 1,
+        "dash": 12,
+        "legacyUse:fireball": 2,
+        "windup": 4,
+        "swing": 3,
+        "whiff": 3,
+        "kill": 3,
+        "round": 2,
+        "roundGo": 2,
+        "matchPoint": 1,
+        "matchEnd": 1
+      }
+    },
+    {
+      "boss": "artificer",
+      "frames": 2454,
+      "simulationSeconds": 20.45,
+      "phase": "matchEnd",
+      "score": [
+        3,
+        1
+      ],
+      "events": {
+        "start": 1,
+        "dash": 16,
+        "legacyUse:fireball": 2,
+        "legacyUse:portals": 4,
+        "guard": 2,
+        "windup": 6,
+        "swing": 3,
+        "parry": 2,
+        "feint": 2,
+        "kill": 4,
+        "round": 3,
+        "roundGo": 3,
+        "legacyThrow": 1,
+        "legacyUse:weaponmaster": 1,
+        "matchPoint": 1,
+        "matchEnd": 1
+      }
+    },
+    {
+      "boss": "vampire",
+      "frames": 1714,
+      "simulationSeconds": 14.283333333333333,
+      "phase": "matchEnd",
+      "score": [
+        3,
+        0
+      ],
+      "events": {
+        "start": 1,
+        "dash": 12,
+        "legacyUse:fireball": 2,
+        "legacyUse:impulse": 1,
+        "land": 1,
+        "kill": 3,
+        "round": 2,
+        "roundGo": 2,
+        "windup": 4,
+        "swing": 3,
+        "matchPoint": 1,
+        "jump": 1,
+        "whiff": 1,
+        "matchEnd": 1
+      }
+    },
+    {
+      "boss": "witch",
+      "frames": 2609,
+      "simulationSeconds": 21.741666666666667,
+      "phase": "matchEnd",
+      "score": [
+        3,
+        1
+      ],
+      "events": {
+        "start": 1,
+        "dash": 20,
+        "legacyUse:fireball": 3,
+        "guard": 2,
+        "windup": 6,
+        "swing": 4,
+        "parry": 2,
+        "kill": 4,
+        "round": 3,
+        "roundGo": 3,
+        "whiff": 1,
+        "legacyUse:well": 1,
+        "land": 3,
+        "matchPoint": 1,
+        "matchEnd": 1
+      }
+    },
+    {
+      "boss": "legionlord",
+      "frames": 1951,
+      "simulationSeconds": 16.258333333333333,
+      "phase": "matchEnd",
+      "score": [
+        0,
+        3
+      ],
+      "events": {
+        "start": 1,
+        "dash": 15,
+        "legacyUse:fireball": 2,
+        "guard": 1,
+        "windup": 7,
+        "parry": 1,
+        "legacyUse:barrier": 3,
+        "kill": 3,
+        "round": 2,
+        "roundGo": 2,
+        "swing": 5,
+        "matchPoint": 1,
+        "jump": 2,
+        "doubleJump": 1,
+        "clash": 1,
+        "land": 2,
+        "matchEnd": 1
+      }
+    },
+    {
+      "boss": "twins",
+      "frames": 3860,
+      "simulationSeconds": 32.166666666666664,
+      "phase": "matchEnd",
+      "score": [
+        3,
+        2
+      ],
+      "events": {
+        "start": 1,
+        "dash": 28,
+        "legacyUse:fireball": 4,
+        "windup": 21,
+        "swing": 16,
+        "whiff": 7,
+        "guard": 4,
+        "parry": 2,
+        "feint": 3,
+        "kill": 5,
+        "round": 4,
+        "roundGo": 4,
+        "legacyUse:well": 4,
+        "land": 131,
+        "matchPoint": 2,
+        "jump": 2,
+        "parryMiss": 2,
+        "matchEnd": 1
+      }
+    },
+    {
+      "boss": "timekeeper",
+      "frames": 2153,
+      "simulationSeconds": 17.941666666666666,
+      "phase": "matchEnd",
+      "score": [
+        3,
+        0
+      ],
+      "events": {
+        "start": 1,
+        "dash": 17,
+        "legacyUse:fireball": 2,
+        "windup": 6,
+        "legacyUse:sandevistan": 1,
+        "guard": 2,
+        "swing": 4,
+        "parry": 2,
+        "land": 1,
+        "kill": 3,
+        "round": 2,
+        "roundGo": 2,
+        "matchPoint": 1,
+        "matchEnd": 1
+      }
+    },
+    {
+      "boss": "first",
+      "frames": 2015,
+      "simulationSeconds": 16.791666666666668,
+      "phase": "matchEnd",
+      "score": [
+        3,
+        0
+      ],
+      "events": {
+        "start": 1,
+        "dash": 18,
+        "legacyUse:fireball": 2,
+        "windup": 6,
+        "feint": 2,
+        "swing": 3,
+        "kill": 3,
+        "round": 2,
+        "roundGo": 2,
+        "matchPoint": 1,
+        "matchEnd": 1
+      }
+    }
+  ]
+}

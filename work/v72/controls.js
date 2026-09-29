@@ -1,0 +1,44 @@
+(function(){
+'use strict';
+const ACTIONS={left:'Esquerda',right:'Direita',up:'Cima / dash aéreo',taunt:'Provocação',jump:'Pular',down:'Descer / queda rápida',attack:'Atacar',parry:'Parry',dash:'Dash / deslizar',kick:'Chutar',special:'Especial',reset:'Reiniciar treino',pause:'Pausar / controles'};
+const DEFAULTS={keyboard:{left:['KeyA','ArrowLeft'],right:['KeyD','ArrowRight'],up:['KeyW','ArrowUp'],taunt:['KeyT'],jump:['Space','KeyW'],down:['KeyS','ArrowDown'],attack:['Mouse0','KeyJ'],parry:['Mouse2','KeyK'],dash:['ShiftLeft','ShiftRight'],kick:['KeyE','KeyL'],special:['KeyF'],reset:['KeyR'],pause:['Escape']},pad:{left:[14],right:[15],up:[12],taunt:[10],jump:[0],down:[13],attack:[5],parry:[4],dash:[1],kick:[2],special:[3],reset:[8],pause:[9]},deadzone:.2,sensitivity:1,moveAxis:0,aimAxis:2};
+const clone=o=>JSON.parse(JSON.stringify(o)),edges=()=>({jump:false,attack:false,parry:false,dash:false,kick:false,special:false,taunt:false,reset:false});
+class DuelControls{
+ constructor(canvas,options={}){this.canvas=canvas;this.onPause=options.onPause||(()=>{});this.onDisconnect=options.onDisconnect||(()=>{});this.onCapture=()=>{};this.enabled=false;this.keys=new Set();this.pending={keyboard:edges(),pad:edges()};this.mouse={x:0,y:0,seen:false};this.pad=null;this.padOld=[];this.padAim=Math.PI;this.capture=null;this.settings=clone(DEFAULTS);
+  try{
+   let s=JSON.parse(localStorage.getItem('um-corte-v72-controls')||'null');
+   if(!s){s=JSON.parse(localStorage.getItem('um-corte-v7-controls')||localStorage.getItem('um-corte-v3-controls')||'null');if(s){
+    s.keyboard={...clone(DEFAULTS.keyboard),...s.keyboard};s.pad={...clone(DEFAULTS.pad),...s.pad};
+    const usedW=Object.entries(s.keyboard).some(([k,a])=>!['up','jump'].includes(k)&&a.includes('KeyW'));
+    if(JSON.stringify(s.keyboard.jump)===JSON.stringify(['Space'])&&!usedW)s.keyboard.jump=['Space','KeyW'];
+    for(const dev of ['keyboard','pad'])for(const key of ['up','taunt']){
+     const free=v=>!Object.entries(s[dev]).some(([k,a])=>k!==key&&!(dev==='keyboard'&&[k,key].every(n=>['up','jump'].includes(n)))&&a.includes(v));
+     const existing=s[dev][key]||DEFAULTS[dev][key],choices=existing.filter(free),fallback=dev==='keyboard'?Array.from({length:26},(_,i)=>'Key'+String.fromCharCode(65+i)):Array.from({length:32},(_,i)=>i);
+     s[dev][key]=choices.length?choices:[fallback.find(free)].filter(v=>v!==undefined);
+    }
+   }}
+   if(s){for(const device of ['keyboard','pad'])for(const k of Object.keys(ACTIONS)){const a=s[device]?.[k];if(Array.isArray(a)&&a.length>0&&a.length<4&&a.every(v=>device==='pad'?Number.isInteger(v)&&v>=0&&v<32:typeof v==='string'&&v.length<32))this.settings[device][k]=a;}
+    for(const key of ['deadzone','sensitivity','moveAxis','aimAxis'])if(Number.isFinite(s[key]))this.settings[key]=s[key];
+    this.settings.deadzone=DuelCore.clamp(this.settings.deadzone,.1,.4);this.settings.sensitivity=DuelCore.clamp(this.settings.sensitivity,.5,2);this.settings.moveAxis=[0,2].includes(this.settings.moveAxis)?this.settings.moveAxis:0;this.settings.aimAxis=this.settings.moveAxis===0?2:0;
+   }
+  }catch{}
+  window.addEventListener('keydown',e=>{if(e.ctrlKey||e.altKey||e.metaKey||['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;if(this.capture?.device==='keyboard'){e.preventDefault();if(!e.repeat)this.bind(e.code);return;}if(!this.enabled)return;const action=this.find('keyboard',e.code);if(!action)return;e.preventDefault();if(!e.repeat){this.keys.add(e.code);for(const a of Object.keys(ACTIONS))if(this.settings.keyboard[a].includes(e.code))this.press('keyboard',a);}});
+  window.addEventListener('keyup',e=>this.keys.delete(e.code));window.addEventListener('pointermove',e=>{this.mouse={x:e.clientX,y:e.clientY,seen:true};});
+  window.addEventListener('pointerdown',e=>{if(this.capture?.device==='keyboard'){if(e.target.closest('button,input,select'))return;e.preventDefault();this.bind('Mouse'+e.button);return;}if(e.target!==canvas||!this.enabled)return;e.preventDefault();canvas.focus({preventScroll:true});const code='Mouse'+e.button;this.keys.add(code);this.press('keyboard',this.find('keyboard',code));});window.addEventListener('pointerup',e=>this.keys.delete('Mouse'+e.button));canvas.addEventListener('contextmenu',e=>e.preventDefault());window.addEventListener('blur',()=>this.clear());
+ }
+ find(device,code){return Object.keys(ACTIONS).find(k=>this.settings[device][k].includes(code));}
+ press(device,action){if(action==='pause')this.onPause();else if(action in this.pending[device])this.pending[device][action]=true;}
+ save(){try{localStorage.setItem('um-corte-v72-controls',JSON.stringify(this.settings));}catch{}}
+ clear(){this.keys.clear();this.pending={keyboard:edges(),pad:edges()};}
+ reset(){this.settings=clone(DEFAULTS);this.capture=null;this.clear();this.save();}
+ beginCapture(device,action){this.capture={device,action};this.clear();}
+ bind(code){const {device,action}=this.capture||{};if(!device)return;const conflict=this.find(device,code);if(conflict&&conflict!==action&&!(device==='keyboard'&&[conflict,action].every(k=>['up','jump'].includes(k)))){this.onCapture('Já usado em “'+ACTIONS[conflict]+'”. Escolha outra tecla ou botão.');return;}this.settings[device][action]=[code];this.capture=null;this.clear();this.save();this.onCapture('Mapeamento salvo.');}
+ poll(dt){let pads=[];try{pads=Array.from(navigator.getGamepads?.()||[]);}catch{}const next=pads.find(p=>p?.connected)||null,old=this.pad;this.pad=next;if(!next){this.padOld=[];this.pending.pad=edges();if(old)this.onDisconnect();return;}const down=next.buttons.map(b=>b.pressed);for(let i=0;i<down.length;i++){if(down[i]&&!this.padOld[i]){if(this.capture?.device==='pad')this.bind(i);else if(this.enabled)this.press('pad',this.find('pad',i));}}this.padOld=down;
+  const a=this.settings.aimAxis,x=next.axes[a]||0,y=next.axes[a+1]||0;if(Math.hypot(x,y)>this.settings.deadzone){const target=Math.atan2(y,x),delta=Math.atan2(Math.sin(target-this.padAim),Math.cos(target-this.padAim));this.padAim+=delta*Math.min(1,dt*30*this.settings.sensitivity);}
+ }
+ read(source,f,renderer,consume=true){const r={...DuelCore.neutral(),...this.pending[source]},s=this.settings;if(source==='pad'){if(!this.pad)return DuelCore.neutral();const held=key=>s.pad[key].some(i=>this.pad.buttons[i]?.pressed),raw=this.pad.axes[s.moveAxis]||0;r.move=Math.abs(raw)>s.deadzone?Math.sign(raw)*(Math.abs(raw)-s.deadzone)/(1-s.deadzone):(held('right')?1:0)-(held('left')?1:0);r.aim=this.padAim;r.attackHeld=held('attack');r.jumpHeld=held('jump');r.down=held('down')||(this.pad.axes[s.moveAxis+1]||0)>.5;r.up=held('up')||(this.pad.axes[s.moveAxis+1]||0)<-.5;}else{const held=key=>s.keyboard[key].some(k=>this.keys.has(k));r.move=(held('right')?1:0)-(held('left')?1:0);r.attackHeld=held('attack');r.jumpHeld=held('jump');r.down=held('down');r.up=held('up');if(this.mouse.seen){const w=renderer.screenToWorld(this.mouse.x,this.mouse.y);const dx=w.x-f.x,dy=w.y-(f.y-DuelCore.body(f).center);r.aim=Math.hypot(dx,dy)<.01?(f.facing<0?Math.PI:0):Math.atan2(dy,dx);}else r.aim=f.aim;}r.aim=Math.round(Math.atan2(Math.sin(r.aim),Math.cos(r.aim))*4096)/4096;r.move=Math.round(r.move*100)/100;if(r.dash)r.jump=false;if(consume)this.consume(source);return r;}
+ consume(source){this.pending[source]=edges();}
+ label(device,action){return this.settings[device][action].map(v=>device==='pad'?({0:'A / ✕',1:'B / ○',2:'X / □',3:'Y / △',8:'VIEW',4:'LB / L1',5:'RB / R1',9:'MENU',10:'L3',12:'↑',13:'↓',14:'←',15:'→'}[v]||'BOTÃO '+v):({Mouse0:'MOUSE E',Mouse2:'MOUSE D',Space:'ESPAÇO',ShiftLeft:'SHIFT E',ShiftRight:'SHIFT D',ArrowLeft:'←',ArrowRight:'→',ArrowDown:'↓',ArrowUp:'↑',Escape:'ESC'}[v]||v.replace('Key',''))).join(' / ');}
+}
+DuelControls.ACTIONS=ACTIONS;window.DuelControls=DuelControls;
+})();

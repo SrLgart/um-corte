@@ -1,0 +1,16 @@
+PASS eight airborne directions ignore aim, diagonals have equal length
+PASS ground dash trajectory and distance equal V6.3
+PASS wall slide releases and wall jump does not recharge air dash
+PASS lateral guard blocks high, middle, low and loses a cross-up
+PASS taunt is cosmetic and immediate movement cancels it
+PASS race clocks/countdown, no combat, checkpoint order, respawn and protection
+PASS ordered checkpoints, DNF, individual finish and stable results
+PASS race snapshot replays deterministically with eight participants
+PASS all three routes can be completed by genuine physics-driven bots
+PASS course export validation preserves type and rejects missing/broken checkpoints
+PASS same wall can be used again only after separation; high/outward jumps are distinct
+PASS contact is opt-in; protection blocks kicks and ends on own kick
+PASS all duel classes are optional race runners with their own stats and no combat
+PASS day/night never changes geometry or physics
+PASS race snapshots preserve unbounded ADMIN rules and live class
+15 V7 groups passed

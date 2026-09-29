@@ -1,0 +1,11 @@
+const fs=require('node:fs'),path=require('node:path');const read=f=>fs.readFileSync(path.join(__dirname,f),'utf8'),write=(f,s)=>fs.writeFileSync(path.join(__dirname,f),s);
+let s=read('engine.js').replace("this.aiEnabled=o.ai===undefined?this.mode==='pve':!!o.ai;","this.aiEnabled=typeof o.ai==='boolean'?o.ai:this.mode==='pve';").replace('version:3,mode:this.mode','version:3,aiEnabled:this.aiEnabled,mode:this.mode').replace('this.configure(s);for(const key','this.configure({...s,ai:s.aiEnabled});for(const key');
+s=s.replace('let angle=aim-.18*side,','let angle=aim+(f.kind===\'assassin\'?.45:f.kind===\'reaper\'?-.85:f.kind===\'swordsman\'?-.7:-.45)*side,');
+s=s.replace('else{angle=aim;if(f.state',"else{angle=['startup','active','recovery'].includes(f.state)?aim:aim-.35*side;if(f.state");
+write('engine.js',s);
+s=read('actors.js');s=s.replace("(f.kind==='assassin'?5:0)","(f.kind==='assassin'?8:3)");s=s.replace("+(i?9:-9)","+(i?23:-23)");s=s.replace('26,28,side*(i?1:-.6)','26,28,-side');s=s.replace('(front?side*10:-side*10)','(front?side*15:-side*15)');
+s=s.replace('shoulder.x-14,shoulder.y','shoulder.x-18,shoulder.y').replace('shoulder.x+14,shoulder.y','shoulder.x+18,shoulder.y');s=s.replaceAll('shoulder.x-11,shoulder.y','shoulder.x-15,shoulder.y').replaceAll('shoulder.x+11,shoulder.y','shoulder.x+15,shoulder.y');
+write('actors.js',s);
+s=read('renderer.js').replace('aim:-1.1,facing:1','aim:-.15,facing:1');s=s.replace('c.save();const f={id:side','c.save();c.imageSmoothingEnabled=false;const f={id:side');write('renderer.js',s);
+s=read('shell.html').replace('3.1 — Novas fronteiras','3.2 — Corpo em movimento').replace('NOVAS FRONTEIRAS.','CORPO EM MOVIMENTO.');s=s.replace('Os ajustes valem para os dois lados.', 'Os ajustes valem para os dois lados.');
+const marker='<div id="rules-grid"';s=s.replace(marker,'<p class="fine-print">Ataque: 0,5×, 1×, 1,5× ou 2× da velocidade de cada classe. Arena: largura e altura em 0,5×, 1×, 1,5× ou 2×; arenas maiores recebem apoios intermediários para os saltos.</p>'+marker);write('shell.html',s);

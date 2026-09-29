@@ -1,0 +1,12 @@
+const fs=require('node:fs'),path=require('node:path');const read=f=>fs.readFileSync(path.join(__dirname,f),'utf8'),write=(f,s)=>fs.writeFileSync(path.join(__dirname,f),s);
+let s=read('actors.js');
+s=s.replace('clamp(f.vx/29,-13,13)','clamp(f.vx/18,-22,22)+(f.kind===\'assassin\'?Math.sign(f.vx)*7:0)+(f.dashRemaining>0?f.dashX*15:0)');
+s=s.replace("const stride=backwalk?22:29","const stride=backwalk?26:36").replace("+(i?23:-23)","+(i?1:-1)*lerp(23,4,run)");
+s=s.replace('stroke*9-wind*5','stroke*15-wind*9');
+s=s.replace('shoulder.y-25','shoulder.y-18');
+s=s.replace("crouch=land+st.dash*14+","crouch=land+st.dash*14+(f.state==='parry'?3:0)+");
+s=s.replace("r.ellipse(knee.x,knee.y,6,5,metalLight);","r.path([[knee.x-6,knee.y-4],[knee.x+5,knee.y-5],[knee.x+7,knee.y+2],[knee.x-3,knee.y+5]],metal);r.line({x:knee.x-4,y:knee.y-3},{x:knee.x+4,y:knee.y-4},metalLight,2);");
+s=s.replace("pal.h=ink;pal.m=f.kind==='lancer'?'#4c4140':'#45434a';","pal.h=f.kind==='assassin'?'#292932':ink;pal.m=f.kind==='lancer'?'#655347':'#62616b';");
+write('actors.js',s);
+s=read('online-arenas-check.cjs').replace("await host.check('#air-dash');","await host.check('#air-dash');await host.selectOption('#rule-attackSpeed','1.5');await host.selectOption('#rule-mapSize','1.5');").replace("console.log('new map and 600 ms parry synchronized');","assert.equal(await guest.evaluate(()=>duelSnapshot().rules.attackSpeed),1.5);assert.equal(await guest.evaluate(()=>duelSnapshot().rules.mapSize),1.5);console.log('map size, attack speed and 600 ms parry synchronized');").replace('b.y-79-cam.y','b.y-71.1-cam.y').replaceAll('online-arenas-result.json','online-pixels-result.json');write('online-pixels-check.cjs',s);
+s=read('stress-check.cjs').replace("fs.writeFileSync(path.join(__dirname,'stress-result.json')","for(const size of[.5,1.5,2])for(const speed of[.5,1.5,2])for(const map of Object.keys(MAPS))run('swordsman','assassin',map,'normal',{mapSize:size,attackSpeed:speed});fs.writeFileSync(path.join(__dirname,'stress-pixels-result.json')");write('stress-pixels-check.cjs',s);

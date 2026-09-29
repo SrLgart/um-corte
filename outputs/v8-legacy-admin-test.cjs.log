@@ -1,0 +1,11 @@
+PASS debug operations require authority; malformed commands cannot enter simulation
+PASS all 115 distinct Legados fit, filtered randomization is deterministic and mode independent
+PASS adding a passive preserves companion identity, phase, position and entity serial
+PASS spawn and despawn only affect selected summon, releasing carried weapons
+PASS ready clears only cooldown, restore clears the chosen use and consumption
+PASS D20 and Philosopher forced actions use real mechanics and survive snapshots
+PASS draft previews leave run, inventory and RNG unchanged and honor reward guarantees
+PASS administrator equips live while ordinary player remains restricted
+PASS Path debug selects boss, twins, miniboss, arena and difficulty through normal encounter engine
+PASS seed, AI difficulty and item operations reproduce across remote snapshot
+10 V8 admin/laboratory groups passed
